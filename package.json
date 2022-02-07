@@ -1,0 +1,23 @@
+{
+  "name": "vue-esbuild-repl",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.19",
+    "esbuild-wasm": "^0.14.19",
+    "p-retry": "^5.0.0",
+    "pinia": "^2.0.11",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "typescript": "^4.4.4",
+    "unplugin-auto-import": "^0.5.11",
+    "vite": "^2.7.2",
+    "vue-tsc": "^0.29.8"
+  }
+}
