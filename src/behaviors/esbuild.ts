@@ -8,7 +8,6 @@ import {
 
 const esbuildStore = useEsbuildStore(pinia)
 
-
 const prefixes = ["https://cdn.jsdelivr.net/npm", "https://unpkg.com"];
 const jsUrl = (i: number, ver: string) => `${prefixes[i]}/esbuild-wasm@${ver}/lib/browser.min.js`;
 const wasmUrl = (i: number, ver: string) => `${prefixes[i]}/esbuild-wasm@${ver}/esbuild.wasm`;
@@ -34,11 +33,10 @@ async function load() {
   if (import.meta.env.DEV) {
     esbuildStore.status = "Fetching esbuild @ " + esbuildStore.version;
     import("esbuild-wasm").then(async (module) => {
-      console.log('[LOG] ~ file: esbuild.ts ~ line 37 ~ module', module)
       window.esbuild = module;
       esbuildStore.version = module.version
       esbuildStore.status = "Downloading esbuild.wasm @ " + version
-      await module.initialize({ wasmURL: "http://localhost:30000/esbuild.wasm" });
+      await module.initialize({ wasmURL: 'node_modules/esbuild-wasm/esbuild.wasm' })
       await module.transform("let a = 1");
       esbuildStore.esbuild = module
       console.log("loaded esbuild @", module.version);

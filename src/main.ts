@@ -7,6 +7,4 @@ export const pinia = createPinia()
 app.use(pinia)
 app.mount('#app')
 
-import('./behaviors').then((imported) => {
-  console.log('[LOG] ~ file: main.ts ~ line 11 ~ imported', imported)
-})
+import('./behaviors').then(() => {})

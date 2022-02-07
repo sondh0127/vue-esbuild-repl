@@ -8,6 +8,7 @@ const esbuildStore = useEsbuildStore()
   <div>
     <div>Loading: {{esbuildStore.loading}}</div>
     <div>Status: {{esbuildStore.status}}</div>
+    <div>Esbuild: {{esbuildStore.esbuild}}</div>
   </div>
 </template>
 
