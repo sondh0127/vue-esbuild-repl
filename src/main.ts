@@ -8,4 +8,4 @@ export const pinia = createPinia()
 app.use(pinia)
 app.mount('#app')
 
-import('./behaviors').then(() => {})
+import('./behaviors/esbuild').then(() => {})

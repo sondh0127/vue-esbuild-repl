@@ -31,11 +31,11 @@ const userInfo = asyncComputed(
     <div>Esbuild: {{ esbuildStore.esbuild }}</div>
     <div>Loading: {{ esbuildStore.isLoading }}</div>
     <button @click="esbuildStore.execute()">execute</button>
-    <div class="flex">
+    <div class="flex space-x-10">
       <div class="w-1/2">
         <div v-for="m in esbuildStore.modules" :key="m.name">
           <div>{{m.name}}</div>
-          <textarea v-model="m.contents">
+          <textarea class="w-full" v-model="m.contents">
           </textarea>
         </div>
       </div>
@@ -56,6 +56,5 @@ const userInfo = asyncComputed(
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
