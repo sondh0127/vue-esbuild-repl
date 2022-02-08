@@ -1,6 +1,10 @@
 import { defineStore } from "pinia";
 import type { BuildOptions, Loader, Message, Plugin } from "esbuild";
 import { compile, preprocess } from "svelte/compiler";
+import { typescript } from "../helpers/typescript";
+const libModules = import.meta.globEager('/src/lib/**/*.{js,ts,svelte}', {
+  assert: { type: 'raw' }
+})
 
 export type EsbuildType = typeof import("esbuild");
 
@@ -25,7 +29,7 @@ function stripExt(path: string) {
   return i !== -1 ? path.slice(0, i) : path;
 }
 
-function repl($modules: Module[]): Plugin {
+function repl($modules: Module[], esbuild: EsbuildType): Plugin {
   const cache: Record<string, { url: string; content: string }> = {};
   return {
     name: "repl",
@@ -69,6 +73,18 @@ function repl($modules: Module[]): Plugin {
             stripExt(args.path) === args.path || isSvelte ? "js" : "js";
 
           if (isSvelte) {
+
+            let optionsPreprocess = true
+            //do preprocessor stuff if it exists
+            if (optionsPreprocess) {
+              let preprocessResult = await preprocess(
+                content,
+                typescript(esbuild, {}),
+                {}
+              );
+              content = preprocessResult.code;
+            }
+
             const compiled = compile(content, {});
             let { js, css } = compiled;
             content = js.code;
@@ -86,33 +102,19 @@ export const useEsbuildStore = defineStore("useEsbuild", () => {
     loading: true,
     status: "Loading...",
     esbuild: null as EsbuildType | null,
-    modules: [
-      {
-        name: "main.js",
-        contents: `
-    import App from './App.svelte'
-
-    const createApp = () => new App({
-      target: document.body,
-    })
-
-    export default createApp
-    `,
-        isEntry: true,
-      },
-      {
-        name: "App.svelte",
-        contents: `
-    <script>
-      let count = 1
-    </script>
-    <button on:click={() => count++}>Counter: {count} </button>
-    `,
-        isEntry: true,
-      },
-    ] as Module[],
+    modules: [] as Module[],
     timer: 0,
   });
+
+  const rawModules = Object.entries(libModules).map(([path, content]) => {
+    return {
+      name: path.replace('/src/lib/', ''),
+      contents: content as unknown as string,
+      isEntry: path.includes('main.ts')
+    }
+  }) as Module[]
+
+  state.modules = rawModules
 
   function time() {
     state.timer = performance.now();
@@ -143,7 +145,7 @@ export const useEsbuildStore = defineStore("useEsbuild", () => {
         write: false,
       };
 
-      (buildOptions.plugins ||= []).unshift(repl(state.modules));
+      (buildOptions.plugins ||= []).unshift(repl(state.modules, state.esbuild));
       buildOptions.outdir = "/";
       buildOptions.write = false;
       buildOptions.allowOverwrite = true;

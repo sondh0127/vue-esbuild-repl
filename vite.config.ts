@@ -10,6 +10,7 @@ export default defineConfig({
     AutoImport({
       imports: ['vue', 'pinia', '@vueuse/core']
     }),
-    Unocss({ /* options */ })
+    Unocss({
+    })
   ]
 })
