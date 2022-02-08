@@ -34,7 +34,6 @@ async function load() {
     esbuildStore.status = "Fetching esbuild @ " + esbuildStore.version;
     import("esbuild-wasm").then(async (module) => {
       window.esbuild = module;
-      esbuildStore.version = module.version
       esbuildStore.status = "Downloading esbuild.wasm @ " + version
       await module.initialize({ wasmURL: 'node_modules/esbuild-wasm/esbuild.wasm' })
       await module.transform("let a = 1");

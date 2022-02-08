@@ -7,7 +7,6 @@ export const useEsbuildStore = defineStore('useEsbuild', () => {
     loading: true,
     status: 'Loading...',
     esbuild: null as EsbuildType | null,
-    version: 'latest'
   })
 
   return {
