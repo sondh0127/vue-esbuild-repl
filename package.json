@@ -7,13 +7,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@antfu/utils": "^0.5.0",
     "@vueuse/core": "^7.5.5",
     "esbuild": "^0.14.19",
     "esbuild-wasm": "^0.14.19",
+    "magic-string": "^0.25.7",
     "p-retry": "^5.0.0",
     "pinia": "^2.0.11",
     "svelte": "^3.46.4",
-    "vue": "^3.2.30"
+    "vue": "^3.2.30",
+    "worker-timers": "^7.0.44"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.1.0",

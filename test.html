@@ -1,16 +1,4064 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" hidden>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="./dist/svelte.global.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Svelte app</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+    }
+  </style>
+  <style data="css"></style>
 </head>
-<body>
+
+<body class="bg-gray-300">
+  <script src="./dist/svelte.global.js"></script>
+  <script src="./public/sigma-interactive-design.js"></script>
   <script>
-var createApp=(()=>{var f=(n=>typeof require!="undefined"?require:typeof Proxy!="undefined"?new Proxy(n,{get:(e,r)=>(typeof require!="undefined"?require:e)[r]}):n)(function(n){if(typeof require!="undefined")return require.apply(this,arguments);throw new Error('Dynamic require of "'+n+'" is not supported')});var m=(n,e)=>()=>(n&&(e=n(n=0)),e);var _=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports);function h(n){let e,r,o,i,s;return{c(){e=(0,t.element)("button"),r=(0,t.text)("Counter: "),o=(0,t.text)(n[0])},m(c,l){(0,t.insert)(c,e,l),(0,t.append)(e,r),(0,t.append)(e,o),i||(s=(0,t.listen)(e,"click",n[1]),i=!0)},p(c,[l]){l&1&&(0,t.set_data)(o,c[0])},i:t.noop,o:t.noop,d(c){c&&(0,t.detach)(e),i=!1,s()}}}function $(n,e,r){let o=2;return[o,()=>r(0,o++,o)]}var t,p,a,u=m(()=>{t=f("svelte/internal");p=class extends t.SvelteComponent{constructor(e){super();(0,t.init)(this,e,$,h,t.safe_not_equal,{})}},a=p});var k=_((C,d)=>{u();var b=n=>new a({target:document.body,...n,intro:!0});d.exports=b});return k();})();
-createApp()
+    window.SI = SigmaInteractive.createInteractiveDesign({
+      supabaseBaseURL: 'https://dev-livestream.gviet.vn/api',
+      isPreview: true,
+    })
+
+    window.SI.onReady({
+      userId: 'fakeUserId',
+    })
+    setTimeout(() => {
+      window.SI.interactiveService.send({ type: 'PREVIEW' })
+    }, 1000)
+  </script>
+  <button class="transform top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute" onclick="getThumbnail()">
+    Get Thumnail
+  </button>
+  <script data="js">
+    var createApp = (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+  }) : x)(function(x) {
+    if (typeof require !== "undefined")
+      return require.apply(this, arguments);
+    throw new Error('Dynamic require of "' + x + '" is not supported');
+  });
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
+  var __commonJS = (cb, mod) => function __require2() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __reExport = (target, module, copyDefault, desc) => {
+    if (module && typeof module === "object" || typeof module === "function") {
+      for (let key of __getOwnPropNames(module))
+        if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
+          __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
+    }
+    return target;
+  };
+  var __toESM = (module, isNodeMode) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  };
+
+  // actions/spatial-navigation/config.ts
+  var GlobalConfig, KEYMAPPING, REVERSE, EVENT_PREFIX, ID_POOL_PREFIX;
+  var init_config = __esm({
+    "actions/spatial-navigation/config.ts"() {
+      GlobalConfig = {
+        selector: "",
+        straightOnly: false,
+        straightOverlapThreshold: 0.5,
+        rememberSource: false,
+        disabled: false,
+        defaultElement: "",
+        enterTo: "",
+        leaveFor: null,
+        restrict: "self-first",
+        tabIndexIgnoreList: "a, input, select, textarea, button, iframe, [contentEditable=true]",
+        navigableFilter: null
+      };
+      KEYMAPPING = {
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down"
+      };
+      REVERSE = {
+        left: "right",
+        up: "down",
+        right: "left",
+        down: "up"
+      };
+      EVENT_PREFIX = "sn-";
+      ID_POOL_PREFIX = "section-";
+    }
+  });
+
+  // actions/spatial-navigation/core.ts
+  function getRect(elem) {
+    const cr = elem.getBoundingClientRect();
+    const rect = {
+      left: cr.left,
+      top: cr.top,
+      right: cr.right,
+      bottom: cr.bottom,
+      width: cr.width,
+      height: cr.height,
+      center: void 0,
+      element: void 0
+    };
+    rect.element = elem;
+    rect.center = {
+      x: rect.left + Math.floor(rect.width / 2),
+      y: rect.top + Math.floor(rect.height / 2)
+    };
+    rect.center.left = rect.center.right = rect.center.x;
+    rect.center.top = rect.center.bottom = rect.center.y;
+    return rect;
+  }
+  function partition(rects, targetRect, straightOverlapThreshold) {
+    const groups = [[], [], [], [], [], [], [], [], []];
+    for (let i = 0; i < rects.length; i++) {
+      const rect = rects[i];
+      const center = rect.center;
+      let x, y;
+      if (center.x < targetRect.left) {
+        x = 0;
+      } else if (center.x <= targetRect.right) {
+        x = 1;
+      } else {
+        x = 2;
+      }
+      if (center.y < targetRect.top) {
+        y = 0;
+      } else if (center.y <= targetRect.bottom) {
+        y = 1;
+      } else {
+        y = 2;
+      }
+      const groupId = y * 3 + x;
+      groups[groupId].push(rect);
+      if ([0, 2, 6, 8].includes(groupId)) {
+        const threshold = straightOverlapThreshold;
+        if (rect.left <= targetRect.right - targetRect.width * threshold) {
+          if (groupId === 2) {
+            groups[1].push(rect);
+          } else if (groupId === 8) {
+            groups[7].push(rect);
+          }
+        }
+        if (rect.right >= targetRect.left + targetRect.width * threshold) {
+          if (groupId === 0) {
+            groups[1].push(rect);
+          } else if (groupId === 6) {
+            groups[7].push(rect);
+          }
+        }
+        if (rect.top <= targetRect.bottom - targetRect.height * threshold) {
+          if (groupId === 6) {
+            groups[3].push(rect);
+          } else if (groupId === 8) {
+            groups[5].push(rect);
+          }
+        }
+        if (rect.bottom >= targetRect.top + targetRect.height * threshold) {
+          if (groupId === 0) {
+            groups[3].push(rect);
+          } else if (groupId === 2) {
+            groups[5].push(rect);
+          }
+        }
+      }
+    }
+    return groups;
+  }
+  function generateDistanceFunction(targetRect) {
+    return {
+      nearPlumbLineIsBetter(rect) {
+        let d;
+        if (rect.center.x < targetRect.center.x) {
+          d = targetRect.center.x - rect.right;
+        } else {
+          d = rect.left - targetRect.center.x;
+        }
+        return d < 0 ? 0 : d;
+      },
+      nearHorizonIsBetter(rect) {
+        let d;
+        if (rect.center.y < targetRect.center.y) {
+          d = targetRect.center.y - rect.bottom;
+        } else {
+          d = rect.top - targetRect.center.y;
+        }
+        return d < 0 ? 0 : d;
+      },
+      nearTargetLeftIsBetter(rect) {
+        let d;
+        if (rect.center.x < targetRect.center.x) {
+          d = targetRect.left - rect.right;
+        } else {
+          d = rect.left - targetRect.left;
+        }
+        return d < 0 ? 0 : d;
+      },
+      nearTargetTopIsBetter(rect) {
+        let d;
+        if (rect.center.y < targetRect.center.y) {
+          d = targetRect.top - rect.bottom;
+        } else {
+          d = rect.top - targetRect.top;
+        }
+        return d < 0 ? 0 : d;
+      },
+      topIsBetter(rect) {
+        return rect.top;
+      },
+      bottomIsBetter(rect) {
+        return -1 * rect.bottom;
+      },
+      leftIsBetter(rect) {
+        return rect.left;
+      },
+      rightIsBetter(rect) {
+        return -1 * rect.right;
+      }
+    };
+  }
+  function prioritize(priorities) {
+    let destPriority = null;
+    for (let i = 0; i < priorities.length; i++) {
+      if (priorities[i].group.length) {
+        destPriority = priorities[i];
+        break;
+      }
+    }
+    if (!destPriority) {
+      return null;
+    }
+    const destDistance = destPriority.distance;
+    destPriority.group.sort(function(a, b) {
+      for (let i = 0; i < destDistance.length; i++) {
+        const distance = destDistance[i];
+        const delta = distance(a) - distance(b);
+        if (delta) {
+          return delta;
+        }
+      }
+      return 0;
+    });
+    return destPriority.group;
+  }
+  function navigate(target, direction, candidates, config2) {
+    if (!target || !direction || !candidates || !candidates.length) {
+      return null;
+    }
+    const rects = [];
+    for (let i = 0; i < candidates.length; i++) {
+      const rect = getRect(candidates[i]);
+      if (rect) {
+        rects.push(rect);
+      }
+    }
+    if (!rects.length) {
+      return null;
+    }
+    const targetRect = getRect(target);
+    if (!targetRect) {
+      return null;
+    }
+    const distanceFunction = generateDistanceFunction(targetRect);
+    const groups = partition(rects, targetRect, config2.straightOverlapThreshold);
+    const internalGroups = partition(groups[4], targetRect.center, config2.straightOverlapThreshold);
+    let priorities;
+    switch (direction) {
+      case "left":
+        priorities = [
+          {
+            group: internalGroups[0].concat(internalGroups[3]).concat(internalGroups[6]),
+            distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
+          },
+          {
+            group: groups[3],
+            distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
+          },
+          {
+            group: groups[0].concat(groups[6]),
+            distance: [
+              distanceFunction.nearHorizonIsBetter,
+              distanceFunction.rightIsBetter,
+              distanceFunction.nearTargetTopIsBetter
+            ]
+          }
+        ];
+        break;
+      case "right":
+        priorities = [
+          {
+            group: internalGroups[2].concat(internalGroups[5]).concat(internalGroups[8]),
+            distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
+          },
+          {
+            group: groups[5],
+            distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
+          },
+          {
+            group: groups[2].concat(groups[8]),
+            distance: [
+              distanceFunction.nearHorizonIsBetter,
+              distanceFunction.leftIsBetter,
+              distanceFunction.nearTargetTopIsBetter
+            ]
+          }
+        ];
+        break;
+      case "up":
+        priorities = [
+          {
+            group: internalGroups[0].concat(internalGroups[1]).concat(internalGroups[2]),
+            distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
+          },
+          {
+            group: groups[1],
+            distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
+          },
+          {
+            group: groups[0].concat(groups[2]),
+            distance: [
+              distanceFunction.nearPlumbLineIsBetter,
+              distanceFunction.bottomIsBetter,
+              distanceFunction.nearTargetLeftIsBetter
+            ]
+          }
+        ];
+        break;
+      case "down":
+        priorities = [
+          {
+            group: internalGroups[6].concat(internalGroups[7]).concat(internalGroups[8]),
+            distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
+          },
+          {
+            group: groups[7],
+            distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
+          },
+          {
+            group: groups[6].concat(groups[8]),
+            distance: [
+              distanceFunction.nearPlumbLineIsBetter,
+              distanceFunction.topIsBetter,
+              distanceFunction.nearTargetLeftIsBetter
+            ]
+          }
+        ];
+        break;
+      default:
+        return null;
+    }
+    if (config2.straightOnly) {
+      priorities.pop();
+    }
+    const destGroup = prioritize(priorities);
+    if (!destGroup) {
+      return null;
+    }
+    let dest = null;
+    if (config2.rememberSource && config2.previous && config2.previous.destination === target && config2.previous.reverse === direction) {
+      for (let j = 0; j < destGroup.length; j++) {
+        if (destGroup[j].element === config2.previous.target) {
+          dest = destGroup[j].element;
+          break;
+        }
+      }
+    }
+    if (!dest) {
+      dest = destGroup[0].element;
+    }
+    return dest;
+  }
+  var init_core = __esm({
+    "actions/spatial-navigation/core.ts"() {
+    }
+  });
+
+  // actions/spatial-navigation/polyfill.ts
+  var elementMatchesSelector;
+  var init_polyfill = __esm({
+    "actions/spatial-navigation/polyfill.ts"() {
+      elementMatchesSelector = Element.prototype.matches || Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || function(selector) {
+        const matchedNodes = (this.parentNode || this.document).querySelectorAll(selector);
+        return [].slice.call(matchedNodes).includes(this);
+      };
+    }
+  });
+
+  // actions/spatial-navigation/helper.ts
+  function setDuringFocusChange(change) {
+    state.update(($state) => {
+      $state._duringFocusChange = change;
+      return $state;
+    });
+  }
+  function generateId() {
+    const { _idPool, _sections } = (0, import_store.get)(state);
+    let id;
+    let newPool = _idPool;
+    while (true) {
+      id = ID_POOL_PREFIX + String(newPool++);
+      if (!_sections[id]) {
+        break;
+      }
+    }
+    state.update(($state) => {
+      $state._idPool = newPool;
+      return $state;
+    });
+    return id;
+  }
+  function parseSelector(selector) {
+    let result;
+    if (typeof selector === "string") {
+      result = [].slice.call(document.querySelectorAll(selector));
+    } else if (typeof selector === "object" && selector.length) {
+      result = [].slice.call(selector);
+    } else if (typeof selector === "object" && selector.nodeType === 1) {
+      result = [selector];
+    } else {
+      result = [];
+    }
+    return result;
+  }
+  function matchSelector(elem, selector) {
+    if (typeof selector === "string") {
+      return elementMatchesSelector.call(elem, selector);
+    } else if (typeof selector === "object" && selector.length) {
+      return selector.includes(elem);
+    } else if (typeof selector === "object" && selector.nodeType === 1) {
+      return elem === selector;
+    }
+    return false;
+  }
+  function getCurrentFocusedElement() {
+    const activeElement = document.activeElement;
+    if (activeElement && activeElement !== document.body) {
+      return activeElement;
+    }
+  }
+  function extend(out) {
+    out = out || {};
+    for (let i = 1; i < arguments.length; i++) {
+      if (!arguments[i]) {
+        continue;
+      }
+      for (const key in arguments[i]) {
+        if (arguments[i].hasOwnProperty(key) && arguments[i][key] !== void 0) {
+          out[key] = arguments[i][key];
+        }
+      }
+    }
+    return out;
+  }
+  function exclude(elemList, excludedElem) {
+    if (!Array.isArray(excludedElem)) {
+      excludedElem = [excludedElem];
+    }
+    for (let i = 0, index; i < excludedElem.length; i++) {
+      index = elemList.indexOf(excludedElem[i]);
+      if (index >= 0) {
+        elemList.splice(index, 1);
+      }
+    }
+    return elemList;
+  }
+  function isNavigable(elem, sectionId, verifySectionSelector = false) {
+    const { _sections } = (0, import_store.get)(state);
+    if (!elem || !sectionId || !_sections[sectionId] || _sections[sectionId].disabled) {
+      return false;
+    }
+    if (elem.offsetWidth <= 0 && elem.offsetHeight <= 0 || elem.hasAttribute("disabled")) {
+      return false;
+    }
+    if (verifySectionSelector && !matchSelector(elem, _sections[sectionId].selector)) {
+      return false;
+    }
+    if (typeof _sections[sectionId].navigableFilter === "function") {
+      if (_sections[sectionId].navigableFilter(elem, sectionId) === false) {
+        return false;
+      }
+    } else if (typeof GlobalConfig.navigableFilter === "function") {
+      if (GlobalConfig.navigableFilter(elem, sectionId) === false) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function getSectionId(elem) {
+    const { _sections } = (0, import_store.get)(state);
+    for (const id in _sections) {
+      if (!_sections[id].disabled && matchSelector(elem, _sections[id].selector)) {
+        return id;
+      }
+    }
+  }
+  function getSectionNavigableElements(sectionId) {
+    const { _sections } = (0, import_store.get)(state);
+    return parseSelector(_sections[sectionId].selector).filter(function(elem) {
+      return isNavigable(elem, sectionId);
+    });
+  }
+  function getSectionDefaultElement(sectionId) {
+    const { _sections } = (0, import_store.get)(state);
+    let defaultElement = _sections[sectionId].defaultElement;
+    if (!defaultElement) {
+      return null;
+    }
+    if (typeof defaultElement === "string") {
+      defaultElement = parseSelector(defaultElement)[0];
+    }
+    if (isNavigable(defaultElement, sectionId, true)) {
+      return defaultElement;
+    }
+    return null;
+  }
+  function getSectionLastFocusedElement(sectionId) {
+    const { _sections } = (0, import_store.get)(state);
+    const lastFocusedElement = _sections[sectionId].lastFocusedElement;
+    if (!isNavigable(lastFocusedElement, sectionId, true)) {
+      return null;
+    }
+    return lastFocusedElement;
+  }
+  function fireEvent(elem, type, details = void 0, cancelable = void 0) {
+    if (arguments.length < 4) {
+      cancelable = true;
+    }
+    const evt = document.createEvent("CustomEvent");
+    evt.initCustomEvent(EVENT_PREFIX + type, true, cancelable, details);
+    return elem.dispatchEvent(evt);
+  }
+  function focusElement(elem, sectionId, direction = void 0) {
+    if (!elem) {
+      return false;
+    }
+    const currentFocusedElement = getCurrentFocusedElement();
+    const silentFocus = function() {
+      if (currentFocusedElement) {
+        currentFocusedElement.blur();
+      }
+      elem.focus();
+      focusChanged(elem, sectionId);
+    };
+    const { _duringFocusChange, _pause } = (0, import_store.get)(state);
+    if (_duringFocusChange) {
+      silentFocus();
+      return true;
+    }
+    setDuringFocusChange(true);
+    if (_pause) {
+      silentFocus();
+      setDuringFocusChange(false);
+      return true;
+    }
+    if (currentFocusedElement) {
+      const unfocusProperties = {
+        nextElement: elem,
+        nextSectionId: sectionId,
+        direction,
+        native: false
+      };
+      if (!fireEvent(currentFocusedElement, "willunfocus", unfocusProperties)) {
+        setDuringFocusChange(false);
+        return false;
+      }
+      currentFocusedElement.blur();
+      fireEvent(currentFocusedElement, "unfocused", unfocusProperties, false);
+    }
+    const focusProperties = {
+      previousElement: currentFocusedElement,
+      sectionId,
+      direction,
+      native: false
+    };
+    if (!fireEvent(elem, "willfocus", focusProperties)) {
+      setDuringFocusChange(false);
+      return false;
+    }
+    elem.focus();
+    fireEvent(elem, "focused", focusProperties, false);
+    setDuringFocusChange(false);
+    focusChanged(elem, sectionId);
+    return true;
+  }
+  function focusChanged(elem, sectionId) {
+    if (!sectionId) {
+      sectionId = getSectionId(elem);
+    }
+    if (sectionId) {
+      state.update(($state) => {
+        $state._sections[sectionId].lastFocusedElement = elem;
+        $state._lastSectionId = sectionId;
+        return $state;
+      });
+    }
+  }
+  function setActiveInputElement(elem) {
+    if (elem.tagName === "INPUT") {
+      state.update(($state) => {
+        $state._activeInputElement = elem;
+        return $state;
+      });
+    }
+  }
+  function focusActiveInputElement() {
+    const { _activeInputElement } = (0, import_store.get)(state);
+    if (_activeInputElement) {
+      _activeInputElement.focus();
+    }
+  }
+  function focusExtendedSelector(selector, direction = void 0) {
+    if (selector.charAt(0) === "@") {
+      if (selector.length === 1) {
+        return focusSection();
+      } else {
+        const sectionId = selector.substr(1);
+        return focusSection(sectionId);
+      }
+    } else {
+      const next = parseSelector(selector)[0];
+      if (next) {
+        const nextSectionId = getSectionId(next);
+        if (isNavigable(next, nextSectionId)) {
+          return focusElement(next, nextSectionId, direction);
+        }
+      }
+    }
+    return false;
+  }
+  function focusSection(sectionId = void 0) {
+    const { _sections, _defaultSectionId, _lastSectionId } = (0, import_store.get)(state);
+    const range2 = [];
+    const addRange = function(id) {
+      if (id && !range2.includes(id) && _sections[id] && !_sections[id].disabled) {
+        range2.push(id);
+      }
+    };
+    if (sectionId) {
+      addRange(sectionId);
+    } else {
+      addRange(_defaultSectionId);
+      addRange(_lastSectionId);
+      Object.keys(_sections).map(addRange);
+    }
+    for (let i = 0; i < range2.length; i++) {
+      const id = range2[i];
+      let next;
+      if (_sections[id].enterTo === "last-focused") {
+        next = getSectionLastFocusedElement(id) || getSectionDefaultElement(id) || getSectionNavigableElements(id)[0];
+      } else {
+        next = getSectionDefaultElement(id) || getSectionLastFocusedElement(id) || getSectionNavigableElements(id)[0];
+      }
+      if (next) {
+        return focusElement(next, id);
+      }
+    }
+    return false;
+  }
+  function fireNavigatefailed(elem, direction) {
+    fireEvent(elem, "navigatefailed", {
+      direction
+    }, false);
+  }
+  function gotoLeaveFor(sectionId, direction) {
+    const { _sections } = (0, import_store.get)(state);
+    if (_sections[sectionId].leaveFor && _sections[sectionId].leaveFor[direction] !== void 0) {
+      const next = _sections[sectionId].leaveFor[direction];
+      if (typeof next === "string") {
+        if (next === "") {
+          return null;
+        }
+        return focusExtendedSelector(next, direction);
+      }
+      const nextSectionId = getSectionId(next);
+      if (isNavigable(next, nextSectionId)) {
+        return focusElement(next, nextSectionId, direction);
+      }
+    }
+    return false;
+  }
+  function focusNext(direction, currentFocusedElement, currentSectionId) {
+    const extSelector = currentFocusedElement.getAttribute("data-sn-" + direction);
+    if (typeof extSelector === "string") {
+      if (extSelector === "" || !focusExtendedSelector(extSelector, direction)) {
+        fireNavigatefailed(currentFocusedElement, direction);
+        return false;
+      }
+      return true;
+    }
+    const sectionNavigableElements = {};
+    let allNavigableElements = [];
+    const { _sections } = (0, import_store.get)(state);
+    for (const id in _sections) {
+      sectionNavigableElements[id] = getSectionNavigableElements(id);
+      allNavigableElements = allNavigableElements.concat(sectionNavigableElements[id]);
+    }
+    const config2 = extend({}, GlobalConfig, _sections[currentSectionId]);
+    let next;
+    if (config2.restrict === "self-only" || config2.restrict === "self-first") {
+      const currentSectionNavigableElements = sectionNavigableElements[currentSectionId];
+      next = navigate(currentFocusedElement, direction, exclude(currentSectionNavigableElements, currentFocusedElement), config2);
+      if (!next && config2.restrict === "self-first") {
+        next = navigate(currentFocusedElement, direction, exclude(allNavigableElements, currentSectionNavigableElements), config2);
+      }
+    } else {
+      next = navigate(currentFocusedElement, direction, exclude(allNavigableElements, currentFocusedElement), config2);
+    }
+    if (next) {
+      state.update(($state) => {
+        $state._sections[currentSectionId].previous = {
+          target: currentFocusedElement,
+          destination: next,
+          reverse: REVERSE[direction]
+        };
+        return $state;
+      });
+      const nextSectionId = getSectionId(next);
+      if (currentSectionId !== nextSectionId) {
+        const result = gotoLeaveFor(currentSectionId, direction);
+        if (result) {
+          return true;
+        } else if (result === null) {
+          fireNavigatefailed(currentFocusedElement, direction);
+          return false;
+        }
+        let enterToElement;
+        switch (_sections[nextSectionId].enterTo) {
+          case "last-focused":
+            enterToElement = getSectionLastFocusedElement(nextSectionId) || getSectionDefaultElement(nextSectionId);
+            break;
+          case "default-element":
+            enterToElement = getSectionDefaultElement(nextSectionId);
+            break;
+        }
+        if (enterToElement) {
+          next = enterToElement;
+        }
+      }
+      return focusElement(next, nextSectionId, direction);
+    } else if (gotoLeaveFor(currentSectionId, direction)) {
+      return true;
+    }
+    fireNavigatefailed(currentFocusedElement, direction);
+    return false;
+  }
+  function onKeyDown(evt) {
+    const { _pause, _sectionCount, _lastSectionId } = (0, import_store.get)(state);
+    if (!_sectionCount || _pause || evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey) {
+      return;
+    }
+    let currentFocusedElement;
+    const preventDefault = function() {
+      evt.preventDefault();
+      evt.stopPropagation();
+      return false;
+    };
+    const direction = KEYMAPPING[evt.keyCode];
+    if (!direction) {
+      if (evt.keyCode === 13) {
+        currentFocusedElement = getCurrentFocusedElement();
+        if (currentFocusedElement && getSectionId(currentFocusedElement)) {
+          if (!fireEvent(currentFocusedElement, "enter-down")) {
+            return preventDefault();
+          }
+        }
+      }
+      return;
+    }
+    currentFocusedElement = getCurrentFocusedElement();
+    if (!currentFocusedElement) {
+      if (_lastSectionId) {
+        currentFocusedElement = getSectionLastFocusedElement(_lastSectionId);
+      }
+      if (!currentFocusedElement) {
+        focusSection();
+        return preventDefault();
+      }
+    }
+    const currentSectionId = getSectionId(currentFocusedElement);
+    if (!currentSectionId) {
+      return;
+    }
+    const willmoveProperties = {
+      direction,
+      sectionId: currentSectionId,
+      cause: "keydown"
+    };
+    if (fireEvent(currentFocusedElement, "willmove", willmoveProperties)) {
+      focusNext(direction, currentFocusedElement, currentSectionId);
+    }
+    return preventDefault();
+  }
+  function onKeyUp(evt) {
+    const { _pause, _sectionCount } = (0, import_store.get)(state);
+    if (evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey) {
+      return;
+    }
+    if (!_pause && _sectionCount && evt.keyCode === 13) {
+      const currentFocusedElement = getCurrentFocusedElement();
+      if (currentFocusedElement && getSectionId(currentFocusedElement)) {
+        if (!fireEvent(currentFocusedElement, "enter-up")) {
+          evt.preventDefault();
+          evt.stopPropagation();
+        }
+      }
+    }
+  }
+  function onFocus(evt) {
+    const { _pause, _sectionCount, _duringFocusChange } = (0, import_store.get)(state);
+    const target = evt.target;
+    if (target !== window && target !== document && _sectionCount && !_duringFocusChange) {
+      const sectionId = getSectionId(target);
+      if (sectionId) {
+        if (_pause) {
+          focusChanged(target, sectionId);
+          return;
+        }
+        const focusProperties = {
+          sectionId,
+          native: true
+        };
+        if (!fireEvent(target, "willfocus", focusProperties)) {
+          setDuringFocusChange(true);
+          target.blur();
+          setDuringFocusChange(false);
+        } else {
+          fireEvent(target, "focused", focusProperties, false);
+          focusChanged(target, sectionId);
+        }
+      }
+    }
+  }
+  function onBlur(evt) {
+    const { _pause, _sectionCount, _duringFocusChange } = (0, import_store.get)(state);
+    const target = evt.target;
+    if (target !== window && target !== document && !_pause && _sectionCount && !_duringFocusChange && getSectionId(target)) {
+      const unfocusProperties = {
+        native: true
+      };
+      if (!fireEvent(target, "willunfocus", unfocusProperties)) {
+        setDuringFocusChange(true);
+        setTimeout(function() {
+          target.focus();
+          setDuringFocusChange(false);
+        });
+      } else {
+        fireEvent(target, "unfocused", unfocusProperties, false);
+      }
+    }
+  }
+  var import_store, defaultState, state;
+  var init_helper = __esm({
+    "actions/spatial-navigation/helper.ts"() {
+      import_store = __require("svelte/store");
+      init_core();
+      init_polyfill();
+      init_config();
+      defaultState = {
+        _idPool: 0,
+        _ready: false,
+        _pause: false,
+        _sections: {},
+        _sectionCount: 0,
+        _defaultSectionId: "",
+        _lastSectionId: "",
+        _duringFocusChange: false,
+        _activeInputElement: null
+      };
+      state = (0, import_store.writable)(defaultState);
+      window.getSectionId = getSectionId;
+      window.setActiveInputElement = setActiveInputElement;
+      window.focusActiveInputElement = focusActiveInputElement;
+    }
+  });
+
+  // actions/lib-spatial-navigation.ts
+  var import_store2, SpatialNavigation, lib_spatial_navigation_default;
+  var init_lib_spatial_navigation = __esm({
+    "actions/lib-spatial-navigation.ts"() {
+      import_store2 = __require("svelte/store");
+      init_config();
+      init_helper();
+      SpatialNavigation = {
+        state,
+        getState: () => (0, import_store2.get)(state),
+        init() {
+          const { _ready } = (0, import_store2.get)(state);
+          if (!_ready) {
+            window.addEventListener("keydown", onKeyDown);
+            window.addEventListener("keyup", onKeyUp);
+            window.addEventListener("focus", onFocus, true);
+            window.addEventListener("blur", onBlur, true);
+            state.update(($state) => {
+              $state._ready = true;
+              return $state;
+            });
+          }
+        },
+        uninit() {
+          window.removeEventListener("blur", onBlur, true);
+          window.removeEventListener("focus", onFocus, true);
+          window.removeEventListener("keyup", onKeyUp);
+          window.removeEventListener("keydown", onKeyDown);
+          SpatialNavigation.clear();
+          state.update(($state) => {
+            $state._idPool = 0;
+            $state._ready = false;
+            return $state;
+          });
+        },
+        clear() {
+          state.update(($state) => {
+            $state._sections = {};
+            $state._sectionCount = 0;
+            $state._defaultSectionId = "";
+            $state._lastSectionId = "";
+            $state._duringFocusChange = false;
+            return $state;
+          });
+        },
+        set() {
+          const { _sections } = (0, import_store2.get)(state);
+          let sectionId, config2;
+          if (typeof arguments[0] === "object") {
+            config2 = arguments[0];
+          } else if (typeof arguments[0] === "string" && typeof arguments[1] === "object") {
+            sectionId = arguments[0];
+            config2 = arguments[1];
+            if (!_sections[sectionId]) {
+              throw new Error('Section "' + sectionId + `" doesn't exist!`);
+            }
+          } else {
+            return;
+          }
+          for (const key in config2) {
+            if (GlobalConfig[key] !== void 0) {
+              if (sectionId) {
+                _sections[sectionId][key] = config2[key];
+              } else if (config2[key] !== void 0) {
+                GlobalConfig[key] = config2[key];
+              }
+            }
+          }
+          if (sectionId) {
+            _sections[sectionId] = extend({}, _sections[sectionId]);
+          }
+        },
+        add() {
+          const { _sections } = (0, import_store2.get)(state);
+          let sectionId;
+          let config2 = {};
+          if (typeof arguments[0] === "object") {
+            config2 = arguments[0];
+          } else if (typeof arguments[0] === "string" && typeof arguments[1] === "object") {
+            sectionId = arguments[0];
+            config2 = arguments[1];
+          }
+          if (!sectionId) {
+            sectionId = typeof config2.id === "string" ? config2.id : generateId();
+          }
+          if (_sections[sectionId]) {
+            throw new Error('Section "' + sectionId + '" has already existed!');
+          }
+          _sections[sectionId] = {};
+          state.update(($state) => {
+            $state._sectionCount++;
+            return $state;
+          });
+          SpatialNavigation.set(sectionId, config2);
+          return sectionId;
+        },
+        remove(sectionId) {
+          const { _sections, _lastSectionId } = (0, import_store2.get)(state);
+          if (!sectionId || typeof sectionId !== "string") {
+            throw new Error('Please assign the "sectionId"!');
+          }
+          if (_sections[sectionId]) {
+            state.update(($state) => {
+              $state._sections[sectionId] = void 0;
+              $state._sections = extend({}, _sections);
+              $state._sectionCount--;
+              return $state;
+            });
+            if (_lastSectionId === sectionId) {
+              state.update(($state) => {
+                $state._lastSectionId = "";
+                return $state;
+              });
+            }
+            return true;
+          }
+          return false;
+        },
+        disable(sectionId) {
+          const { _sections } = (0, import_store2.get)(state);
+          if (_sections[sectionId]) {
+            state.update(($state) => {
+              $state._sections[sectionId].disabled = true;
+              return $state;
+            });
+            return true;
+          }
+          return false;
+        },
+        enable(sectionId) {
+          const { _sections } = (0, import_store2.get)(state);
+          if (_sections[sectionId]) {
+            state.update(($state) => {
+              $state._sections[sectionId].disabled = false;
+              return $state;
+            });
+            return true;
+          }
+          return false;
+        },
+        pause() {
+          state.update(($state) => {
+            $state._pause = true;
+            return $state;
+          });
+        },
+        resume() {
+          state.update(($state) => {
+            $state._pause = false;
+            return $state;
+          });
+        },
+        focus(elem, silent = void 0) {
+          const { _pause, _sections } = (0, import_store2.get)(state);
+          let result = false;
+          if (silent === void 0 && typeof elem === "boolean") {
+            silent = elem;
+            elem = void 0;
+          }
+          const autoPause = !_pause && silent;
+          if (autoPause) {
+            SpatialNavigation.pause();
+          }
+          if (!elem) {
+            result = focusSection();
+          } else if (typeof elem === "string") {
+            if (_sections[elem]) {
+              result = focusSection(elem);
+            } else {
+              result = focusExtendedSelector(elem);
+            }
+          } else {
+            const nextSectionId = getSectionId(elem);
+            if (isNavigable(elem, nextSectionId)) {
+              result = focusElement(elem, nextSectionId);
+            }
+          }
+          if (autoPause) {
+            SpatialNavigation.resume();
+          }
+          return result;
+        },
+        move(direction, selector) {
+          direction = direction.toLowerCase();
+          if (!REVERSE[direction]) {
+            return false;
+          }
+          const elem = selector ? parseSelector(selector)[0] : getCurrentFocusedElement();
+          if (!elem) {
+            return false;
+          }
+          const sectionId = getSectionId(elem);
+          if (!sectionId) {
+            return false;
+          }
+          const willmoveProperties = {
+            direction,
+            sectionId,
+            cause: "api"
+          };
+          if (!fireEvent(elem, "willmove", willmoveProperties)) {
+            return false;
+          }
+          return focusNext(direction, elem, sectionId);
+        },
+        makeFocusable(sectionId) {
+          const { _sections } = (0, import_store2.get)(state);
+          const doMakeFocusable = function(section) {
+            const tabIndexIgnoreList = section.tabIndexIgnoreList !== void 0 ? section.tabIndexIgnoreList : GlobalConfig.tabIndexIgnoreList;
+            parseSelector(section.selector).forEach(function(elem) {
+              if (!matchSelector(elem, tabIndexIgnoreList)) {
+                if (!elem.getAttribute("tabindex")) {
+                  elem.setAttribute("tabindex", "-1");
+                }
+              }
+            });
+          };
+          if (sectionId) {
+            if (_sections[sectionId]) {
+              doMakeFocusable(_sections[sectionId]);
+            } else {
+              throw new Error('Section "' + sectionId + `" doesn't exist!`);
+            }
+          } else {
+            for (const id in _sections) {
+              doMakeFocusable(_sections[id]);
+            }
+          }
+        },
+        setDefaultSection(sectionId) {
+          const { _sections } = (0, import_store2.get)(state);
+          if (!sectionId) {
+            state.update(($state) => {
+              $state._defaultSectionId = "";
+              return $state;
+            });
+          } else if (!_sections[sectionId]) {
+            throw new Error('Section "' + sectionId + `" doesn't exist!`);
+          } else {
+            state.update(($state) => {
+              $state._defaultSectionId = sectionId;
+              return $state;
+            });
+          }
+        }
+      };
+      window.SpatialNavigation = SpatialNavigation;
+      lib_spatial_navigation_default = SpatialNavigation;
+    }
+  });
+
+  // actions/spatial-navigation.ts
+  var config, globalConfig, createNavigation, assignConfig, focusSection2, focusable;
+  var init_spatial_navigation = __esm({
+    "actions/spatial-navigation.ts"() {
+      init_lib_spatial_navigation();
+      config = {
+        straightOnly: false,
+        straightOverlapThreshold: 0.5,
+        rememberSource: true,
+        disabled: false,
+        defaultElement: "",
+        enterTo: "last-focused",
+        leaveFor: null,
+        restrict: "self-first",
+        tabIndexIgnoreList: "a, input, select, textarea, button, iframe, [contentEditable=true]",
+        navigableFilter: null,
+        scrollOptions: { behavior: "smooth", block: "center" }
+      };
+      globalConfig = {
+        selector: `[data-focusable=true]`
+      };
+      Object.assign(globalConfig, config);
+      createNavigation = () => {
+        lib_spatial_navigation_default.init();
+        lib_spatial_navigation_default.set(globalConfig);
+        if (!window.SigmaInteractive.getStore().isPreview) {
+          console.log("[LOG] ~ file: spatial-navigation.ts ~ line 29 ~ window.SigmaInteractive.getStore().isPreview", window.SigmaInteractive.getStore());
+          window.addEventListener("mousedown", (e) => {
+            if (!e.target.dataset.focusable) {
+              e.preventDefault();
+              lib_spatial_navigation_default.focus();
+            }
+          });
+        }
+      };
+      assignConfig = (sectionId, config2) => {
+        const sectionConfig = Object.assign({}, globalConfig);
+        if (config2) {
+          Object.assign(sectionConfig, config2);
+        }
+        sectionConfig.selector = `[data-section-id="${sectionId}"] [data-focusable=true]`;
+        return sectionConfig;
+      };
+      focusSection2 = (node, options = {}) => {
+        let sectionId = null;
+        if (options.id) {
+          sectionId = options.id;
+          try {
+            lib_spatial_navigation_default.add(sectionId, {});
+          } catch (error) {
+          }
+        } else {
+          sectionId = lib_spatial_navigation_default.add({});
+        }
+        node.dataset.sectionId = sectionId;
+        const sectionConfig = assignConfig(sectionId, options.config || {});
+        lib_spatial_navigation_default.set(sectionId, sectionConfig);
+        if (options.default) {
+          lib_spatial_navigation_default.setDefaultSection(sectionId);
+        }
+        return {
+          destroy() {
+            lib_spatial_navigation_default.remove(node.dataset.sectionId);
+          }
+        };
+      };
+      focusable = (node, options) => {
+        const focusElement2 = (el, focusable2) => {
+          focusable2 = focusable2 !== false;
+          if (!el.dataset.focusable || el.dataset.focusable !== focusable2 + "") {
+            el.dataset.focusable = focusable2;
+            if (focusable2)
+              el.tabIndex = -1;
+          }
+        };
+        focusElement2(node, options);
+        node.addEventListener("sn-willfocus", () => {
+          lib_spatial_navigation_default.pause();
+          setTimeout(() => {
+            lib_spatial_navigation_default.focus(node);
+            lib_spatial_navigation_default.resume();
+          }, 0);
+          return false;
+        });
+        return {
+          destroy() {
+            node.removeAttribute("data-focusable");
+          }
+        };
+      };
+    }
+  });
+
+  // helper.ts
+  function toWritableStore(sStore) {
+    if (sStore) {
+      return {
+        subscribe: sStore.subscribe,
+        set: sStore.set,
+        update: sStore.update
+      };
+    }
+    return null;
+  }
+  function toReadableStore(sStore) {
+    if (sStore) {
+      return {
+        subscribe: sStore.subscribe
+      };
+    }
+    return null;
+  }
+  function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        timeout = null;
+        if (!immediate)
+          func.apply(context, args);
+      }, wait);
+      if (immediate && !timeout)
+        func.apply(context, args);
+    };
+  }
+  var import_store3, orientation;
+  var init_helper2 = __esm({
+    "helper.ts"() {
+      import_store3 = __require("svelte/store");
+      orientation = (0, import_store3.readable)("landscape", (set) => {
+        const handleResize = debounce(() => {
+          if (window.innerWidth <= window.innerHeight) {
+            set("portrait");
+          } else {
+            set("landscape");
+          }
+          setTimeout(() => {
+            window.SpatialNavigation.focus();
+          }, 0);
+        }, 0, false);
+        handleResize();
+        document.addEventListener("orientationchange", handleResize);
+        return () => {
+          document.removeEventListener("orientationchange", handleResize);
+        };
+      });
+    }
+  });
+
+  // store.ts
+  function interactiveOverlay(action, userInput) {
+    const overlayId = (0, import_store4.get)(globalState).overlayId;
+    window.SI.interactiveService.send({
+      type: "INTERACTED",
+      overlayId,
+      action,
+      userInput
+    });
+  }
+  function updateBoundingRects(newRect, rectId) {
+    if (!newRect.every((item) => item === "0.00")) {
+      rectsMap.set({ ...(0, import_store4.get)(rectsMap), [rectId]: newRect });
+    }
+  }
+  function removeBoundingRects(rectId) {
+    const oldRects = (0, import_store4.get)(rectsMap);
+    const newRects = {};
+    Object.keys(oldRects).forEach((key) => {
+      if (key !== rectId) {
+        newRects[key] = oldRects[key];
+      }
+    });
+    rectsMap.set(newRects);
+  }
+  var import_store4, store, metadata, notifications, rectsMap, state2, screenOrientation, playerRect, progress, globalState, globalDisabled, lastFocusedKey, removed, timeoutOverlay, closeOverlay, selectStore, answerState;
+  var init_store = __esm({
+    "store.ts"() {
+      import_store4 = __require("svelte/store");
+      init_spatial_navigation();
+      init_helper2();
+      createNavigation();
+      store = toWritableStore(window.SigmaInteractive.store);
+      metadata = toWritableStore(window.SigmaInteractive.metadata);
+      notifications = window.SigmaInteractive.notifications;
+      rectsMap = toWritableStore(window.SigmaInteractive.rectsMap);
+      state2 = toReadableStore(window.SI.state);
+      screenOrientation = toWritableStore(window.SigmaInteractive.screenOrientation);
+      playerRect = toReadableStore(window.SI.playerRect);
+      progress = (0, import_store4.writable)(0);
+      globalState = (0, import_store4.writable)({
+        started: false,
+        isInteracted: false,
+        toRemoved: false,
+        overlayId: "{{#OVERLAY_ID}}"
+      });
+      globalDisabled = (0, import_store4.derived)(globalState, ($global) => $global.isInteracted || $global.toRemoved);
+      lastFocusedKey = (0, import_store4.derived)(window.SpatialNavigation.state, ($state) => {
+        const { _activeInputElement } = $state;
+        return _activeInputElement?.dataset?.key;
+      });
+      removed = false;
+      timeoutOverlay = function() {
+        const { isInteracted, overlayId } = (0, import_store4.get)(globalState);
+        if (!removed && !isInteracted) {
+          window.SI.interactiveService.send({
+            type: "TIMEOUT",
+            overlayId
+          });
+        }
+      };
+      closeOverlay = function() {
+        let executed = false;
+        return function() {
+          const { isInteracted, overlayId } = (0, import_store4.get)(globalState);
+          if (!executed && !removed && !isInteracted) {
+            executed = true;
+            window.SI.interactiveService.send({
+              type: "CLOSE",
+              overlayId
+            });
+          }
+        };
+      }();
+      selectStore = (0, import_store4.writable)({
+        selectedIndex: void 0
+      });
+      answerState = (0, import_store4.writable)({
+        answer: "0:0",
+        answerTheSame: ""
+      });
+    }
+  });
+
+  // actions/boundingRect.ts
+  function randomId() {
+    const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
+    return uint32.toString(16);
+  }
+  function getRectFormat(_rect) {
+    const w = document.body.clientWidth;
+    const h = document.body.clientHeight;
+    return [
+      (_rect.left / w * 100).toFixed(2),
+      (_rect.top / h * 100).toFixed(2),
+      (_rect.right / w * 100).toFixed(2),
+      (_rect.bottom / h * 100).toFixed(2)
+    ];
+  }
+  var boundingRect, boundingRect_default;
+  var init_boundingRect = __esm({
+    "actions/boundingRect.ts"() {
+      boundingRect = (node, { onResize, onDestroy: onDestroy2, enabled = true }) => {
+        node.dataset.rectId = randomId();
+        const handleResize = (_enabled = true) => {
+          if (_enabled) {
+            setTimeout(() => {
+              const rect = node.getBoundingClientRect();
+              onResize(getRectFormat(rect), node.dataset.rectId);
+            }, 0);
+          } else {
+            onDestroy2(node.dataset.rectId);
+          }
+        };
+        function handler() {
+          handleResize(enabled);
+        }
+        node.addEventListener("resize", handler);
+        handleResize(enabled);
+        return {
+          update: ({ enabled: enabled2 }) => {
+            handleResize(enabled2);
+          },
+          destroy: () => {
+            node.removeEventListener("resize", handler);
+            onDestroy2(node.dataset.rectId);
+          }
+        };
+      };
+      boundingRect_default = boundingRect;
+    }
+  });
+
+  // actions/startTyping.ts
+  var init_startTyping = __esm({
+    "actions/startTyping.ts"() {
+    }
+  });
+
+  // actions/index.ts
+  var init_actions = __esm({
+    "actions/index.ts"() {
+      init_spatial_navigation();
+      init_boundingRect();
+      init_startTyping();
+    }
+  });
+
+  // constants/positions.ts
+  var ABSOLUTE_POSITIONS;
+  var init_positions = __esm({
+    "constants/positions.ts"() {
+      ABSOLUTE_POSITIONS = {
+        "top-left": "top-0 left-0",
+        top: "top-0 transform left-1/2 transform -translate-x-1/2",
+        center: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+        bottom: "bottom-0 transform left-1/2 transform -translate-x-1/2",
+        right: "right-0 transform top-1/2 transform -translate-y-1/2",
+        "top-right": "top-0 right-0",
+        "bottom-right": "bottom-0 right-0",
+        left: "left-0  transform top-1/2 transform -translate-y-1/2",
+        "bottom-left": "bottom-0 left-0"
+      };
+    }
+  });
+
+  // constants/index.ts
+  var init_constants = __esm({
+    "constants/index.ts"() {
+      init_positions();
+    }
+  });
+
+  // index.ts
+  var _workerTimers, workerTimers;
+  var init_index = __esm({
+    "index.ts"() {
+      _workerTimers = __toESM(__require("worker-timers"));
+      init_store();
+      init_actions();
+      init_constants();
+      workerTimers = _workerTimers;
+    }
+  });
+
+  // components/Notifications.svelte
+  function create_if_block(ctx) {
+    let current;
+    const default_slot_template = ctx[4].default;
+    const default_slot = (0, import_internal.create_slot)(default_slot_template, ctx, ctx[3], get_default_slot_context);
+    return {
+      c() {
+        if (default_slot)
+          default_slot.c();
+      },
+      m(target, anchor) {
+        if (default_slot) {
+          default_slot.m(target, anchor);
+        }
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & 10)) {
+            (0, import_internal.update_slot_base)(default_slot, default_slot_template, ctx2, ctx2[3], !current ? (0, import_internal.get_all_dirty_from_scope)(ctx2[3]) : (0, import_internal.get_slot_changes)(default_slot_template, ctx2[3], dirty, get_default_slot_changes), get_default_slot_context);
+          }
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal.transition_in)(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal.transition_out)(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (default_slot)
+          default_slot.d(detaching);
+      }
+    };
+  }
+  function create_fragment(ctx) {
+    let if_block_anchor;
+    let current;
+    let if_block = ctx[1][0] && create_if_block(ctx);
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        if_block_anchor = (0, import_internal.empty)();
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        (0, import_internal.insert)(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (ctx2[1][0]) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+            if (dirty & 2) {
+              (0, import_internal.transition_in)(if_block, 1);
+            }
+          } else {
+            if_block = create_if_block(ctx2);
+            if_block.c();
+            (0, import_internal.transition_in)(if_block, 1);
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          (0, import_internal.group_outros)();
+          (0, import_internal.transition_out)(if_block, 1, 1, () => {
+            if_block = null;
+          });
+          (0, import_internal.check_outros)();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal.transition_in)(if_block);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal.transition_out)(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (if_block)
+          if_block.d(detaching);
+        if (detaching)
+          (0, import_internal.detach)(if_block_anchor);
+      }
+    };
+  }
+  function instance($$self, $$props, $$invalidate) {
+    let $notifications, $$unsubscribe_notifications = import_internal.noop, $$subscribe_notifications = () => ($$unsubscribe_notifications(), $$unsubscribe_notifications = (0, import_internal.subscribe)(notifications2, ($$value) => $$invalidate(1, $notifications = $$value)), notifications2);
+    $$self.$$.on_destroy.push(() => $$unsubscribe_notifications());
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { notifications: notifications2 } = $$props;
+    $$subscribe_notifications();
+    let { duration = 1e3 } = $$props;
+    const dispatch = (0, import_svelte.createEventDispatcher)();
+    let timeout;
+    notifications2.subscribe(({ length }) => {
+      if (timeout || !length)
+        return;
+      dispatch("notify", $notifications[0]);
+      timeout = setTimeout(() => {
+        timeout = false;
+        notifications2.pop();
+      }, duration);
+    });
+    $$self.$$set = ($$props2) => {
+      if ("notifications" in $$props2)
+        $$subscribe_notifications($$invalidate(0, notifications2 = $$props2.notifications));
+      if ("duration" in $$props2)
+        $$invalidate(2, duration = $$props2.duration);
+      if ("$$scope" in $$props2)
+        $$invalidate(3, $$scope = $$props2.$$scope);
+    };
+    return [notifications2, $notifications, duration, $$scope, slots];
+  }
+  var import_svelte, import_internal, get_default_slot_changes, get_default_slot_context, Component, Notifications_default;
+  var init_Notifications = __esm({
+    "components/Notifications.svelte"() {
+      import_svelte = __require("svelte");
+      import_internal = __require("svelte/internal");
+      get_default_slot_changes = (dirty) => ({ payload: dirty & 2 });
+      get_default_slot_context = (ctx) => ({ payload: ctx[1][0] });
+      Component = class extends import_internal.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal.init)(this, options, instance, create_fragment, import_internal.safe_not_equal, { notifications: 0, duration: 2 });
+        }
+      };
+      Notifications_default = Component;
+    }
+  });
+
+  // components/Spinner/utils.js
+  var durationUnitRegex, range;
+  var init_utils = __esm({
+    "components/Spinner/utils.js"() {
+      durationUnitRegex = /[a-zA-Z]/;
+      range = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
+    }
+  });
+
+  // components/Spinner/Pulse.svelte
+  function add_css(target) {
+    (0, import_internal2.append_styles)(target, "svelte-1xx776k", ".wrapper.svelte-1xx776k{position:relative;display:flex;justify-content:center;align-items:center;width:var(--size);height:calc(var(--size) / 2.5)}.cube.svelte-1xx776k{position:absolute;top:0px;width:calc(var(--size) / 5);height:calc(var(--size) / 2.5);background-color:var(--color);animation:svelte-1xx776k-motion var(--duration) cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite}@keyframes svelte-1xx776k-motion{0%{opacity:1}50%{opacity:0}100%{opacity:1}}");
+  }
+  function get_each_context(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[6] = list[i];
+    return child_ctx;
+  }
+  function create_each_block(ctx) {
+    let div;
+    return {
+      c() {
+        div = (0, import_internal2.element)("div");
+        (0, import_internal2.attr)(div, "class", "cube svelte-1xx776k");
+        (0, import_internal2.set_style)(div, "animation-delay", ctx[6] * (+ctx[5] / 10) + ctx[4]);
+        (0, import_internal2.set_style)(div, "left", ctx[6] * (+ctx[3] / 3 + +ctx[3] / 15) + ctx[1]);
+      },
+      m(target, anchor) {
+        (0, import_internal2.insert)(target, div, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 10) {
+          (0, import_internal2.set_style)(div, "left", ctx2[6] * (+ctx2[3] / 3 + +ctx2[3] / 15) + ctx2[1]);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal2.detach)(div);
+      }
+    };
+  }
+  function create_fragment2(ctx) {
+    let div;
+    let each_value = range(3, 0);
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    }
+    return {
+      c() {
+        div = (0, import_internal2.element)("div");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        (0, import_internal2.attr)(div, "class", "wrapper svelte-1xx776k");
+        (0, import_internal2.set_style)(div, "--size", ctx[3] + ctx[1]);
+        (0, import_internal2.set_style)(div, "--color", ctx[0]);
+        (0, import_internal2.set_style)(div, "--duration", ctx[2]);
+      },
+      m(target, anchor) {
+        (0, import_internal2.insert)(target, div, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].m(div, null);
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & 58) {
+          each_value = range(3, 0);
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(div, null);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+        if (dirty & 10) {
+          (0, import_internal2.set_style)(div, "--size", ctx2[3] + ctx2[1]);
+        }
+        if (dirty & 1) {
+          (0, import_internal2.set_style)(div, "--color", ctx2[0]);
+        }
+        if (dirty & 4) {
+          (0, import_internal2.set_style)(div, "--duration", ctx2[2]);
+        }
+      },
+      i: import_internal2.noop,
+      o: import_internal2.noop,
+      d(detaching) {
+        if (detaching)
+          (0, import_internal2.detach)(div);
+        (0, import_internal2.destroy_each)(each_blocks, detaching);
+      }
+    };
+  }
+  function instance2($$self, $$props, $$invalidate) {
+    let { color = "#e40302" } = $$props;
+    let { unit = window.shadowRoot ? "em" : "rem" } = $$props;
+    let { duration = "1.5s" } = $$props;
+    let { size = 3.75 } = $$props;
+    let durationUnit = duration.match(durationUnitRegex)[0];
+    let durationNum = duration.replace(durationUnitRegex, "");
+    $$self.$$set = ($$props2) => {
+      if ("color" in $$props2)
+        $$invalidate(0, color = $$props2.color);
+      if ("unit" in $$props2)
+        $$invalidate(1, unit = $$props2.unit);
+      if ("duration" in $$props2)
+        $$invalidate(2, duration = $$props2.duration);
+      if ("size" in $$props2)
+        $$invalidate(3, size = $$props2.size);
+    };
+    return [color, unit, duration, size, durationUnit, durationNum];
+  }
+  var import_internal2, Component2, Pulse_default;
+  var init_Pulse = __esm({
+    "components/Spinner/Pulse.svelte"() {
+      import_internal2 = __require("svelte/internal");
+      init_utils();
+      Component2 = class extends import_internal2.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal2.init)(this, options, instance2, create_fragment2, import_internal2.safe_not_equal, { color: 0, unit: 1, duration: 2, size: 3 }, add_css);
+        }
+      };
+      Pulse_default = Component2;
+    }
+  });
+
+  // components/Timer.svelte
+  function create_fragment3(ctx) {
+    let div2;
+    let div0;
+    let t0;
+    let div1;
+    let span;
+    let t1;
+    let div2_class_value;
+    let current;
+    const default_slot_template = ctx[3].default;
+    const default_slot = (0, import_internal3.create_slot)(default_slot_template, ctx, ctx[2], null);
+    return {
+      c() {
+        div2 = (0, import_internal3.element)("div");
+        div0 = (0, import_internal3.element)("div");
+        if (default_slot)
+          default_slot.c();
+        t0 = (0, import_internal3.space)();
+        div1 = (0, import_internal3.element)("div");
+        span = (0, import_internal3.element)("span");
+        t1 = (0, import_internal3.text)(ctx[0]);
+        (0, import_internal3.attr)(div0, "class", "z-10 flex-shrink-0 w-[100px] h-[100px] flex items-center justify-center text-black bg-white font-bold rounded-full border-4 border-[#e40302]");
+        (0, import_internal3.attr)(span, "class", "text-[32px]");
+        (0, import_internal3.attr)(div1, "class", "bg-[#e40302] text-white flex items-center truncate pl-12 pr-8 py-1 rounded-full transform -translate-x-8");
+        (0, import_internal3.attr)(div2, "class", div2_class_value = ctx[1] + " flex opacity-100 items-center max-w-[700px]");
+      },
+      m(target, anchor) {
+        (0, import_internal3.insert)(target, div2, anchor);
+        (0, import_internal3.append)(div2, div0);
+        if (default_slot) {
+          default_slot.m(div0, null);
+        }
+        (0, import_internal3.append)(div2, t0);
+        (0, import_internal3.append)(div2, div1);
+        (0, import_internal3.append)(div1, span);
+        (0, import_internal3.append)(span, t1);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & 4)) {
+            (0, import_internal3.update_slot_base)(default_slot, default_slot_template, ctx2, ctx2[2], !current ? (0, import_internal3.get_all_dirty_from_scope)(ctx2[2]) : (0, import_internal3.get_slot_changes)(default_slot_template, ctx2[2], dirty, null), null);
+          }
+        }
+        if (!current || dirty & 1)
+          (0, import_internal3.set_data)(t1, ctx2[0]);
+        if (!current || dirty & 2 && div2_class_value !== (div2_class_value = ctx2[1] + " flex opacity-100 items-center max-w-[700px]")) {
+          (0, import_internal3.attr)(div2, "class", div2_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal3.transition_in)(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal3.transition_out)(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal3.detach)(div2);
+        if (default_slot)
+          default_slot.d(detaching);
+      }
+    };
+  }
+  function instance3($$self, $$props, $$invalidate) {
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { label: label2 = "" } = $$props;
+    let { class: clazz = "" } = $$props;
+    $$self.$$set = ($$props2) => {
+      if ("label" in $$props2)
+        $$invalidate(0, label2 = $$props2.label);
+      if ("class" in $$props2)
+        $$invalidate(1, clazz = $$props2.class);
+      if ("$$scope" in $$props2)
+        $$invalidate(2, $$scope = $$props2.$$scope);
+    };
+    return [label2, clazz, $$scope, slots];
+  }
+  var import_internal3, Component3, Timer_default;
+  var init_Timer = __esm({
+    "components/Timer.svelte"() {
+      import_internal3 = __require("svelte/internal");
+      Component3 = class extends import_internal3.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal3.init)(this, options, instance3, create_fragment3, import_internal3.safe_not_equal, { label: 0, class: 1 });
+        }
+      };
+      Timer_default = Component3;
+    }
+  });
+
+  // layouts/loading/TitleLoading.svelte
+  function create_default_slot(ctx) {
+    let pulse;
+    let current;
+    pulse = new Pulse_default({ props: { size: 3.75 } });
+    return {
+      c() {
+        (0, import_internal4.create_component)(pulse.$$.fragment);
+      },
+      m(target, anchor) {
+        (0, import_internal4.mount_component)(pulse, target, anchor);
+        current = true;
+      },
+      p: import_internal4.noop,
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal4.transition_in)(pulse.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal4.transition_out)(pulse.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        (0, import_internal4.destroy_component)(pulse, detaching);
+      }
+    };
+  }
+  function create_fragment4(ctx) {
+    let div;
+    let timer;
+    let div_class_value;
+    let current;
+    timer = new Timer_default({
+      props: {
+        class: "transform " + ctx[2],
+        label: ctx[1],
+        $$slots: { default: [create_default_slot] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        div = (0, import_internal4.element)("div");
+        (0, import_internal4.create_component)(timer.$$.fragment);
+        (0, import_internal4.attr)(div, "class", div_class_value = (ctx[3] ? "block" : "hidden") + " absolute " + ctx[0] + " p-4");
+      },
+      m(target, anchor) {
+        (0, import_internal4.insert)(target, div, anchor);
+        (0, import_internal4.mount_component)(timer, div, null);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const timer_changes = {};
+        if (dirty & 4)
+          timer_changes.class = "transform " + ctx2[2];
+        if (dirty & 2)
+          timer_changes.label = ctx2[1];
+        if (dirty & 64) {
+          timer_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        timer.$set(timer_changes);
+        if (!current || dirty & 9 && div_class_value !== (div_class_value = (ctx2[3] ? "block" : "hidden") + " absolute " + ctx2[0] + " p-4")) {
+          (0, import_internal4.attr)(div, "class", div_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal4.transition_in)(timer.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal4.transition_out)(timer.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal4.detach)(div);
+        (0, import_internal4.destroy_component)(timer);
+      }
+    };
+  }
+  function instance4($$self, $$props, $$invalidate) {
+    let isCreating;
+    let originClass;
+    let label2;
+    let $metadata, $$unsubscribe_metadata = import_internal4.noop, $$subscribe_metadata = () => ($$unsubscribe_metadata(), $$unsubscribe_metadata = (0, import_internal4.subscribe)(metadata2, ($$value) => $$invalidate(4, $metadata = $$value)), metadata2);
+    let $state, $$unsubscribe_state = import_internal4.noop, $$subscribe_state = () => ($$unsubscribe_state(), $$unsubscribe_state = (0, import_internal4.subscribe)(state3, ($$value) => $$invalidate(5, $state = $$value)), state3);
+    (0, import_internal4.component_subscribe)($$self, metadata2, ($$value) => $$invalidate(4, $metadata = $$value));
+    (0, import_internal4.component_subscribe)($$self, state3, ($$value) => $$invalidate(5, $state = $$value));
+    $$self.$$.on_destroy.push(() => $$unsubscribe_metadata());
+    $$self.$$.on_destroy.push(() => $$unsubscribe_state());
+    let timerClass = "";
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 16) {
+        $:
+          switch ($metadata.position) {
+            case "center":
+              $$invalidate(0, timerClass = `top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`);
+              break;
+            case "bottom":
+              $$invalidate(0, timerClass = "bottom-0 transform left-1/2 transform -translate-x-1/2");
+              break;
+            case "top":
+              $$invalidate(0, timerClass = "top-0 transform left-1/2 transform -translate-x-1/2");
+              break;
+            case "right":
+              $$invalidate(0, timerClass = "right-0 transform top-1/2 transform -translate-y-1/2");
+              break;
+            case "top-right":
+              $$invalidate(0, timerClass = "top-0 right-0");
+              break;
+            case "bottom-right":
+              $$invalidate(0, timerClass = "bottom-0 right-0");
+              break;
+            case "left":
+              $$invalidate(0, timerClass = "left-0  transform top-1/2 transform -translate-y-1/2");
+              break;
+            case "top-left":
+              $$invalidate(0, timerClass = "top-0 left-0");
+              break;
+            case "bottom-left":
+              $$invalidate(0, timerClass = "bottom-0 left-0");
+              break;
+            default:
+              break;
+          }
+      }
+      if ($$self.$$.dirty & 32) {
+        $:
+          $$invalidate(3, isCreating = $state.context.isCreating);
+      }
+      if ($$self.$$.dirty & 16) {
+        $:
+          $$invalidate(2, originClass = `origin-${$metadata.position}`);
+      }
+      if ($$self.$$.dirty & 16) {
+        $:
+          $$invalidate(1, label2 = $metadata.loadingTitle);
+      }
+    };
+    return [timerClass, label2, originClass, isCreating, $metadata, $state];
+  }
+  var import_internal4, metadata2, state3, Component4, TitleLoading_default;
+  var init_TitleLoading = __esm({
+    "layouts/loading/TitleLoading.svelte"() {
+      import_internal4 = __require("svelte/internal");
+      init_helper2();
+      init_Pulse();
+      init_Timer();
+      metadata2 = toWritableStore(window.SigmaInteractive.metadata);
+      state3 = toReadableStore(window.SI.state);
+      Component4 = class extends import_internal4.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal4.init)(this, options, instance4, create_fragment4, import_internal4.safe_not_equal, {});
+        }
+      };
+      TitleLoading_default = Component4;
+    }
+  });
+
+  // layouts/loading/GameShowLoading.svelte
+  function create_fragment5(ctx) {
+    let div6;
+    let div0;
+    let pulse;
+    let t0;
+    let div5;
+    let div6_class_value;
+    let current;
+    pulse = new Pulse_default({ props: { size: 3, color: "#ffffff" } });
+    return {
+      c() {
+        div6 = (0, import_internal5.element)("div");
+        div0 = (0, import_internal5.element)("div");
+        (0, import_internal5.create_component)(pulse.$$.fragment);
+        t0 = (0, import_internal5.space)();
+        div5 = (0, import_internal5.element)("div");
+        div5.innerHTML = `<div class="py-[8px] px-[12px]"><div class="bg-gradient-to-r to-transparent from-gray-300 h-[18px] animate-pulse"></div> 
+      <div class="h-[8px]"></div> 
+      <div class="bg-gradient-to-r to-transparent from-gray-300 h-[18px] animate-pulse"></div></div>`;
+        (0, import_internal5.attr)(div0, "class", "bg-gradient-to-b rounded-full flex from-[#2E6FC1] to-[#020C57] h-[104px] ring-white p-4 ring-4 w-[104px] z-10 items-center justify-center");
+        (0, import_internal5.attr)(div5, "class", "bg-gradient-to-b rounded-xl font-normal from-[#2E6FC1] to-[#020C57] text-white min-h-[70px] p-2 transform pl-[52px] w-[264px] -translate-x-[52px]");
+        (0, import_internal5.attr)(div6, "class", div6_class_value = (ctx[0] ? "flex" : "hidden") + " absolute top-0 items-center transform translate-x-[12px]");
+      },
+      m(target, anchor) {
+        (0, import_internal5.insert)(target, div6, anchor);
+        (0, import_internal5.append)(div6, div0);
+        (0, import_internal5.mount_component)(pulse, div0, null);
+        (0, import_internal5.append)(div6, t0);
+        (0, import_internal5.append)(div6, div5);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (!current || dirty & 1 && div6_class_value !== (div6_class_value = (ctx2[0] ? "flex" : "hidden") + " absolute top-0 items-center transform translate-x-[12px]")) {
+          (0, import_internal5.attr)(div6, "class", div6_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal5.transition_in)(pulse.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal5.transition_out)(pulse.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal5.detach)(div6);
+        (0, import_internal5.destroy_component)(pulse);
+      }
+    };
+  }
+  function instance5($$self, $$props, $$invalidate) {
+    let isCreating;
+    let $state, $$unsubscribe_state = import_internal5.noop, $$subscribe_state = () => ($$unsubscribe_state(), $$unsubscribe_state = (0, import_internal5.subscribe)(state4, ($$value) => $$invalidate(1, $state = $$value)), state4);
+    (0, import_internal5.component_subscribe)($$self, state4, ($$value) => $$invalidate(1, $state = $$value));
+    $$self.$$.on_destroy.push(() => $$unsubscribe_state());
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 2) {
+        $:
+          $$invalidate(0, isCreating = $state.context.isCreating);
+      }
+    };
+    return [isCreating, $state];
+  }
+  var import_internal5, state4, Component5, GameShowLoading_default;
+  var init_GameShowLoading = __esm({
+    "layouts/loading/GameShowLoading.svelte"() {
+      import_internal5 = __require("svelte/internal");
+      init_helper2();
+      init_Pulse();
+      state4 = toReadableStore(window.SI.state);
+      Component5 = class extends import_internal5.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal5.init)(this, options, instance5, create_fragment5, import_internal5.safe_not_equal, {});
+        }
+      };
+      GameShowLoading_default = Component5;
+    }
+  });
+
+  // layouts/Layout.svelte
+  function create_if_block_1(ctx) {
+    let audio;
+    let source;
+    let source_src_value;
+    let audio_controls_value;
+    return {
+      c() {
+        audio = (0, import_internal6.element)("audio");
+        source = (0, import_internal6.element)("source");
+        if (!(0, import_internal6.src_url_equal)(source.src, source_src_value = ctx[2].audioSrc))
+          (0, import_internal6.attr)(source, "src", source_src_value);
+        (0, import_internal6.attr)(audio, "class", "!hidden");
+        audio.controls = audio_controls_value = false;
+        audio.autoplay = true;
+        (0, import_internal6.attr)(audio, "preload", "auto");
+      },
+      m(target, anchor) {
+        (0, import_internal6.insert)(target, audio, anchor);
+        (0, import_internal6.append)(audio, source);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 4 && !(0, import_internal6.src_url_equal)(source.src, source_src_value = ctx2[2].audioSrc)) {
+          (0, import_internal6.attr)(source, "src", source_src_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal6.detach)(audio);
+      }
+    };
+  }
+  function create_default_slot2(ctx) {
+    let span;
+    let t_value = ctx[22] + "";
+    let t;
+    return {
+      c() {
+        span = (0, import_internal6.element)("span");
+        t = (0, import_internal6.text)(t_value);
+        (0, import_internal6.attr)(span, "class", "bg-black rounded-lg bg-opacity-80 text-white text-center py-5 transform px-6 top-1/2 left-1/2 text-3xl w-[480px] -translate-x-1/2 -translate-y-1/2 absolute z-10");
+      },
+      m(target, anchor) {
+        (0, import_internal6.insert)(target, span, anchor);
+        (0, import_internal6.append)(span, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 4194304 && t_value !== (t_value = ctx2[22] + ""))
+          (0, import_internal6.set_data)(t, t_value);
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal6.detach)(span);
+      }
+    };
+  }
+  function create_if_block2(ctx) {
+    let switch_instance;
+    let switch_instance_anchor;
+    let current;
+    var switch_value = ctx[5];
+    function switch_props(ctx2) {
+      return {};
+    }
+    if (switch_value) {
+      switch_instance = new switch_value(switch_props(ctx));
+    }
+    return {
+      c() {
+        if (switch_instance)
+          (0, import_internal6.create_component)(switch_instance.$$.fragment);
+        switch_instance_anchor = (0, import_internal6.empty)();
+      },
+      m(target, anchor) {
+        if (switch_instance) {
+          (0, import_internal6.mount_component)(switch_instance, target, anchor);
+        }
+        (0, import_internal6.insert)(target, switch_instance_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (switch_value !== (switch_value = ctx2[5])) {
+          if (switch_instance) {
+            (0, import_internal6.group_outros)();
+            const old_component = switch_instance;
+            (0, import_internal6.transition_out)(old_component.$$.fragment, 1, 0, () => {
+              (0, import_internal6.destroy_component)(old_component, 1);
+            });
+            (0, import_internal6.check_outros)();
+          }
+          if (switch_value) {
+            switch_instance = new switch_value(switch_props(ctx2));
+            (0, import_internal6.create_component)(switch_instance.$$.fragment);
+            (0, import_internal6.transition_in)(switch_instance.$$.fragment, 1);
+            (0, import_internal6.mount_component)(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
+          } else {
+            switch_instance = null;
+          }
+        } else if (switch_value) {
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        if (switch_instance)
+          (0, import_internal6.transition_in)(switch_instance.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        if (switch_instance)
+          (0, import_internal6.transition_out)(switch_instance.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal6.detach)(switch_instance_anchor);
+        if (switch_instance)
+          (0, import_internal6.destroy_component)(switch_instance, detaching);
+      }
+    };
+  }
+  function create_key_block(ctx) {
+    let div;
+    let t0;
+    let t1;
+    let notifications_1;
+    let t2;
+    let div_class_value;
+    let div_intro;
+    let current;
+    let if_block0 = ctx[6] && create_if_block_1(ctx);
+    const default_slot_template = ctx[18].default;
+    const default_slot = (0, import_internal6.create_slot)(default_slot_template, ctx, ctx[19], get_default_slot_context2);
+    notifications_1 = new Notifications_default({
+      props: {
+        notifications,
+        duration: 2e3,
+        $$slots: {
+          default: [
+            create_default_slot2,
+            ({ payload }) => ({ 22: payload }),
+            ({ payload }) => payload ? 4194304 : 0
+          ]
+        },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = ctx[4] && create_if_block2(ctx);
+    return {
+      c() {
+        div = (0, import_internal6.element)("div");
+        if (if_block0)
+          if_block0.c();
+        t0 = (0, import_internal6.space)();
+        if (default_slot)
+          default_slot.c();
+        t1 = (0, import_internal6.space)();
+        (0, import_internal6.create_component)(notifications_1.$$.fragment);
+        t2 = (0, import_internal6.space)();
+        if (if_block1)
+          if_block1.c();
+        (0, import_internal6.attr)(div, "class", div_class_value = ctx[0] + " absolute " + ctx[3] + " select-none sigma-layout " + (ctx[8] ? "pointer-events-none" : ""));
+      },
+      m(target, anchor) {
+        (0, import_internal6.insert)(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        (0, import_internal6.append)(div, t0);
+        if (default_slot) {
+          default_slot.m(div, null);
+        }
+        (0, import_internal6.append)(div, t1);
+        (0, import_internal6.mount_component)(notifications_1, div, null);
+        (0, import_internal6.append)(div, t2);
+        if (if_block1)
+          if_block1.m(div, null);
+        current = true;
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (ctx[6]) {
+          if (if_block0) {
+            if_block0.p(ctx, dirty);
+          } else {
+            if_block0 = create_if_block_1(ctx);
+            if_block0.c();
+            if_block0.m(div, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & 524416)) {
+            (0, import_internal6.update_slot_base)(default_slot, default_slot_template, ctx, ctx[19], !current ? (0, import_internal6.get_all_dirty_from_scope)(ctx[19]) : (0, import_internal6.get_slot_changes)(default_slot_template, ctx[19], dirty, get_default_slot_changes2), get_default_slot_context2);
+          }
+        }
+        const notifications_1_changes = {};
+        if (dirty & 4718592) {
+          notifications_1_changes.$$scope = { dirty, ctx };
+        }
+        notifications_1.$set(notifications_1_changes);
+        if (ctx[4]) {
+          if (if_block1) {
+            if_block1.p(ctx, dirty);
+            if (dirty & 16) {
+              (0, import_internal6.transition_in)(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block2(ctx);
+            if_block1.c();
+            (0, import_internal6.transition_in)(if_block1, 1);
+            if_block1.m(div, null);
+          }
+        } else if (if_block1) {
+          (0, import_internal6.group_outros)();
+          (0, import_internal6.transition_out)(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          (0, import_internal6.check_outros)();
+        }
+        if (!current || dirty & 265 && div_class_value !== (div_class_value = ctx[0] + " absolute " + ctx[3] + " select-none sigma-layout " + (ctx[8] ? "pointer-events-none" : ""))) {
+          (0, import_internal6.attr)(div, "class", div_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal6.transition_in)(default_slot, local);
+        (0, import_internal6.transition_in)(notifications_1.$$.fragment, local);
+        (0, import_internal6.transition_in)(if_block1);
+        if (!div_intro) {
+          (0, import_internal6.add_render_callback)(() => {
+            div_intro = (0, import_internal6.create_in_transition)(div, ctx[11], {
+              duration: ctx[2].duration * 1e3,
+              ...ctx[10]
+            });
+            div_intro.start();
+          });
+        }
+        current = true;
+      },
+      o(local) {
+        (0, import_internal6.transition_out)(default_slot, local);
+        (0, import_internal6.transition_out)(notifications_1.$$.fragment, local);
+        (0, import_internal6.transition_out)(if_block1);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal6.detach)(div);
+        if (if_block0)
+          if_block0.d();
+        if (default_slot)
+          default_slot.d(detaching);
+        (0, import_internal6.destroy_component)(notifications_1);
+        if (if_block1)
+          if_block1.d();
+      }
+    };
+  }
+  function create_fragment6(ctx) {
+    let previous_key = `${ctx[9]}-${ctx[1]}`;
+    let key_block_anchor;
+    let current;
+    let key_block = create_key_block(ctx);
+    return {
+      c() {
+        key_block.c();
+        key_block_anchor = (0, import_internal6.empty)();
+      },
+      m(target, anchor) {
+        key_block.m(target, anchor);
+        (0, import_internal6.insert)(target, key_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & 514 && (0, import_internal6.safe_not_equal)(previous_key, previous_key = `${ctx2[9]}-${ctx2[1]}`)) {
+          (0, import_internal6.group_outros)();
+          (0, import_internal6.transition_out)(key_block, 1, 1, import_internal6.noop);
+          (0, import_internal6.check_outros)();
+          key_block = create_key_block(ctx2);
+          key_block.c();
+          (0, import_internal6.transition_in)(key_block);
+          key_block.m(key_block_anchor.parentNode, key_block_anchor);
+        } else {
+          key_block.p(ctx2, dirty);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal6.transition_in)(key_block);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal6.transition_out)(key_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal6.detach)(key_block_anchor);
+        key_block.d(detaching);
+      }
+    };
+  }
+  function instance6($$self, $$props, $$invalidate) {
+    let transition;
+    let TRANSITION_PARAM_MAP;
+    let transitionOptions;
+    let remount;
+    let disabledInteractions;
+    let hasStart;
+    let slotOptions;
+    let showAudio;
+    let LoadingComponent;
+    let hasLoading;
+    let absoluteCls;
+    let $metadata;
+    let $store;
+    let $state;
+    let $globalState;
+    let $progress;
+    (0, import_internal6.component_subscribe)($$self, metadata, ($$value) => $$invalidate(2, $metadata = $$value));
+    (0, import_internal6.component_subscribe)($$self, store, ($$value) => $$invalidate(14, $store = $$value));
+    (0, import_internal6.component_subscribe)($$self, state2, ($$value) => $$invalidate(15, $state = $$value));
+    (0, import_internal6.component_subscribe)($$self, globalState, ($$value) => $$invalidate(16, $globalState = $$value));
+    (0, import_internal6.component_subscribe)($$self, progress, ($$value) => $$invalidate(17, $progress = $$value));
+    let { $$slots: slots = {}, $$scope } = $$props;
+    const LoadingComponentMap = { TitleLoading: TitleLoading_default, GameShowLoading: GameShowLoading_default };
+    let { class: clazz = "" } = $$props;
+    let { loadingType = "TitleLoading" } = $$props;
+    const TRANSITION_MAP = { fade: import_transition.fade, blur: import_transition.blur, fly: import_transition.fly, slide: import_transition.slide, scale: import_transition.scale };
+    (0, import_svelte2.onDestroy)(() => {
+      progress.set(0);
+    });
+    $$self.$$set = ($$props2) => {
+      if ("class" in $$props2)
+        $$invalidate(0, clazz = $$props2.class);
+      if ("loadingType" in $$props2)
+        $$invalidate(12, loadingType = $$props2.loadingType);
+      if ("$$scope" in $$props2)
+        $$invalidate(19, $$scope = $$props2.$$scope);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(11, transition = TRANSITION_MAP[$metadata.transition] || import_transition.fade);
+      }
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(13, TRANSITION_PARAM_MAP = {
+            fade: {},
+            blur: { amount: $metadata.amount },
+            fly: { x: $metadata.x, y: $metadata.y },
+            slide: {},
+            scale: { start: $metadata.start }
+          });
+      }
+      if ($$self.$$.dirty & 8196) {
+        $:
+          $$invalidate(10, transitionOptions = TRANSITION_PARAM_MAP[$metadata.transition] || {});
+      }
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(9, remount = `${$metadata.transition}-${$metadata.key}`);
+      }
+      if ($$self.$$.dirty & 32768) {
+        $:
+          $$invalidate(1, hasStart = $state.context.hasStart);
+      }
+      if ($$self.$$.dirty & 212998) {
+        $:
+          if (!$store.isPreview && hasStart && $metadata.displayTime) {
+            if (!$globalState.started) {
+              (0, import_internal6.set_store_value)(globalState, $globalState.started = true, $globalState);
+              const intervalId = workerTimers.setInterval(() => {
+                progress.update((_progress) => {
+                  _progress = _progress + 1e3;
+                  return _progress;
+                });
+                if ($progress === $metadata.displayTime) {
+                  workerTimers.clearInterval(intervalId);
+                  (0, import_internal6.set_store_value)(globalState, $globalState.toRemoved = true, $globalState);
+                  timeoutOverlay();
+                  return;
+                }
+              }, 1e3);
+            }
+          }
+      }
+      if ($$self.$$.dirty & 65536) {
+        $:
+          $$invalidate(8, disabledInteractions = $globalState.isInteracted || $globalState.toRemoved);
+      }
+      if ($$self.$$.dirty & 2) {
+        $:
+          $$invalidate(7, slotOptions = {
+            show: hasStart,
+            className: `w-full h-full ${hasStart ? "opacity-100" : "opacity-0 pointer-events-none"}`
+          });
+      }
+      if ($$self.$$.dirty & 16390) {
+        $:
+          $$invalidate(6, showAudio = ($store.isPreview || hasStart) && !["tizen", "webos", "ios"].includes($store.userData.platform) && $metadata.audioSrc);
+      }
+      if ($$self.$$.dirty & 4096) {
+        $:
+          $$invalidate(5, LoadingComponent = LoadingComponentMap[loadingType]);
+      }
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(4, hasLoading = $metadata.hasLoading);
+      }
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(3, absoluteCls = ABSOLUTE_POSITIONS[$metadata.position || "bottom-left"]);
+      }
+    };
+    return [
+      clazz,
+      hasStart,
+      $metadata,
+      absoluteCls,
+      hasLoading,
+      LoadingComponent,
+      showAudio,
+      slotOptions,
+      disabledInteractions,
+      remount,
+      transitionOptions,
+      transition,
+      loadingType,
+      TRANSITION_PARAM_MAP,
+      $store,
+      $state,
+      $globalState,
+      $progress,
+      slots,
+      $$scope
+    ];
+  }
+  var import_transition, import_svelte2, import_internal6, get_default_slot_changes2, get_default_slot_context2, Component6, Layout_default;
+  var init_Layout = __esm({
+    "layouts/Layout.svelte"() {
+      init_index();
+      import_transition = __require("svelte/transition");
+      import_svelte2 = __require("svelte");
+      import_internal6 = __require("svelte/internal");
+      init_Notifications();
+      init_TitleLoading();
+      init_GameShowLoading();
+      get_default_slot_changes2 = (dirty) => ({ slotOptions: dirty & 128 });
+      get_default_slot_context2 = (ctx) => ({ slotOptions: ctx[7] });
+      Component6 = class extends import_internal6.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal6.init)(this, options, instance6, create_fragment6, import_internal6.safe_not_equal, { class: 0, loadingType: 12 });
+        }
+      };
+      Layout_default = Component6;
+    }
+  });
+
+  // FootballSub/Button.svelte
+  function create_fragment7(ctx) {
+    let button;
+    let button_class_value;
+    let focusable_action;
+    let current;
+    let mounted;
+    let dispose;
+    const default_slot_template = ctx[8].default;
+    const default_slot = (0, import_internal7.create_slot)(default_slot_template, ctx, ctx[7], null);
+    return {
+      c() {
+        button = (0, import_internal7.element)("button");
+        if (default_slot)
+          default_slot.c();
+        (0, import_internal7.attr)(button, "class", button_class_value = ctx[0] + " " + (ctx[2].selectedIndex === ctx[1] ? "bg-[#e40302] text-white" : `${ctx[5]}`));
+        button.disabled = ctx[3];
+      },
+      m(target, anchor) {
+        (0, import_internal7.insert)(target, button, anchor);
+        if (default_slot) {
+          default_slot.m(button, null);
+        }
+        current = true;
+        if (!mounted) {
+          dispose = [
+            (0, import_internal7.action_destroyer)(focusable_action = focusable.call(null, button)),
+            (0, import_internal7.listen)(button, "click", ctx[9])
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & 128)) {
+            (0, import_internal7.update_slot_base)(default_slot, default_slot_template, ctx2, ctx2[7], !current ? (0, import_internal7.get_all_dirty_from_scope)(ctx2[7]) : (0, import_internal7.get_slot_changes)(default_slot_template, ctx2[7], dirty, null), null);
+          }
+        }
+        if (!current || dirty & 7 && button_class_value !== (button_class_value = ctx2[0] + " " + (ctx2[2].selectedIndex === ctx2[1] ? "bg-[#e40302] text-white" : `${ctx2[5]}`))) {
+          (0, import_internal7.attr)(button, "class", button_class_value);
+        }
+        if (!current || dirty & 8) {
+          button.disabled = ctx2[3];
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal7.transition_in)(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal7.transition_out)(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal7.detach)(button);
+        if (default_slot)
+          default_slot.d(detaching);
+        mounted = false;
+        (0, import_internal7.run_all)(dispose);
+      }
+    };
+  }
+  function instance7($$self, $$props, $$invalidate) {
+    let disabled;
+    let $globalDisabled;
+    let $selectStore;
+    (0, import_internal7.component_subscribe)($$self, globalDisabled, ($$value) => $$invalidate(6, $globalDisabled = $$value));
+    (0, import_internal7.component_subscribe)($$self, selectStore, ($$value) => $$invalidate(2, $selectStore = $$value));
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { class: clazz = "" } = $$props;
+    let { selection = "" } = $$props;
+    const handleSelect = (index) => {
+      (0, import_internal7.set_store_value)(selectStore, $selectStore.selectedIndex = index, $selectStore);
+      globalState.update((_globalState) => {
+        _globalState.isInteracted = true;
+        return _globalState;
+      });
+      interactiveOverlay("prediction", { selectedOption: `${index}` });
+    };
+    const btnCls = `text-white bg-black bg-opacity-70 focus:(outline-none bg-[#e40302] bg-opacity-100) transition duration-100 ease-in-out`;
+    const click_handler = (e) => {
+      handleSelect(selection);
+      e.target.focus();
+    };
+    $$self.$$set = ($$props2) => {
+      if ("class" in $$props2)
+        $$invalidate(0, clazz = $$props2.class);
+      if ("selection" in $$props2)
+        $$invalidate(1, selection = $$props2.selection);
+      if ("$$scope" in $$props2)
+        $$invalidate(7, $$scope = $$props2.$$scope);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 68) {
+        $:
+          $$invalidate(3, disabled = $selectStore.selectedIndex !== void 0 || $globalDisabled);
+      }
+    };
+    return [
+      clazz,
+      selection,
+      $selectStore,
+      disabled,
+      handleSelect,
+      btnCls,
+      $globalDisabled,
+      $$scope,
+      slots,
+      click_handler
+    ];
+  }
+  var import_internal7, Component7, Button_default;
+  var init_Button = __esm({
+    "FootballSub/Button.svelte"() {
+      init_index();
+      import_internal7 = __require("svelte/internal");
+      Component7 = class extends import_internal7.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal7.init)(this, options, instance7, create_fragment7, import_internal7.safe_not_equal, { class: 0, selection: 1 });
+        }
+      };
+      Button_default = Component7;
+    }
+  });
+
+  // components/CloseButton.svelte
+  function create_fragment8(ctx) {
+    let button;
+    let span;
+    let t;
+    let button_class_value;
+    let focusable_action;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        button = (0, import_internal8.element)("button");
+        span = (0, import_internal8.element)("span");
+        t = (0, import_internal8.text)(ctx[2]);
+        (0, import_internal8.attr)(span, "class", "text-[32px]");
+        (0, import_internal8.attr)(button, "class", button_class_value = ctx[0] + " " + ctx[4] + " w-[192px] h-[58px] text-white origin-bottom-right border border-white border-opacity-50");
+        button.disabled = ctx[1];
+      },
+      m(target, anchor) {
+        (0, import_internal8.insert)(target, button, anchor);
+        (0, import_internal8.append)(button, span);
+        (0, import_internal8.append)(span, t);
+        if (!mounted) {
+          dispose = [
+            (0, import_internal8.listen)(button, "click", ctx[5]),
+            (0, import_internal8.action_destroyer)(focusable_action = focusable.call(null, button))
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & 4)
+          (0, import_internal8.set_data)(t, ctx2[2]);
+        if (dirty & 1 && button_class_value !== (button_class_value = ctx2[0] + " " + ctx2[4] + " w-[192px] h-[58px] text-white origin-bottom-right border border-white border-opacity-50")) {
+          (0, import_internal8.attr)(button, "class", button_class_value);
+        }
+        if (dirty & 2) {
+          button.disabled = ctx2[1];
+        }
+      },
+      i: import_internal8.noop,
+      o: import_internal8.noop,
+      d(detaching) {
+        if (detaching)
+          (0, import_internal8.detach)(button);
+        mounted = false;
+        (0, import_internal8.run_all)(dispose);
+      }
+    };
+  }
+  function instance8($$self, $$props, $$invalidate) {
+    let { class: clazz = "" } = $$props;
+    let { disabled = false } = $$props;
+    function handleCloseOverlay() {
+      closeOverlay();
+    }
+    let { text: text6 = "" } = $$props;
+    const btnCls = `bg-black bg-opacity-70 focus:(outline-none bg-[#e40302] bg-opacity-100) transition duration-100 ease-in-out`;
+    const click_handler = (e) => {
+      handleCloseOverlay();
+      e.target.focus();
+    };
+    $$self.$$set = ($$props2) => {
+      if ("class" in $$props2)
+        $$invalidate(0, clazz = $$props2.class);
+      if ("disabled" in $$props2)
+        $$invalidate(1, disabled = $$props2.disabled);
+      if ("text" in $$props2)
+        $$invalidate(2, text6 = $$props2.text);
+    };
+    return [clazz, disabled, text6, handleCloseOverlay, btnCls, click_handler];
+  }
+  var import_internal8, Component8, CloseButton_default;
+  var init_CloseButton = __esm({
+    "components/CloseButton.svelte"() {
+      import_internal8 = __require("svelte/internal");
+      init_store();
+      init_spatial_navigation();
+      Component8 = class extends import_internal8.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal8.init)(this, options, instance8, create_fragment8, import_internal8.safe_not_equal, { class: 0, disabled: 1, text: 2 });
+        }
+      };
+      CloseButton_default = Component8;
+    }
+  });
+
+  // components/LogoQuestion.svelte
+  function create_fragment9(ctx) {
+    let div1;
+    let div0;
+    let span;
+    let t;
+    let div1_class_value;
+    return {
+      c() {
+        div1 = (0, import_internal9.element)("div");
+        div0 = (0, import_internal9.element)("div");
+        span = (0, import_internal9.element)("span");
+        t = (0, import_internal9.text)(ctx[0]);
+        (0, import_internal9.attr)(span, "class", "text-center line-clamp-4 text-[32px]");
+        (0, import_internal9.attr)(div0, "class", "bg-white flex font-medium flex-1 text-black leading-tight p-8 items-center justify-center");
+        (0, import_internal9.attr)(div1, "class", div1_class_value = "flex flex-col " + ctx[1]);
+      },
+      m(target, anchor) {
+        (0, import_internal9.insert)(target, div1, anchor);
+        (0, import_internal9.append)(div1, div0);
+        (0, import_internal9.append)(div0, span);
+        (0, import_internal9.append)(span, t);
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & 1)
+          (0, import_internal9.set_data)(t, ctx2[0]);
+        if (dirty & 2 && div1_class_value !== (div1_class_value = "flex flex-col " + ctx2[1])) {
+          (0, import_internal9.attr)(div1, "class", div1_class_value);
+        }
+      },
+      i: import_internal9.noop,
+      o: import_internal9.noop,
+      d(detaching) {
+        if (detaching)
+          (0, import_internal9.detach)(div1);
+      }
+    };
+  }
+  function instance9($$self, $$props, $$invalidate) {
+    let { question = "" } = $$props;
+    let { class: clazz = "" } = $$props;
+    $$self.$$set = ($$props2) => {
+      if ("question" in $$props2)
+        $$invalidate(0, question = $$props2.question);
+      if ("class" in $$props2)
+        $$invalidate(1, clazz = $$props2.class);
+    };
+    return [question, clazz];
+  }
+  var import_internal9, Component9, LogoQuestion_default;
+  var init_LogoQuestion = __esm({
+    "components/LogoQuestion.svelte"() {
+      import_internal9 = __require("svelte/internal");
+      Component9 = class extends import_internal9.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal9.init)(this, options, instance9, create_fragment9, import_internal9.safe_not_equal, { question: 0, class: 1 });
+        }
+      };
+      LogoQuestion_default = Component9;
+    }
+  });
+
+  // components/CheckIcon.svelte
+  function create_fragment10(ctx) {
+    let svg;
+    let defs;
+    let g;
+    let path;
+    let path_intro;
+    let svg_class_value;
+    return {
+      c() {
+        svg = (0, import_internal10.svg_element)("svg");
+        defs = (0, import_internal10.svg_element)("defs");
+        g = (0, import_internal10.svg_element)("g");
+        path = (0, import_internal10.svg_element)("path");
+        (0, import_internal10.attr)(defs, "id", "defs5040");
+        (0, import_internal10.attr)(path, "d", "m 18.963249,271.54142 5.11928,5.88254 16.621216,-13.3733 c -4.624996,-7.33644 -9.696966,-10.5123 -18.398843,-9.418 -9.407725,1.18306 -15.8732057,10.07183 -14.7734199,19.63013 1.0997857,9.55831 9.3987219,16.23758 19.2969299,15.20827 11.395441,-1.18501 19.680898,-12.82477 13.875333,-25.4204");
+        (0, import_internal10.set_style)(path, "opacity", "1");
+        (0, import_internal10.set_style)(path, "fill", "none");
+        (0, import_internal10.set_style)(path, "stroke", "#fff");
+        (0, import_internal10.set_style)(path, "stroke-width", "4.84156466");
+        (0, import_internal10.set_style)(path, "stroke-linecap", "round");
+        (0, import_internal10.set_style)(path, "stroke-linejoin", "round");
+        (0, import_internal10.set_style)(path, "stroke-miterlimit", "4");
+        (0, import_internal10.set_style)(path, "stroke-dasharray", "none");
+        (0, import_internal10.set_style)(path, "stroke-opacity", "1");
+        (0, import_internal10.set_style)(path, "paint-order", "stroke fill markers");
+        (0, import_internal10.attr)(path, "id", "path5046");
+        (0, import_internal10.set_style)(g, "display", "inline");
+        (0, import_internal10.attr)(g, "transform", "translate(0,-247)");
+        (0, import_internal10.attr)(g, "id", "draw-line");
+        (0, import_internal10.attr)(svg, "id", "svg5046");
+        (0, import_internal10.attr)(svg, "version", "1.1");
+        (0, import_internal10.attr)(svg, "viewBox", "0 0 50 50");
+        (0, import_internal10.attr)(svg, "class", svg_class_value = "w-14 h-14 " + ctx[0]);
+      },
+      m(target, anchor) {
+        (0, import_internal10.insert)(target, svg, anchor);
+        (0, import_internal10.append)(svg, defs);
+        (0, import_internal10.append)(svg, g);
+        (0, import_internal10.append)(g, path);
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & 1 && svg_class_value !== (svg_class_value = "w-14 h-14 " + ctx2[0])) {
+          (0, import_internal10.attr)(svg, "class", svg_class_value);
+        }
+      },
+      i(local) {
+        if (!path_intro) {
+          (0, import_internal10.add_render_callback)(() => {
+            path_intro = (0, import_internal10.create_in_transition)(path, import_transition2.draw, { duration: 800 });
+            path_intro.start();
+          });
+        }
+      },
+      o: import_internal10.noop,
+      d(detaching) {
+        if (detaching)
+          (0, import_internal10.detach)(svg);
+      }
+    };
+  }
+  function instance10($$self, $$props, $$invalidate) {
+    let { class: clazz = "" } = $$props;
+    $$self.$$set = ($$props2) => {
+      if ("class" in $$props2)
+        $$invalidate(0, clazz = $$props2.class);
+    };
+    return [clazz];
+  }
+  var import_internal10, import_transition2, Component10, CheckIcon_default;
+  var init_CheckIcon = __esm({
+    "components/CheckIcon.svelte"() {
+      import_internal10 = __require("svelte/internal");
+      import_transition2 = __require("svelte/transition");
+      Component10 = class extends import_internal10.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal10.init)(this, options, instance10, create_fragment10, import_internal10.safe_not_equal, { class: 0 });
+        }
+      };
+      CheckIcon_default = Component10;
+    }
+  });
+
+  // FootballSub/FootballSubL.svelte
+  function get_each_context2(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[14] = list[i];
+    child_ctx[16] = i;
+    return child_ctx;
+  }
+  function get_each_context_1(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[17] = list[i];
+    child_ctx[19] = i;
+    return child_ctx;
+  }
+  function create_default_slot_2(ctx) {
+    let span;
+    let t;
+    return {
+      c() {
+        span = (0, import_internal11.element)("span");
+        t = (0, import_internal11.text)(ctx[2]);
+        (0, import_internal11.attr)(span, "class", "text-[40px]");
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, span, anchor);
+        (0, import_internal11.append)(span, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 4)
+          (0, import_internal11.set_data)(t, ctx2[2]);
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(span);
+      }
+    };
+  }
+  function create_if_block_12(ctx) {
+    let div;
+    let checkicon;
+    let current;
+    checkicon = new CheckIcon_default({});
+    return {
+      c() {
+        div = (0, import_internal11.element)("div");
+        (0, import_internal11.create_component)(checkicon.$$.fragment);
+        (0, import_internal11.attr)(div, "class", "flex px-4 inset-0 absolute items-center justify-end");
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, div, anchor);
+        (0, import_internal11.mount_component)(checkicon, div, null);
+        current = true;
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal11.transition_in)(checkicon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal11.transition_out)(checkicon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(div);
+        (0, import_internal11.destroy_component)(checkicon);
+      }
+    };
+  }
+  function create_default_slot_1(ctx) {
+    let div;
+    let t0_value = String.fromCharCode(ctx[16] * 2 + ctx[19] + 1 + 64) + "";
+    let t0;
+    let t1;
+    let t2_value = " ";
+    let t2;
+    let t3;
+    let t4_value = ctx[17].id + "";
+    let t4;
+    let t5;
+    let t6;
+    let current;
+    let if_block = ctx[4] === ctx[16] * 2 + ctx[19] && create_if_block_12(ctx);
+    return {
+      c() {
+        div = (0, import_internal11.element)("div");
+        t0 = (0, import_internal11.text)(t0_value);
+        t1 = (0, import_internal11.text)(": ");
+        t2 = (0, import_internal11.text)(t2_value);
+        t3 = (0, import_internal11.space)();
+        t4 = (0, import_internal11.text)(t4_value);
+        t5 = (0, import_internal11.space)();
+        if (if_block)
+          if_block.c();
+        t6 = (0, import_internal11.space)();
+        (0, import_internal11.attr)(div, "class", "text-left w-full line-clamp-2 text-[30px]");
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, div, anchor);
+        (0, import_internal11.append)(div, t0);
+        (0, import_internal11.append)(div, t1);
+        (0, import_internal11.append)(div, t2);
+        (0, import_internal11.append)(div, t3);
+        (0, import_internal11.append)(div, t4);
+        (0, import_internal11.insert)(target, t5, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        (0, import_internal11.insert)(target, t6, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if ((!current || dirty & 2) && t0_value !== (t0_value = String.fromCharCode(ctx2[16] * 2 + ctx2[19] + 1 + 64) + ""))
+          (0, import_internal11.set_data)(t0, t0_value);
+        if ((!current || dirty & 2) && t4_value !== (t4_value = ctx2[17].id + ""))
+          (0, import_internal11.set_data)(t4, t4_value);
+        if (ctx2[4] === ctx2[16] * 2 + ctx2[19]) {
+          if (if_block) {
+            if (dirty & 18) {
+              (0, import_internal11.transition_in)(if_block, 1);
+            }
+          } else {
+            if_block = create_if_block_12(ctx2);
+            if_block.c();
+            (0, import_internal11.transition_in)(if_block, 1);
+            if_block.m(t6.parentNode, t6);
+          }
+        } else if (if_block) {
+          (0, import_internal11.group_outros)();
+          (0, import_internal11.transition_out)(if_block, 1, 1, () => {
+            if_block = null;
+          });
+          (0, import_internal11.check_outros)();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal11.transition_in)(if_block);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal11.transition_out)(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(div);
+        if (detaching)
+          (0, import_internal11.detach)(t5);
+        if (if_block)
+          if_block.d(detaching);
+        if (detaching)
+          (0, import_internal11.detach)(t6);
+      }
+    };
+  }
+  function create_each_block_1(key_1, ctx) {
+    let first;
+    let button;
+    let current;
+    button = new Button_default({
+      props: {
+        selection: ctx[16] * 2 + ctx[19],
+        class: "relative font-bold focus:outline-none px-[45px] h-[100px] w-[508px] " + (ctx[19] === 0 ? "mr-[32px]" : ""),
+        $$slots: { default: [create_default_slot_1] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      key: key_1,
+      first: null,
+      c() {
+        first = (0, import_internal11.empty)();
+        (0, import_internal11.create_component)(button.$$.fragment);
+        this.first = first;
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, first, anchor);
+        (0, import_internal11.mount_component)(button, target, anchor);
+        current = true;
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        const button_changes = {};
+        if (dirty & 2)
+          button_changes.selection = ctx[16] * 2 + ctx[19];
+        if (dirty & 2)
+          button_changes.class = "relative font-bold focus:outline-none px-[45px] h-[100px] w-[508px] " + (ctx[19] === 0 ? "mr-[32px]" : "");
+        if (dirty & 1048594) {
+          button_changes.$$scope = { dirty, ctx };
+        }
+        button.$set(button_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal11.transition_in)(button.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal11.transition_out)(button.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(first);
+        (0, import_internal11.destroy_component)(button, detaching);
+      }
+    };
+  }
+  function create_if_block3(ctx) {
+    let span;
+    return {
+      c() {
+        span = (0, import_internal11.element)("span");
+        (0, import_internal11.attr)(span, "class", "h-[20px] w-full");
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, span, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(span);
+      }
+    };
+  }
+  function create_each_block2(key_1, ctx) {
+    let div;
+    let each_blocks = [];
+    let each_1_lookup = /* @__PURE__ */ new Map();
+    let t;
+    let if_block_anchor;
+    let current;
+    let each_value_1 = ctx[14];
+    const get_key = (ctx2) => ctx2[19];
+    for (let i = 0; i < each_value_1.length; i += 1) {
+      let child_ctx = get_each_context_1(ctx, each_value_1, i);
+      let key = get_key(child_ctx);
+      each_1_lookup.set(key, each_blocks[i] = create_each_block_1(key, child_ctx));
+    }
+    let if_block = ctx[16] !== ctx[1].length - 1 && create_if_block3(ctx);
+    return {
+      key: key_1,
+      first: null,
+      c() {
+        div = (0, import_internal11.element)("div");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        t = (0, import_internal11.space)();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = (0, import_internal11.empty)();
+        (0, import_internal11.attr)(div, "class", "flex flex-1 items-center justify-between");
+        this.first = div;
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, div, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].m(div, null);
+        }
+        (0, import_internal11.insert)(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        (0, import_internal11.insert)(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (dirty & 18) {
+          each_value_1 = ctx[14];
+          (0, import_internal11.group_outros)();
+          each_blocks = (0, import_internal11.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx, each_value_1, each_1_lookup, div, import_internal11.outro_and_destroy_block, create_each_block_1, null, get_each_context_1);
+          (0, import_internal11.check_outros)();
+        }
+        if (ctx[16] !== ctx[1].length - 1) {
+          if (if_block) {
+          } else {
+            if_block = create_if_block3(ctx);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        for (let i = 0; i < each_value_1.length; i += 1) {
+          (0, import_internal11.transition_in)(each_blocks[i]);
+        }
+        current = true;
+      },
+      o(local) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          (0, import_internal11.transition_out)(each_blocks[i]);
+        }
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(div);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].d();
+        }
+        if (detaching)
+          (0, import_internal11.detach)(t);
+        if (if_block)
+          if_block.d(detaching);
+        if (detaching)
+          (0, import_internal11.detach)(if_block_anchor);
+      }
+    };
+  }
+  function create_default_slot3(ctx) {
+    let div3;
+    let div0;
+    let timer;
+    let t0;
+    let closebutton;
+    let focusSection_action;
+    let t1;
+    let div2;
+    let logoquestion;
+    let t2;
+    let div1;
+    let each_blocks = [];
+    let each_1_lookup = /* @__PURE__ */ new Map();
+    let focusSection_action_1;
+    let div3_class_value;
+    let boundingRect_action;
+    let current;
+    let mounted;
+    let dispose;
+    timer = new Timer_default({
+      props: {
+        class: "",
+        label: ctx[0].title,
+        $$slots: { default: [create_default_slot_2] },
+        $$scope: { ctx }
+      }
+    });
+    closebutton = new CloseButton_default({
+      props: {
+        disabled: ctx[6],
+        text: "\u0110\xD3NG"
+      }
+    });
+    logoquestion = new LogoQuestion_default({
+      props: {
+        class: "w-[740px]",
+        question: ctx[0].question
+      }
+    });
+    let each_value = ctx[1];
+    const get_key = (ctx2) => ctx2[16];
+    for (let i = 0; i < each_value.length; i += 1) {
+      let child_ctx = get_each_context2(ctx, each_value, i);
+      let key = get_key(child_ctx);
+      each_1_lookup.set(key, each_blocks[i] = create_each_block2(key, child_ctx));
+    }
+    return {
+      c() {
+        div3 = (0, import_internal11.element)("div");
+        div0 = (0, import_internal11.element)("div");
+        (0, import_internal11.create_component)(timer.$$.fragment);
+        t0 = (0, import_internal11.space)();
+        (0, import_internal11.create_component)(closebutton.$$.fragment);
+        t1 = (0, import_internal11.space)();
+        div2 = (0, import_internal11.element)("div");
+        (0, import_internal11.create_component)(logoquestion.$$.fragment);
+        t2 = (0, import_internal11.space)();
+        div1 = (0, import_internal11.element)("div");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        (0, import_internal11.attr)(div0, "class", "flex items-end justify-between");
+        (0, import_internal11.attr)(div1, "class", "flex flex-col flex-grow ml-8");
+        (0, import_internal11.attr)(div2, "class", "flex flex-1 mt-3");
+        (0, import_internal11.attr)(div3, "class", div3_class_value = "relative flex flex-col " + ctx[13].className);
+      },
+      m(target, anchor) {
+        (0, import_internal11.insert)(target, div3, anchor);
+        (0, import_internal11.append)(div3, div0);
+        (0, import_internal11.mount_component)(timer, div0, null);
+        (0, import_internal11.append)(div0, t0);
+        (0, import_internal11.mount_component)(closebutton, div0, null);
+        (0, import_internal11.append)(div3, t1);
+        (0, import_internal11.append)(div3, div2);
+        (0, import_internal11.mount_component)(logoquestion, div2, null);
+        (0, import_internal11.append)(div2, t2);
+        (0, import_internal11.append)(div2, div1);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].m(div1, null);
+        }
+        current = true;
+        if (!mounted) {
+          dispose = [
+            (0, import_internal11.action_destroyer)(focusSection_action = focusSection2.call(null, div0)),
+            (0, import_internal11.action_destroyer)(focusSection_action_1 = focusSection2.call(null, div1, { default: true })),
+            (0, import_internal11.action_destroyer)(boundingRect_action = boundingRect.call(null, div3, {
+              onResize: updateBoundingRects,
+              onDestroy: removeBoundingRects,
+              enabled: ctx[13].show && ctx[5]
+            }))
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const timer_changes = {};
+        if (dirty & 1)
+          timer_changes.label = ctx2[0].title;
+        if (dirty & 1048580) {
+          timer_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        timer.$set(timer_changes);
+        const closebutton_changes = {};
+        if (dirty & 64)
+          closebutton_changes.disabled = ctx2[6];
+        closebutton.$set(closebutton_changes);
+        const logoquestion_changes = {};
+        if (dirty & 1)
+          logoquestion_changes.question = ctx2[0].question;
+        logoquestion.$set(logoquestion_changes);
+        if (dirty & 18) {
+          each_value = ctx2[1];
+          (0, import_internal11.group_outros)();
+          each_blocks = (0, import_internal11.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div1, import_internal11.outro_and_destroy_block, create_each_block2, null, get_each_context2);
+          (0, import_internal11.check_outros)();
+        }
+        if (!current || dirty & 8192 && div3_class_value !== (div3_class_value = "relative flex flex-col " + ctx2[13].className)) {
+          (0, import_internal11.attr)(div3, "class", div3_class_value);
+        }
+        if (boundingRect_action && (0, import_internal11.is_function)(boundingRect_action.update) && dirty & 8224)
+          boundingRect_action.update.call(null, {
+            onResize: updateBoundingRects,
+            onDestroy: removeBoundingRects,
+            enabled: ctx2[13].show && ctx2[5]
+          });
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal11.transition_in)(timer.$$.fragment, local);
+        (0, import_internal11.transition_in)(closebutton.$$.fragment, local);
+        (0, import_internal11.transition_in)(logoquestion.$$.fragment, local);
+        for (let i = 0; i < each_value.length; i += 1) {
+          (0, import_internal11.transition_in)(each_blocks[i]);
+        }
+        current = true;
+      },
+      o(local) {
+        (0, import_internal11.transition_out)(timer.$$.fragment, local);
+        (0, import_internal11.transition_out)(closebutton.$$.fragment, local);
+        (0, import_internal11.transition_out)(logoquestion.$$.fragment, local);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          (0, import_internal11.transition_out)(each_blocks[i]);
+        }
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal11.detach)(div3);
+        (0, import_internal11.destroy_component)(timer);
+        (0, import_internal11.destroy_component)(closebutton);
+        (0, import_internal11.destroy_component)(logoquestion);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].d();
+        }
+        mounted = false;
+        (0, import_internal11.run_all)(dispose);
+      }
+    };
+  }
+  function create_fragment11(ctx) {
+    let layout;
+    let current;
+    layout = new Layout_default({
+      props: {
+        class: "w-[1920px] h-[360px] px-[50px] pb-[28px] " + ctx[3] + " " + (ctx[5] ? "" : "hidden"),
+        $$slots: {
+          default: [
+            create_default_slot3,
+            ({ slotOptions }) => ({ 13: slotOptions }),
+            ({ slotOptions }) => slotOptions ? 8192 : 0
+          ]
+        },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        (0, import_internal11.create_component)(layout.$$.fragment);
+      },
+      m(target, anchor) {
+        (0, import_internal11.mount_component)(layout, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const layout_changes = {};
+        if (dirty & 40)
+          layout_changes.class = "w-[1920px] h-[360px] px-[50px] pb-[28px] " + ctx2[3] + " " + (ctx2[5] ? "" : "hidden");
+        if (dirty & 1056887) {
+          layout_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        layout.$set(layout_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal11.transition_in)(layout.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal11.transition_out)(layout.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        (0, import_internal11.destroy_component)(layout, detaching);
+      }
+    };
+  }
+  function instance11($$self, $$props, $$invalidate) {
+    let visible;
+    let selectedIndex;
+    let isMobile;
+    let scaleCls;
+    let time;
+    let matrix;
+    let $metadata;
+    let $progress;
+    let $store;
+    let $selectStore;
+    let $screenOrientation;
+    let $globalDisabled;
+    (0, import_internal11.component_subscribe)($$self, metadata, ($$value) => $$invalidate(0, $metadata = $$value));
+    (0, import_internal11.component_subscribe)($$self, progress, ($$value) => $$invalidate(8, $progress = $$value));
+    (0, import_internal11.component_subscribe)($$self, store, ($$value) => $$invalidate(9, $store = $$value));
+    (0, import_internal11.component_subscribe)($$self, selectStore, ($$value) => $$invalidate(10, $selectStore = $$value));
+    (0, import_internal11.component_subscribe)($$self, screenOrientation, ($$value) => $$invalidate(11, $screenOrientation = $$value));
+    (0, import_internal11.component_subscribe)($$self, globalDisabled, ($$value) => $$invalidate(6, $globalDisabled = $$value));
+    const toMatrix = (arr, width) => arr.reduce((rows, key, index) => (index % width == 0 ? rows.push([key]) : rows[rows.length - 1].push(key)) && rows, []);
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 2048) {
+        $:
+          $$invalidate(5, visible = $screenOrientation === "landscape");
+      }
+      if ($$self.$$.dirty & 1024) {
+        $:
+          $$invalidate(4, selectedIndex = $selectStore.selectedIndex);
+      }
+      if ($$self.$$.dirty & 512) {
+        $:
+          $$invalidate(7, isMobile = ["android-mobile", "ios"].includes($store.userData.platform));
+      }
+      if ($$self.$$.dirty & 129) {
+        $:
+          $$invalidate(3, scaleCls = `origin-${$metadata.position} scale-[${isMobile ? 1 : $metadata.size / 100}]`);
+      }
+      if ($$self.$$.dirty & 257) {
+        $:
+          $$invalidate(2, time = Math.round(($metadata.displayTime - $progress) / 1e3));
+      }
+      if ($$self.$$.dirty & 1) {
+        $:
+          $$invalidate(1, matrix = toMatrix($metadata.answers, 2));
+      }
+    };
+    return [
+      $metadata,
+      matrix,
+      time,
+      scaleCls,
+      selectedIndex,
+      visible,
+      $globalDisabled,
+      isMobile,
+      $progress,
+      $store,
+      $selectStore,
+      $screenOrientation
+    ];
+  }
+  var import_internal11, Component11, FootballSubL_default;
+  var init_FootballSubL = __esm({
+    "FootballSub/FootballSubL.svelte"() {
+      init_index();
+      import_internal11 = __require("svelte/internal");
+      init_Layout();
+      init_Button();
+      init_Timer();
+      init_CloseButton();
+      init_LogoQuestion();
+      init_CheckIcon();
+      Component11 = class extends import_internal11.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal11.init)(this, options, instance11, create_fragment11, import_internal11.safe_not_equal, {});
+        }
+      };
+      FootballSubL_default = Component11;
+    }
+  });
+
+  // components/AlertButton.svelte
+  function create_else_block(ctx) {
+    let pulse;
+    let current;
+    pulse = new Pulse_default({ props: { size: "3", color: "#fff" } });
+    return {
+      c() {
+        (0, import_internal12.create_component)(pulse.$$.fragment);
+      },
+      m(target, anchor) {
+        (0, import_internal12.mount_component)(pulse, target, anchor);
+        current = true;
+      },
+      p: import_internal12.noop,
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal12.transition_in)(pulse.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal12.transition_out)(pulse.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        (0, import_internal12.destroy_component)(pulse, detaching);
+      }
+    };
+  }
+  function create_if_block4(ctx) {
+    let span;
+    let t;
+    return {
+      c() {
+        span = (0, import_internal12.element)("span");
+        t = (0, import_internal12.text)(ctx[5]);
+        (0, import_internal12.attr)(span, "class", "text-[50px]");
+      },
+      m(target, anchor) {
+        (0, import_internal12.insert)(target, span, anchor);
+        (0, import_internal12.append)(span, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 32)
+          (0, import_internal12.set_data)(t, ctx2[5]);
+      },
+      i: import_internal12.noop,
+      o: import_internal12.noop,
+      d(detaching) {
+        if (detaching)
+          (0, import_internal12.detach)(span);
+      }
+    };
+  }
+  function create_fragment12(ctx) {
+    let div;
+    let span0;
+    let current_block_type_index;
+    let if_block;
+    let t0;
+    let span1;
+    let t1;
+    let t2;
+    let span2;
+    let svg;
+    let path;
+    let span2_class_value;
+    let boundingRect_action;
+    let div_disabled_value;
+    let boundingRect_action_1;
+    let current;
+    let mounted;
+    let dispose;
+    const if_block_creators = [create_if_block4, create_else_block];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (ctx2[2])
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    return {
+      c() {
+        div = (0, import_internal12.element)("div");
+        span0 = (0, import_internal12.element)("span");
+        if_block.c();
+        t0 = (0, import_internal12.space)();
+        span1 = (0, import_internal12.element)("span");
+        t1 = (0, import_internal12.text)(ctx[1]);
+        t2 = (0, import_internal12.space)();
+        span2 = (0, import_internal12.element)("span");
+        svg = (0, import_internal12.svg_element)("svg");
+        path = (0, import_internal12.svg_element)("path");
+        (0, import_internal12.attr)(span0, "class", "flex flex-shrink-0 h-[96px] w-[96px] items-center justify-center");
+        (0, import_internal12.attr)(span1, "class", "flex h-full text-center ml-2 text-[34px] select-none items-center justify-center line-clamp-1");
+        (0, import_internal12.attr)(path, "d", "M289.94 256l95-95A24 24 0 0 0 351 127l-95 95l-95-95a24 24 0 0 0-34 34l95 95l-95 95a24 24 0 1 0 34 34l95-95l95 95a24 24 0 0 0 34-34z");
+        (0, import_internal12.attr)(path, "fill", "currentColor");
+        (0, import_internal12.attr)(svg, "width", "1em");
+        (0, import_internal12.attr)(svg, "height", "1em");
+        (0, import_internal12.attr)(svg, "viewBox", "0 0 512 512");
+        (0, import_internal12.attr)(span2, "class", span2_class_value = (ctx[4] ? "" : "hidden") + " bg-[#fff] rounded-full cursor-pointer transform -top-4 right-0 text-[40px] text-[#e40302] absolute");
+        (0, import_internal12.attr)(div, "class", "rounded-full flex bg-[#e40302] h-[96px] mx-4 text-white leading-none justify-center items-center relative ");
+        (0, import_internal12.attr)(div, "disabled", div_disabled_value = ctx[2] === ctx[3].displayTime);
+      },
+      m(target, anchor) {
+        (0, import_internal12.insert)(target, div, anchor);
+        (0, import_internal12.append)(div, span0);
+        if_blocks[current_block_type_index].m(span0, null);
+        (0, import_internal12.append)(div, t0);
+        (0, import_internal12.append)(div, span1);
+        (0, import_internal12.append)(span1, t1);
+        (0, import_internal12.append)(div, t2);
+        (0, import_internal12.append)(div, span2);
+        (0, import_internal12.append)(span2, svg);
+        (0, import_internal12.append)(svg, path);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            (0, import_internal12.listen)(span2, "click", (0, import_internal12.stop_propagation)((0, import_internal12.prevent_default)(ctx[8]))),
+            (0, import_internal12.action_destroyer)(boundingRect_action = boundingRect_default.call(null, span2, {
+              onResize: updateBoundingRects,
+              onDestroy: removeBoundingRects,
+              enabled: ctx[4]
+            })),
+            (0, import_internal12.action_destroyer)(boundingRect_action_1 = boundingRect_default.call(null, div, {
+              onResize: updateBoundingRects,
+              onDestroy: removeBoundingRects,
+              enabled: ctx[0]
+            })),
+            (0, import_internal12.listen)(div, "click", ctx[9])
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          (0, import_internal12.group_outros)();
+          (0, import_internal12.transition_out)(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          (0, import_internal12.check_outros)();
+          if_block = if_blocks[current_block_type_index];
+          if (!if_block) {
+            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
+            if_block.c();
+          } else {
+            if_block.p(ctx2, dirty);
+          }
+          (0, import_internal12.transition_in)(if_block, 1);
+          if_block.m(span0, null);
+        }
+        if (!current || dirty & 2)
+          (0, import_internal12.set_data)(t1, ctx2[1]);
+        if (!current || dirty & 16 && span2_class_value !== (span2_class_value = (ctx2[4] ? "" : "hidden") + " bg-[#fff] rounded-full cursor-pointer transform -top-4 right-0 text-[40px] text-[#e40302] absolute")) {
+          (0, import_internal12.attr)(span2, "class", span2_class_value);
+        }
+        if (boundingRect_action && (0, import_internal12.is_function)(boundingRect_action.update) && dirty & 16)
+          boundingRect_action.update.call(null, {
+            onResize: updateBoundingRects,
+            onDestroy: removeBoundingRects,
+            enabled: ctx2[4]
+          });
+        if (!current || dirty & 12 && div_disabled_value !== (div_disabled_value = ctx2[2] === ctx2[3].displayTime)) {
+          (0, import_internal12.attr)(div, "disabled", div_disabled_value);
+        }
+        if (boundingRect_action_1 && (0, import_internal12.is_function)(boundingRect_action_1.update) && dirty & 1)
+          boundingRect_action_1.update.call(null, {
+            onResize: updateBoundingRects,
+            onDestroy: removeBoundingRects,
+            enabled: ctx2[0]
+          });
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal12.transition_in)(if_block);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal12.transition_out)(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal12.detach)(div);
+        if_blocks[current_block_type_index].d();
+        mounted = false;
+        (0, import_internal12.run_all)(dispose);
+      }
+    };
+  }
+  function instance12($$self, $$props, $$invalidate) {
+    let time;
+    let hasStart;
+    let enabled;
+    let $state, $$unsubscribe_state = import_internal12.noop, $$subscribe_state = () => ($$unsubscribe_state(), $$unsubscribe_state = (0, import_internal12.subscribe)(state5, ($$value) => $$invalidate(7, $state = $$value)), state5);
+    let $progress;
+    let $metadata, $$unsubscribe_metadata = import_internal12.noop, $$subscribe_metadata = () => ($$unsubscribe_metadata(), $$unsubscribe_metadata = (0, import_internal12.subscribe)(metadata3, ($$value) => $$invalidate(3, $metadata = $$value)), metadata3);
+    (0, import_internal12.component_subscribe)($$self, state5, ($$value) => $$invalidate(7, $state = $$value));
+    (0, import_internal12.component_subscribe)($$self, progress, ($$value) => $$invalidate(2, $progress = $$value));
+    (0, import_internal12.component_subscribe)($$self, metadata3, ($$value) => $$invalidate(3, $metadata = $$value));
+    $$self.$$.on_destroy.push(() => $$unsubscribe_state());
+    $$self.$$.on_destroy.push(() => $$unsubscribe_metadata());
+    let { visible = false } = $$props;
+    let { label: label2 = "" } = $$props;
+    const click_handler = () => {
+      closeOverlay();
+    };
+    const click_handler_1 = () => {
+      window.onForceFullScreen?.();
+    };
+    $$self.$$set = ($$props2) => {
+      if ("visible" in $$props2)
+        $$invalidate(0, visible = $$props2.visible);
+      if ("label" in $$props2)
+        $$invalidate(1, label2 = $$props2.label);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 12) {
+        $:
+          $$invalidate(5, time = Math.round(($metadata.displayTime - $progress) / 1e3));
+      }
+      if ($$self.$$.dirty & 128) {
+        $:
+          $$invalidate(6, hasStart = $state.context.hasStart);
+      }
+      if ($$self.$$.dirty & 65) {
+        $:
+          $$invalidate(4, enabled = visible && hasStart);
+      }
+    };
+    return [
+      visible,
+      label2,
+      $progress,
+      $metadata,
+      enabled,
+      time,
+      hasStart,
+      $state,
+      click_handler,
+      click_handler_1
+    ];
+  }
+  var import_internal12, metadata3, state5, Component12, AlertButton_default;
+  var init_AlertButton = __esm({
+    "components/AlertButton.svelte"() {
+      import_internal12 = __require("svelte/internal");
+      init_helper2();
+      init_store();
+      init_boundingRect();
+      init_Pulse();
+      metadata3 = toWritableStore(SigmaInteractive.metadata);
+      state5 = toReadableStore(window.SI.state);
+      Component12 = class extends import_internal12.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, { visible: 0, label: 1 });
+        }
+      };
+      AlertButton_default = Component12;
+    }
+  });
+
+  // FootballSub/FootballSubP.svelte
+  function create_if_block5(ctx) {
+    let div;
+    let div_class_value;
+    return {
+      c() {
+        div = (0, import_internal13.element)("div");
+        (0, import_internal13.attr)(div, "class", div_class_value = "absolute left-[" + ctx[1]?.[0] + "%] top-[" + ctx[1]?.[1] + "%] w-[" + (Number(ctx[1]?.[2]) - Number(ctx[1]?.[0])) + "%] h-[" + (Number(ctx[1]?.[3]) - Number(ctx[1]?.[1])) + "%]");
+      },
+      m(target, anchor) {
+        (0, import_internal13.insert)(target, div, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & 2 && div_class_value !== (div_class_value = "absolute left-[" + ctx2[1]?.[0] + "%] top-[" + ctx2[1]?.[1] + "%] w-[" + (Number(ctx2[1]?.[2]) - Number(ctx2[1]?.[0])) + "%] h-[" + (Number(ctx2[1]?.[3]) - Number(ctx2[1]?.[1])) + "%]")) {
+          (0, import_internal13.attr)(div, "class", div_class_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          (0, import_internal13.detach)(div);
+      }
+    };
+  }
+  function create_fragment13(ctx) {
+    let t;
+    let div;
+    let alertbutton;
+    let div_class_value;
+    let current;
+    let if_block = ctx[0] && create_if_block5(ctx);
+    alertbutton = new AlertButton_default({
+      props: { visible: ctx[0], label }
+    });
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        t = (0, import_internal13.space)();
+        div = (0, import_internal13.element)("div");
+        (0, import_internal13.create_component)(alertbutton.$$.fragment);
+        (0, import_internal13.attr)(div, "class", div_class_value = (ctx[0] ? "" : "hidden") + " relative self-start w-full top-[" + (ctx[1]?.[3] + 50) + "%]");
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        (0, import_internal13.insert)(target, t, anchor);
+        (0, import_internal13.insert)(target, div, anchor);
+        (0, import_internal13.mount_component)(alertbutton, div, null);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (ctx2[0]) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block5(ctx2);
+            if_block.c();
+            if_block.m(t.parentNode, t);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+        const alertbutton_changes = {};
+        if (dirty & 1)
+          alertbutton_changes.visible = ctx2[0];
+        alertbutton.$set(alertbutton_changes);
+        if (!current || dirty & 3 && div_class_value !== (div_class_value = (ctx2[0] ? "" : "hidden") + " relative self-start w-full top-[" + (ctx2[1]?.[3] + 50) + "%]")) {
+          (0, import_internal13.attr)(div, "class", div_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal13.transition_in)(alertbutton.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal13.transition_out)(alertbutton.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (if_block)
+          if_block.d(detaching);
+        if (detaching)
+          (0, import_internal13.detach)(t);
+        if (detaching)
+          (0, import_internal13.detach)(div);
+        (0, import_internal13.destroy_component)(alertbutton);
+      }
+    };
+  }
+  function instance13($$self, $$props, $$invalidate) {
+    let visible;
+    let $screenOrientation;
+    let $playerRect;
+    (0, import_internal13.component_subscribe)($$self, screenOrientation, ($$value) => $$invalidate(2, $screenOrientation = $$value));
+    (0, import_internal13.component_subscribe)($$self, playerRect, ($$value) => $$invalidate(1, $playerRect = $$value));
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & 4) {
+        $:
+          $$invalidate(0, visible = $screenOrientation === "portrait");
+      }
+    };
+    return [visible, $playerRect, $screenOrientation];
+  }
+  var import_internal13, label, Component13, FootballSubP_default;
+  var init_FootballSubP = __esm({
+    "FootballSub/FootballSubP.svelte"() {
+      init_index();
+      import_internal13 = __require("svelte/internal");
+      init_AlertButton();
+      label = "S\u1EF1 ki\u1EC7n t\u01B0\u01A1ng t\xE1c, b\u1EA5m \u0111\u1EC3 xem chi ti\u1EBFt";
+      Component13 = class extends import_internal13.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal13.init)(this, options, instance13, create_fragment13, import_internal13.safe_not_equal, {});
+        }
+      };
+      FootballSubP_default = Component13;
+    }
+  });
+
+  // constants/defaultMetadata.ts
+  var SigmaAudioSrc, defaultMetadata;
+  var init_defaultMetadata = __esm({
+    "constants/defaultMetadata.ts"() {
+      SigmaAudioSrc = `data:audio/mpeg;base64,SUQzAwAAAAAfdlBSSVYAAAAOAABQZWFrVmFsdWUAIQAAAFBSSVYAAAARAABBdmVyYWdlTGV2ZWwAewQAAFRJVDIAAAAYAAAA1b6zpMvYssQoc2MuY2hpbmF6LmNvbSlDT01NAAAAHAAAAGNoaQDVvrOky9iyxChzYy5jaGluYXouY29tKVRBTEIAAAAYAAAA1b6zpMvYssQoc2MuY2hpbmF6LmNvbSlUWUVSAAAAGAAAANW+s6TL2LLEKHNjLmNoaW5hei5jb20pVENPTgAAABgAAADVvrOky9iyxChzYy5jaGluYXouY29tKVVTTFQAAAAcAAAAY2hpANW+s6TL2LLEKHNjLmNoaW5hei5jb20pVFBFMQAAABgAAADVvrOky9iyxChzYy5jaGluYXouY29tKQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/6scw9jQAAIdY7EhnbAAROpWcPu8AA/8sR4GDE8rf+3IjLkUzrtl/+TQ+YDk4Y/BVjbIIBvbVqBiHPhy+SZUA1EFgAxxihAwDiy8nyTNC+BkIEkBiVF+BjhFyAcJ/59CygMjIqQMBoNAMGgCAMJAdgMQgSv0GT4IQDgYegtAYMADEPAwVgVBMBX+6HgYFgAAYzQWgYfBRAYagLAHBkAwOgpAUBf/9+2BgrAyBgJAKBIAYGDEC4N4wbHwMIQOAMFgGAuz//2bwGASBYWO4CQBACQEgHAXAwQAQAGAIGMAbbhiv////8UuGWBBQZAPnFBjjEoC5CICyxc5Excg5n////////+RAZsc8nxzBzCcHPIuVxzCKFQg5FyuRQihoRci5uRQihoAAADwEOEBALMFgGLYgYGgwNDA4EjBsWzJE/DGuFDRInwIIAXCgwXEQwEAAw+AoILgxNEQxgPDCRwHBKSjAwCWDM4zMYEA4nySVgGSicZvKJhYbGFRQYkD5l0BrVLAEZqFC8YkGZhQhCxIAwWMaFgwMDwULxoZGIQeOBoRA5VUtuZYEwOYQYgASCy8phsBo7CEDGEgKSAsuk2GVCwCQEoTGRteRIf0AgdAcEAeCFBG6NgtuKzVpzDhYKixMMLnM/71QKMjA4ICB6IA4XyQUVtgCAm8d9d7N4dlz7uvDdR73ciUNw4yqG10xKIRZqsvooHpaV4ZXZkMqcl/qKKRCR4PvXdmEXIdp7Eg93YdpbPFgqDWoGVQAAwAgQCwMAiAgCALhABEYGYH5gjgtmCmIuYoIFRoRHmmHKH6YCoIo0AOFAGDAyAxCoApgCA8I4//qzzCfXHAAhwSE2Ve6ADW2nJYs90ACHGW/RhGMJioHYjCgxYDkxIDM0Kj8wNEMSDQxaC8xcCUGCCYUgCBARCA0MFgbCgBkIHDwfCwZgIMl7mAgLkQIIBQIBKtxbQYBgQgGXlMPSSGQLEQCIlgEAkAakjCIAQqBCjjZUmMlmNxV2hMVenWjk66IrcGOF1UCLXSAAxoHRCBJgCBIhAUkBUuSYQIKa6MIZFBSYTAmJDSNAIqkNAAoC7y8lZFc12xwCvZulFOMuk01JqsXkVA3z1xeXS65CfrT12LSOIWJJHZvf6mp+klMnwp7HI3gUAAAAGAMHQBswhg0TGUAMMC4G8xQgBguFgYVzZJxPjsmRgXccXolxh0PdGLadMYNYSRi5gIGAsCgYOoV5hQCPmB4DYagoiYejMYpAEY2meY9DCalliaHeQZgoKDjfOxYvM51qMbSCP2HGMk2zKoJmGZCGH4gmC4aGE4CGAYMFgSzGQAk4TFwJh42y8ZhUFxgmC4iE0mQEaE8wyBMKhcYBkmYRAqYOCaIQgSRAoFgoOzBoJURzAwBzAgCobSgMEgCMBwFBoGFw0+kJJggAoYCBg8DgFAowlAgwAAMwbAwmFkwCBIwQA80fxcxoCYFASiuPAKQBEFQ7MQqCMNQJDgqlYhAwEAkYTiIbXSeYTgINBiX+BIAxcZAVhqxGcs+Ziky7SaaXbuxxFBWBnSSBbVPZJxIahLYIiI1NIZoh43ig6e+mzVf//V2JAKrta7C3al3//lxV3rAF80TWd3uKAADDF0BHMFgKMwJQXyIFQwEgGTBDBvMF0JYwUwgDAACDNGBaswsQiTDu//qzzFqaFQOh+SMwXe6ADBqkZYXu7SAF8HAnGCIF2YRQMQNA/MB8AIwGwQV0GGoamFgZmKwuggIzEQSjRsnDVc6DDIezFMWDEYQhwIRIXDA8FzCQCiAQhoEDBUAQ4Ax4FEN0tDA8AU5hYATAcCVt3QgDAEDRadPMwGAoVBpQxK8CgYrGYFAQDgreCdbknwnTML0SXL5LAqmbnVjcBq4GABYqX/LaNkGgiLtLQIgWJhyFgTOKx6MGRIV+5QNBtepQAsAtKUad+kjbLYCtTL0RCvEHdhmPSSeiMCus5lNENxSbgqCIGsSCUuq/DpWpa/EQh/LCHKt+Rtco6k/ZZMAkBTAyAUMBcAcKAXBYBUwOgfjA5AdMHEAsyGgXzcbikMTRJMVQmFAACpJmdhFAUYzAMAjEQVTD0TjJgUTFEKy/wGKkwWKgzcVU1yzE4ptKpqXqBAAZ8amKCBoJgYkomyDJgYOYMCEgEBhRdJgQMXVFQoeADBg4twimiMIwEYAgKNF5VIJ7NZSIMfDhUKWY8oVCUHElHyaeTCZepptV3qeKr7W6xJNt/VK1hAoAoowSgCMuATEoU61UNKIwSMEgKIgp3WOK8bOIgNGx+GOSZ9YvDTCVxt8yXbOHUknV51IKeuQQU051VnwTPyZSu257arRedXkbgNuUTjDMICirTlNV+sOgSMZVAAAKoEjwSzAIBWMA4EIEgTGFUF+YJIaZiriImWiIyc5UqJj1ismIeByYDoHJgAgFGFIB4YJ4GJgbgkDANIQjTEIuMKEwxALRQSmJk8ZwmR4H/GMQGYPFpt4FmJwsh1CBiYCEJj4jgQCGIQgQAULi//qzzIprN4AhnSUqde4ADm+m48M/4AAI0YfAQwEgwEFgFCAEKrFABBwKL2JfJxAkAJol6NyFD4wAJUIgEBqSMJvBAOhDUF3pt25Y8CzJAzJ/MWWw001YyhzDlnLVEIMCw1MrBQhAqVRfEBAd6YEXVHIcptsqdWsoG7bLaO7NQ05TfuBQuW0gve8a6i4D6svfxa7trRUdcsvazUvsoevh9Kzwt0LgqaP2X8YSoK6KHi7XHg6gEGHXBHxgq4GeYacDZmCag7phiQOEYH2AEmB7qe5r3YnOYtcR+mxjiehiyx+IY9mMqGHLg8RgRAH+YDyAumAKggphAAD2IQPAwiwZjG+B8MT0HgwogOjGMDvMJQF0zj0dTFiBEMCgFEyMDnDDpDLFAWDN1FPMBQEIhBSMHwF8FBcmB6AuPAnmDoB8HAxXiAB0wJgJjA3BEFAIyADAmAvMFME9NIwEATDAbAaLxjgFZgIgHGAQDgJADhADRgAgCGAEBGAgJDAOAGMD0BJEIVARMAIAMqgGsDEYBhgIgBCgAyBxgLgHhAGBVA7MA8B4wFwEwgAoMAcBwBVKVQJjAKArFQHwEByBAFDALAYEACRgKgDGDyAoTADGAkAuPAFmA0AWkwgJMAYBgwEwKAMBSuYiAYSnLtpzhUAUwCgAhkAsvaOACA4BswCwCH+KoBbGRIAswAwGQ4BodAhAgBhgGADkAFYMANBABKAVQ8RgAFAA5e1LUcAHAICwCAcQjTVdXv/4qAKFwFVpIDA4B9AdC8v/y0SxnEBQDIOAbAQCS/kAjDSEBMEAPEweAnzBgAyMC0GIwrRKjFnE2MPcpYx+QGzw//qzzH6CEQMinSUiPe4AHCMk5I3uZSiLksyyw1TFaBFMHwBMwMAEzCzBoMBQCQweAfjAsAnMiloxcRjJwJMMEQxUWTBAfMyJ87BqTnYyNACkz4TDAIRFhSJBowcCwgWjgXcIiAYXA5ADjBwFTjdBWswADTBIEfBUIkBFqjQTRORtHQGOglJYWAgBCbJAcA2hlp15L9VXVM20NqCqHICmKDoERUW+mm5ZedubMqdNZTVPhVQQhYMTI8EmpwAh8XFk6iC+2HQPXbQvE9a631d+XN+1qTxmKjQGZ2xJt19wC5qNrgwM5SHNsbCgQA3+gKMuhFIGVAPANprxNPZA2UZACdFuJK/XItGkqAoABCWBiFghgYAAwLQSjBJA9MDgJkwDQ3DA4BXMBkP4w/hRzrz4WNnsc5wVjRIiMAjUxMZjLAtJh0ZMGQ6TC+ZhEHmoACMgExmKACWjBeWNtngwIQjGZbHgshCagYeEk4ATAEOX4ZwITAgFDF8UU0DWDQ7Ikdy6Ci7X0ECaK+WhMvCj7OCIxWSPp8qBpaCECCl6iwrkzqEpDR5U7n/YcIC2vL+TXaXfL3qjGRiMZ/MGCFzHIf6Ip8uk3sWT+dNQ5P5e7tr9GA3CSKL9KXszTSTHjCullI9g4NEgMCmwh9DNCYYpo8IJCGACDg0zE0E03sXWFAAsCjasdDqgGLpv+4ZflW1W9iUZDm1qMK/AGjAcQFIwCQBHMDOABDAIQCIUA7zATAAcwDECIMQtB1jPjEUE9sJDRAHMBoYw0ECwKDGYlMaK0EDAwM3DEYqMFHEAAkwOPTEANQoOqhU0wg/OQ4ZwmlCAiZ1WCrJA//qzzAtcMAOiMSUeD/NJBC+lZE69sAAo1YswYJPdOVwyAMhJRSJB5AUL3lgUEH1VXfAQlRQGDKUlCmCGoNmOJNwTJXAwNI4vAssSLjQwtKhsnVD4yCYiBAABADIEKl1dqyILtYVNDCwkcLAUfFg4EgcMgiYOCggJAMva85L9Upe1CsoAIKqUvc0tMZpZfNpSfMEjIGPL1KoEoGIYsOLACGXAUeTGHkqNbGAgApcsCzOgZmXag1KkLggYLToLnx4vC+6Z6lqE6XXwDQZN4IhhMAXmBuE6YFQIhgMgCGB+BwYUAlRjGD3GdkQQfDNnRjUEqGMMBkCgsDAwAXAIFwVAiCADDALAEMJPgSZGOr5iAAYYTGLFhsRwd4Th1IDioZAAEklYGGCaYaFY8BCwcXtYYiqIQFogKBA4HAwLFgcBKSWmOga+FuI4JYuixMeChCGqwNLUsFARA8wEDL8JoSJCfAbck5ljEgMhaja0ltmtuGtl01VVBVqt3AouDQJoCDzc1VmDKkcZOVeJapUCTrqQSmg4Kbb/v0tJCBpqxGiMUh5G5oUBS1TAvOtJN6IEQIyxr5deTMLSgAAWtxJEty0NPSQKJKwl7Is/awiJimC/2etba/G7dQAAAAKTGsQJMwDYIcMV9DATAxgp4xyMDPMOKBJjAVmbI2lgiOMXdNrjjjhX8xNtFLM2mI7TDmgzwwP4EgMGICyjBAAIUwh8M2MISAEDEt3TLkvDJ5AzPGRzOogTOOIDWMfTZkOSAGjp6hTc4QDEM5DAXAjKw8TCIWzDQORCMosNACQgxfA4wLDcwADAwFBkw1AgwuBIxuAFuBheMhgk//qzzBdOTwA0pTkWWf6ABC+kZEe9wAMJjQcGEQJmE4qJZGD4mGAYpGApCGL4MmFIdGFIJGB4MAUBjBASjDUTzBYKAqCY6CY6HaYxgwGYjAMwuCgKhkYCAwBATMAwJJiZAgNBwFAYa01jAgSQwEzHIDiUGS+5iGCAQAZgOFRgaBQXDMwnAowsAIHAuYUgyHA7FQCBZgSAwAB0xGAIUB8wQBYoBQHC8YEAkYFAgkCggDArGQyCoPmCoEmA4HAYBSqF6TgkDwEBowEBsOCMwZB0wXA4aBAwNC1E4cBkwHAowCA0wlB0wDAcmDkwsAUEgoEFWh5f//MJwCMCgWTJFARDgvQXSBov/zCACDBsA0OKsAoDIGASQXq/AnRf9P//9gBGWGGwYRIS4cDcYKwYZgjhQmF0AcYdAWJg0DrmO0FOeB7wBkDBcGCKDQAQPzCVAxMEoDMwqQVzA4AyMDMFAyyQDCwYMnnIBCwweUjHA5MZAkQwUwmFTCKkDoEPGRbSKBhgFgkMoNlAfIgaYUBLLk5QgGtZEQDVWJAMiS0ERAUkAaEpr6hCcSOa436MEgVtAwBIJ0tk4gYB1vLrWio4pXE2NxxM9pbXljKwRCBVM1KGssiiqOg6EQwHLWHgHHnQl7dG5qNQcma9jlxtp6tjFXEYm1xM5rS/XScMvBDDJ2JLKhxprtjQGQOa26qsKlzIXCZAXuSBTToVwtfHAGkIh9GIDY8nizNK2UsUkhIAjC5wHIKAahgJwC8YEuBnGAVACJgDgDWYAEA9GBfAXJg7IMAaAMRqn7UBtYMY6UmMO5wRKNiZmrYZ0zGdvxpKcaggBGGbQDmq//qzzJOBJIOhaSMeL+8pTDQlY8394SgWmOkBqzYeGUDzkYmfFQFEmEAnCFE3Ng74aPBqgk804BDArIwgTAHEJqyA4giSWHEAAWCGjwEswoMCLfICzckCiCe7lv0Cj1WK2lmUdAMmZQ6EpKdu6coqKOBp6WlN0xmwx1TdtkJhKUSui2AkOw8QgJZAYNl6WjgprTCYSxQIMqgmjIQgJrSYbEINZ4nGnCAQR4RhDF1POc46dgWDTwhiDRQRXI0MXMQ1Wa3peZ5aVEhqMMM7SbUokiNjBEwVFkHaFQA0GEJgJg4BmmAMgJhgUIEyYBAAWGAxAFJgLgBaYFaBZmCKAcZoJ408byJmPDwRqmxnIOyDXRYOejBkM0QQNAIzFBIMHQQmEQSJFwX+AxoGjE6ZXMuAQcmmHZmaGSFkrxOW1iGdIGgIiq8QAhQ5ewDYTOAmmtLPMiUbpQSCQ6F1zekENOxxF9IJO8SAydmzlg0jnwU3WRsofhA9eImFhSW4jMVhSlSFAzy1QjaFdQUIBE1lyQaxZ5ZKOgEBFQISgxbCxxIMA5Ra1XpkCQsL0J0QaI4OQomkSEHQ3Yyhoz5KwGlGsjWRKCA9nEAIDQuJWQPAGJKwJmiRVKgSJhZMSGF7L5cVuDlONO2uZlP6lUAAAkFUHCRgZYWRoUSGHy4PEUyCRDCQZNKPsxDRTD1qWdMHsKQCAOmAGiQU+V07b4LnAEpHWBrkBgEJkgYOeSMzws4Kg4h01IAF0lTKUq0l3F5hUkCgaa5MaXUEHkNyhWFwyJyF0DJNJvmRCP6wgCABALXak6XUADQMFoFFBMmACAWEAkym4KiZgABK//qzzHbMRgEhYSkg7ntGRCCk40H95SDtRqEgqGLelQYgKL+t2LIjI4ueWdSlZGmg3MQlR0MohCUhWSIxwC5juteVoYoCAbNTAgQwlBpbMwIElAxYZEodlZ0/UzoJXUFACCJFVEUt1Hi/QhGDwcw4QFK01gMsMgCSXVvU3LvF5i0JCAKpJYQLhhUmaUOtVKtdqB7XZ6WcMCkAcjA9QTEYAXDBOwIYwF4AbMBaAATAOQFEwAcCBMI4BxzTAyUIaLj30QykUApoAoMgLEojPzEWOAsVDiOQAQNYwMcBU6NutzvzLem5sxQehIBgaaYCQQ0Y4gGGLymaWBFwjQs8rtcghPCAFZlFG1DEi77ppgkI6cpAgEjj3sWLcsDVRTfUKTva4h6ABWEtzEIpUSagLGmEAZoIFPLQpUJaFYiDpZNihfwGgLYV4XCFRgEKhGBQEXg5FCWgeIBRCEpAFDhhz9J1iMBMocMHAhZNOosm1BQ1oA0LFC1YCTf5+kL2IFcEuXejkFQC/zBF+wDWEQqRAFJFhi+knSULPK5BB6hkoqWOKgAACYDGQCSMQwGwwBQDDB+CBMCICEwDwgzCBB0EAAhiDhBH/w/6YcAFAGFGAuU6Ow44YEIzCMzQDAvCM0+NSqMQ2IyENGVvDgREkHOnsgHGGkKHEiNIElCTYqaKll0gwxK0yURUUMLEh1FASerQr9G5yYDnEEbbIss9MyERpjxJUAUzL4Iul4S+CZ5dN9m+NcFCF2Va0cS1Q1kwSHU0wqmkuChlbS3JdEBOqxqMmOGrFLBCSy5A0YDQGluA4NJNKF5CYVchf4xoQ4ptwoYYJDPR0tMA//qzzJOUagOhiSkcb2sqxCuk44ntZWC0IiMIklrgl9W8Rhl1jVCEiBkhbaXAcelshWZQaq4GEQLUdSCTtUYMNMu6ZxQcFCmdjUBfGV1Jb0GDKIAsMIkBswCwuRoPUGgvmCSA6YRgHRgkgXGDsIyfesrxiOALGDSCSLJjuLT2rQI0PUZDxhlnBkC45HRSDhRA7ZeEQzPIQVBOCRGjRn0CiaAcKkghCJhzZpqIZhRxDoWRMkMi8MMlBOjyBgi0xALE1VyqESqJJDgxY+SMQkDSYYMDjlZE3hEKFBjAJCgrKHvL/lgdFZLlh46SoE8jACookEl8UGIdS4wwigALNs7mwIKWD0U3jCgzJUQkJCq0DI2BjgsEDjm0biIgYyXVTfEiGnlwwCSs1PIwDF6l93AQlKQFlUiUfiEUeYLdjIJkkkohVPZoBky0woMCSS1Il6NGhURdQ8qDg3Vi2dUEAgrAysgYjAYA1MF4DkwbgRzA7AUMHgKlaZgzhdmIGFkeIk+p9X50WxdwwqEiImMDiE4b8qYtQIRIt7MYIMyEFAgKPmezhZJr+FQKPFoicTeiUUUkJpZwFDBnREpTEfG0MHJLXBcaJiByqyfJhIago0CWEtwwyvGcCrzM8mzDrQFxvcslahG9NUoO75g0wkGCZy2sCAAoJCYpT5fCXlxwUIcm6yPpAZCQlS8JaxnSs7N2jCEIdpVVBxKskUEGF7wMtxDZCcXnSpLitlYKWRIWDAGyFFkMwioQkcAHgEykSGDmqx6ShKQZIhiwTQ0ou6gEMYzJ1mAQCuNuEAH/AzIpCrzPS6oAjNwAIMN0JAwhgejBMBqMFUCE//qzzNSujAMgoSkeb2sJBCsk44XtZVrBPApMBkEgwSAizGEG3PBPLQxWgiTB1AwM5BMkrPILMAxpDfTzDMAcdA4AyLEw00YTmSHGUgC0RtgkK5nBg0UBFighkjrEA24ILa2Y4QiKN4kRgi1xrGIZDyaLyXDJgaABAyI0wQk+AxIKniDFDR32lgpcQoBw5ZQLmpFINAIZP5vgEAo26zlpUKQQRoEyYoDPhxTKEujLEERJKIrC7gGDLuL8IRhqd0whIWIbxbCc5ZchHFi0vAKVBbKFqigCtyAYIZbxpyGTgx5oY4CmMXYQcROX6mdEkF2mlCS0ENh5IkCAJAkCSlMrLeOkCiUfEPWlMMCgbR41eQAAw0EAWzCcERBgYBhggymEkAuYDQIhgIg5AEM0yVwlDwQ+ZMCUJ8wGQDjOEzEUjiUTxHzSkTCDzi5h4yYtkbESZaSbdEY1CaKoZEoIBZhcAUCjR4s7DRZQWQGqh44DjCz5lwIbuKZAyDgiJMdKG2UDoq43mSAGnmoqJmkShANHp+BUgKHNWBQy+kt2HJgNbARCni2qrVMHXCoKdZaoAoRgRCl9UYBsQLHA0UpRVILHytB1aK1kZwSCCRJWLGIpAgYQhhw7WUvwwYcSMBJEUWBCpheZf5MsPGIHrOARBd8YDTGMMhaqKCMySigwIITWWQuQs5mxlY46ABmEO6kQoOmqmqTFhQVmIQFaanbDXCYgXxjYjGGQYYCERnZnG5lQYVTZh6AfGlC1cYnwuhikBfHDPhrCUFCIywsMaVDlpo719MxRjop45ZYCHQ1N/NjXzSzU2ulO0XCwvmtr5p6aZmFmAh5i//qzzAqusgOhiScaT2srBDUkpQHPbMji4cRmDIhy9ScKbhQKQBmVMRtyYZUXGXARg5ibAzGuJxlQEYKVmXkpjYaY2PjQstIwMHMXGwgOMEDjAgIAATyJAISWKtfXqYaUmdiqOiQKJiuS3BhwQW8X4rhKxKhMRxWT5IZsHIRMsmFQFc664ktSCkMHcSMLOM7dUeAI2wdYNl7xpJQY7t+AHoqRLNrcOMjL8NWQwh1zY24DUJGu9MNnbOpe5zT2bqna4wx+IYkDaMwbA293NQBhgwhwJAEAWVgeGAEAGxwEg7GA+Owayx6xjWgZGMyRacOGpi8mkyZMVGky+QxENjJJGCg0N6gwxr4jbweM2EQ2SVOyDDQT0xgnDhk5a9PKGTCCcxoSMnSghYMofjBw0wl8B0ibbMHVwph48diZAhjAwmID814pC4CIjMx5bM6I1euZBQjFiYGEYeioYyQCxvgFwYFEJb5MsCh6t5mEUeAMm9pQFC0JQqJgwFCA8IFgMcovI3lUKMWCF9hwAEATnAoBEY05AqBoHGAgCzmWKQfVrdxH8gBQQAkg6BlkBAyhKVUrXsrMhctpmi5Uh5IwGTRGSuK6zXlpWYGbot+aed0XBijkStpLaSiEwa4XuU/zsPfKmh2cgCMtQDTJ1PIqrMCcEILCcmAYfEZAzg5iDC7GZ0SEczHoGrxfEueATeYCKpgwwmbAYYIHxoFvHpI8TJUvyZpUxhE3GGg4Y+IZoElGGwWYrJQcKwcORoamQAAsgxCSTG5gMAhwkYZtI4AZ7GQTcY7KRCQzAAFsURhAMqdmDwYW6SKUuYqLAgOFJg4SgwKqcx0w//qzzFZ80wMiySUwT3NoxCskJYWvcFFIICAQFAUHAcwgGTE5QPchMHB8LA8tdTvcFgAgnGAAiOsgVFxjQCsNTgT2ckuQwRI9Op0V2r4ljN6itrZFNWPuEIBeZnAK9m3l8bViaLNLHdhu6yoaty+F9cZirTIEgyWwRyidGBYccGccmISpwG0lzSmHPQ/kfdx7J+cAAMMHKAQjAEwIIwKkDLMD8ATjAhQQcwYwDCMM1FyTdfRdAweUJTMabFXzaAzjHAVgwdxI+AqUJjyFphYIAAHsy1P0xS1c28OEKIMEOQz0OzEqRMXEMDGI0UJzW6uMvjJ6jHYPMQCoKCYwWFDLY/MYoUmCxjQoH0iiYpKBhsyhBpMxjgGApU5hUcGCQcQh0aWKbQOC6PSXIJB7PiEJjADMAA1Xg8ESQLmFxMIweYYBxiabn31QQCEweEkKAcAB0Do5AgBmDgaYBAAkEhEcDIgGhgKhBKAWBAkJzAYEDgeRCAqAdSMAo2EQGf9YqAVFQhA5WCWImxwMFwPMswQEp8JlqDlp1g1ciRURNQib9oddNtxkvGEp7NwWKnyha1+Utafpg8ZDgqkXB5bNbz8ogrVhtl6nReSvelF8wigAcEgHEwIsBlMA2AjzAogEwwFcGaMKOHaTa3D4YwxwF1MYaE4DrosTXYpzL8VDAEAzIAQzGgUQYJBiCFINIEx6n0xwEkwRNwzIXTG4lMeKEwwCTFgNAg7MQD0woTTJYRMDB4QAcIMhh8AmOiyX5AAFC6KOenUQBwQBomGCxDBwHFQUYECZgYKjQHMag4HAMKgxAYUAAFBJCtaqQg8HCIGBQCjAaLkl//qzzPmQ8IPnGSciT/eIxLak5EH+8RjJQnGKE6feNREDAaBSwASQFOQRAhRp40c0MwsRjFIXVoJQCqZyCAGKYIoQOkIl0CQAtJaRYADzq4MAgNAGiMKBYy0PFU1cs8GAWm0n4nkFwAhWy8wKCUeFO22kqExVXJs7xshaI/afTIpppbJ0yH/dOOz6waCZBtRVlObA2Tw8VQC48pgbqjChAEwwBkFMAAHkYA4AumAfArwACSzEEDx40tZi/MQUDFjHmw70xYUFJMKlAQxpaTFUXTHIPSqMZkKJ5iII5keD5jVa5pGVJh6ZxFApi2DphkGZjKKxh7UIAYzUKMIPzJikRFBhg0ApAwAtMtLTJw4oPDISsRtA87GCFAAPwATMjMQESEQCwWrMa4fuwYAAlowMAEQgBgIu6kaY2BJIjQigELmjQYQBZjUIdNfmMAhgYcYKJP6WsAgAX8MVBwgDTDAJwUfUhDiVcqqqa5fFYRgrvJuDAGuehLVqFDgG+wVEUAZi5GaYYp5AkIAwk55hgOthFxuQYIo2gwEbszVWMMB08WsM4ZglOwdhTppGpiJ8qUtKQTsWXeXpWiXzShFAJIJvFF4fRbRUb5LK9eANBtYSRMbRjQFxgWixjiLxqtLRjIoV2dv6SCGJmhCJjjQZMa2shoiUEJdEkUY1FBikHmC1SZBOBicxG9GoeNFRiBdHLBKY6M5mpMGHRWRAoxAIBGAAoCwwaBgNMBhMIAbRACBRg2jADMLjo2gCzGYUMLAUwWCHTRTAIhBwpckwwBTMoyaSBALDaCUEARD0uwYHBZgIDEQTMCioeCShAhGBfcxWKjiIpgUi//qzzNxh6wOlkSUeD/dqxLsk483f8IgPjQKRRMIA1AMpUYHBJdoBBASIQ0/zAwFSVWFEgczhSSF6wRftcSU7tI9J9rLYlilLD5goBmPweXoi6CB9kGWWrxR+dxASDgSxNe5QDRYAqNRZHJJWIAgDuczMiDCehc4rAEuZ8sZQggEiQSy1qkwKEgK0saA44EC5JbMMBi1UxFIUzcr66gAAwaB8TAbQPYwKACVMDdAFDAEQCcwbcGwME2NbzgllSAxa4I1MjLDUT5RKzWQkTI8UB4hTHUaDAcHzDgDTAAPgQKBiDURimPRg6WRngFwUHwxDNQwZEI2ok2RszsMLEBGCFRxngAYzMAAMcXCrQtgO4Dol1egQCIQ4QVMSkWBLMlgSAQB6G5ghpjQIMDgUkMDAsIVjEj6JwIEMLDn5hBKkAgOYa2c1MY0SLCAwqwxGsBLQcVMEPL5gUASsRdWmApNFF4SgGwgMAF81O3SULHAMDIliMApsoM/QiCAUETW1IMoQbVyHCkwoAmF1BA5KJQ1Wlo7xKWNNamkWwMOCgEQiahJeddrNEZgwOqxq8Yh590hBYGwhQBCYmKgUwlJkaIufNBqiwBUAgAoMBBAYTAowGoQgHJgoAHAYOyFAmFWGfhssDo6YioH1GUZC2xjH4I6YSOBMmpgUTK8lC5pMlGIR8BBWYhJJseLHwhaYGVRyYUmCQsY3SZqYYDoLMRgsyODggYDgdAwJAISMWhAwoJTCYUMRg0FFwaFxok1NRLSrFMCAMChQeOCSwHDx4efk0TFTBBkQjICRaCikDQgdMTQBRQQhjGiEp1emDEips9hZcI9ELrhg//qzzORa6wOksSUeT/dJBPqko43+aXDkC2uGMAkoFKJdwXZmrSCIWFQhMDQAJWlQMu0GBYBYkje7IYBTxLkhw5BItYWFmZJGuFBhQREW4FmHoL8hYIX8aKmpFr4KCBwZKUZBOarMXPEZAzChA0HMTAIC2hjwJiCJa4qigMiMSHA0ASWFQQvYYAgoUDjQkWYqKlXRLmpvNSW+OFk27thb///////2VQCMEBAMDAcQNIwI0CZHgFUwSsD7MHCATjE0QbU8QEiGMa9C5TJ/RLEwlIH2MC8A+jBCRMIDIyYQAoMBUVmbjuY/KJpHancBQMqY5IMjAoXNStEwgKxQmF3JtGwjCmYLFtVKh1qYkUYBsIpYkbBgsTQGQElaE1pkyYsxY4rGDUdJwcEmo+g5eX5Bx8VFKYjCBm4COiEKZMWJCWsoumiFFUUhQaUWYkDOl5DChUbxIQyMwwFERApKwTeCRQvMDji/BJWmRGgoFauOBgsDcVUSvkgWFEAQKgQuCMSAHRIKJp2kQBgpCEZ4OjkeU0kqiYGYsaqCNiQBw21mSAMOk2nEhNriaaVrLAEGZgnY0ALASsMTAUNGIiIYwtfsDsFBgFnAYDRGRg4Agb4GgLpgDADqYFkCUGAqAJxgmwVAYCoYbm7XIgBiXAFcY8YCtmFcBJZhGgEwYD2APGAVADhgGoAAYBOAMEgAyYAYAhGTweYWuJpwNmJkoa8D5h0YmBCyYYCxVEQICJjATCAKGAQMYACgsKCyAFB4cDzDQWLJp4GVA2JB8w6CEKWjmFASSgEhBYhBhIDDBhYDBWIQE8IKBDBIagFBYFAlEVYAKhEQAEkB//qzzI9z5oOkXSEcL/NK3Nwk48q/wACEQaLWGBhANAxBZWMQAFAS0pCauN8kihgIAENhwaCAapSXRL2KRTDzL4RclArtJhlgAF3l2LhCAU7YYCxkJBATUKGQMqNZhdVLZEFOQRgoLAJCUMAcgAy1XrSRQTsYWeNAYcCY0DIyYGCKmkTR7BQXGhILAsVA0+PAJAVPIHV0MEKX4VXh4FAdlMltn9QAAAAAAFSQwhcA0MD8FDjCNQRYwPMgDMJvBJzC1BiI0dnn1MxMBODNnb8o2j8RWOOgujTDGCFcw0EFQMAuAGDBdgGwwEAA4MDVBLTAEAI41cEc3HbE07eAz7Ugw0ScDmCa8EQYBkmYQAGaLGqu8wbGoyfBEwOCxAaYUCqYOjEYogiCiKCAHMAxLMCgQMBgLMVB4MQAZMHhNMLBFMHwoMdQpAQ2iMEDAIfQ4mjMAQjAQRjEANjA8NzBwKzNMIDC4GwCAL0mJYFmE4CGFQQmIYKEoDGDQKmHwjAUYjCwMzAcHTCUBjAsQTA0NTB4QEDjBYCA4QTA8UxIgzC0KTC8JAoBgNAEIBwwJB8IIdWIwdDEwdC8kBAHDmnuYkggYTAsYOAAhoCABMKQnDBZEh5MFAiMBgaEABGBIUDxOGHgFgIMTAwAxGEwYHgsR5hACxggDJiOFAGAMwhC0GASNEvDRgSA5iGBEVMDgZMDw1FgzGgjBIDiwimBIOBUDQMIAkJzNMv/xYChYPDBIFhCEIkGQcBz27//Fi3MJwNMEBZMAAuMIACMSw1KAUrNQweSNh9iziFvLKIgYYwRQkN/9Xo/1/2/UAAAAB+YMCCAmGFhkZhV//qxzIGg54A4FTkWef6ABm0m4ss/wABgOBhagc4YICA4GFOg0Z3ltsgYp6g3HtXLzpp8yFOfZqPSGRvHaBgzwEoYCqAqGBvAQpgMABqYD+AqFgCFMuPA8irzQZ6Mz5gw5vz/yuMREgwSXQoFDiRRMqoEwYjQMVwaTBGPjLZIMzG0wgZTIYHMUAwy2NTIAIEj8YeBwWGxmocGDQ4YJHZqQOqDBQTjQcMLF82GGDEAkMFjsw+JAsEjPBxMSD8VEyCEweAjAIyGlMYbGJVCRhI8mRyCYdIpiURBAZMMgEwWSREJTI46MWDQqiMlDBicTp8GDQ2YWFAGEw0Bx4QGBggYGDRiMFNsYlBDfAAYAABh01Mfh0rEBioKioVMWBUaAJKIAwjAodGGwOYSBZgQOgIuFQXBcEBYBAIbrfWmYyCxgoLGFBAYsAgEFZKHiIAmDRCIBEYqDpi4MAgrmHwIYdDRhgVg0IiRrWEQkCo8Hgnrn+BQ+FQeYSCZQDDB4FFgKTAPv/4iJRg8EhQKGAxwAhSYNAyA4FptDllkvRbgriRFqav/b//dAAAAAABMtMHPA+jDBgdcwXEBnMFnCXDBfQSYwPUO9PHqGLDLu0BE7JFxLMcxN+DjQpSgzjkf/MCvASzAjAEYwVUCkMCcAeTB9AUUwI8CGMeSA8yyTXalMkvISSp8QOGuToBiUEAcyILzXgEMlhAxONTKwgKBqAloZCEZnEMgQFGQScZ8L5n8EmCROBj2YgFZg8NgwwmPAoZLRxgEKloi0CjBkpSiAQGCiQUBFPEyKXCYrmQw0nECQgYgERkYImFQAKCwwUIjIAOGkIYrK5L/+rPMNGZnADTJkRh5/gAFkicjgz/AAIrMHhUwuTDGocMFjwCDYDFIiBBisbGhhOYPDYWExgQDAYAhQIhQBGJAU9RhUOIzJCzAOAZgABgAGmLAuEAQDBQwGFTGYlKCAYiAJgsCGHAEHFQeCZdsQhowCFUmg4PGLw6TD8wyBGUoPGCgmYZDo8Nx4OmIQqYoAQYIgKGzBQcBwqLSBcAGBAwydewEDQUEJMAcf/zDA1MIiQwYJjBYDMHhccBTJMO/4KBRgAGmOgcFBkYrCYKRBde1z/3//3m//mt/3PPfLnP/dfLuesN/+W9ZXd5WNC6P+gwIsBZMAMEhjA0wQYwF8OvMC/A9zAxhLoz9VudM64FtjFJYYAwmoCgNPsguzLcB3EwAoBXWoYKEAvGBSgBJg8IB0YBEAFGSGEc1Ypo1WmeygYFKh4Ysm1wOVhUDEI0CYBGKF/mGjCYHBYoKRQWkRyGhgYQCphkFGXxsYxB5hACBQoBhMMXg8w6CDCQBEBXMBjUDEgwwADAYnMLHIDBoZAZENzAYVGDSYJAaZpg0JBgMMKg4wSFTEofMDAcCjIAh9JABANrJgEMBYJGDgKRAgtIYNDaIYIFxgAJhUPmAQg7SEoaHQNBYXCRdlTougQgoeDIOABi0CkIFMPgEwoATAIGX+IQCKgUvG0wwoASsJoAxGBkfAcBCUMlUPl3QwDhwZMCgAAg12SgSKZjocJgGIgIoSqcvqFwOBgaHBgwkDiqBFAUrQCAEau//gIANNLdgwEjQJTnrY//hAXfoLC8wODSEANMscQCQGGBJAMJgCoAeYBCArGBugRBgMoPkYWyOZm5VkPz/+rPMnyoPg6I5JyA9/YAUIiSjwf3lWGKShdxiG4VkYTIBpGCpARBgb4BYYC+AyGAKgERgAIB2FgBwIAAC6xqY8AnQwXWNcPTMj8x82AxCBRQwEBDhEOAQuJotgIHDgxPoABhhoaBAMv2jzLCUIXJGlzofmAAifzEh1Mf4wcARAQTN4UB4UAndeFRxRVMUhCiQNVI/KK864KRMtmwsBS52iwBEoAFQYOC2gKctzhpItwW5L6cFgzJkArIVLE7gIAIeokL9iTKAcHoGS5lqNLLhwFL5MnaGtJCanaDgZQSWqUV0hooDhEZAayn5TLU6SIDUqdpuSYrM2GFx0mBUBYy1xeysMtjKcs7ScMC+AMTAMQEAwHAB1MCHBCDAVAGEwLsFIMLqI/Tc+jqwwsQAKMZuFFzDHAHMwYAB5MfTmWLDGHkRgiOPHZh4GYu3i2CS5BzxAYAPmIH6NJswo0F0wqOxYkObmtQKBocTQuBAwKaMIgtmRLGQGWmWCGiXhDqi3hlVhApWOUHBBRggqFtUa/KmoAINvF8JqgQSBw4MaGQgKgrAi8CCONCIAtGPDCGAeWROQ0SoLrqPrgQnOOPPpsNLc5dSzHbWMLHNHLqrcSqWuwQIDWkPBlolb3BpUWRAEX0RBYaSDpbFzVHzKJaCtdCSDBnvbot1MuFlqlUxQVXjpKiUNSFDAw4FORS4kCRVQ6xSp1UwTYAsMCCAozAAQKQwG0CbMAlArDAvwdkwhoxONFgV4TDigmYxsccgMR5AaTCFQHs7AcMpNTHkkycdMvRzCx8zQyNmFiU2MklDvhsqjptSmYSAGECwYbCpAGKiqBggIID/+rPMXoEwA6MBJxwP7wvEKqUjyf3lWEwYFFCskUYqCg5kMECxoVMbBwUKGECIQIJeEQyAgQEhCQ5qacVQUDBIsIEwqCiV4Vgh9KSD/DUhGtsquSbSEtFpIpHR01hkiwUZHVeo0EdEIXHUi9BgAAIzA2UTtRnEgkg2xhpHBRnbdEKQwSh+rcgnCIOWhyYGzkv2FBDqUvyyac0dFkCBqHirkeAsMSOtwOCmIoaj+y9fSbRd5UbRldECC/SAp7E5yISgxWRFsuIhCX9T7Tvk1FwDAwKpMBwAgguAbmBrADBgSoDGYGQAlGHBgnJxYoecYpWBhmLcDI5gjwHEFgMgy83JTIyUyAy+ZSQGGgRrhCFCYwQoMfSDvgYkFjVAwFGZyBkJLAC0JbgiKENhpqDCbvPWCSwoqKEmO22r9GSCskLhonjwZIGfT6GbCBCSiGoUVSh51OdDE0zUzjBMYKjIAhl+iItstKEEA40uuyhYWC0nCIAqiDTaMU0jChoNCIPhwb0tKLkEIjjjoaC4XLhpYNIlnDZET4u67IBkFRVkRexYVGsiSQkuKWutojM2FQC05bgvO10suPFM+QZWMFh2Ulvx4BS1H4aKlig5fZWBPu8PBL0YCjajQ0qTXuoAjB3ADEwGEBzMBAApzABAIwwDQAJMAwB/DCXCwc2GROAMKEB1TG2RpQw/QAPMIWAbTPQoxwZByWYUeGDoQGYR04MRBDMzYy8kPYFgKlAImGBURgxh5KX/UFZkUEZigSCCEWLDAxIwgUbUeYA5LMYDELh0KR4WoYOOq9QrDhc1MQMABX3hZETpzAwItNnD2NKXUzxI4CAgcib/+rPMosNMgyH1Jxwv7wvEFqTkDf3hWJhqArEzGpiI4KEsxmhf4kkkA65jRAqfARkECR/HoJEiwxJhaBYBR0RgTGA1C9MdcdX4yyWJOwwmoAFERFB3gXy5apVnrJByIYL5QYBCB431ZmnmmE0MmAtZGlYiY7E2IJcBBi9ivy/cZHlrAL8Lvu4yNlKxb1noAIBUAYFuGABAKhgMIBYYA4BXmBTASxgcYMiYOIPGGk9HhZgwwSgYqgISmGkgZZgqoDyaYhiyuPJpACvGYwBKZFUaMgETGBc5IiL9gqnMaCCcSMCPMDh3IWLVQAhYLWhgqcYNE6KTQydCtVYChMylUwkaYJ6Gmc6QwAEgYLSMDXCYBKppFAbAQRMoGqbYashau2VJApBu0oCo4yZJhkqA9mCkBG9+lspxICS+5e0uYmCW1kyK9uH1gFUgrRE8u6CBoJS97aoZKJINrwlTpIbgpxiApkxAeKzsCgLJKajYVwgEJcI4CSHEbENkN3IJEDIRXCG5gOhaBBDA2uAUYtVBMX/hmMYXqgCMHYANAwAhMBzAcjAZQHQrAlTBCgJgw2cEGK5XMxIMFNMY3FpjAyAcIwCIDwMnPTNyQxwMAoAYmUmBDxixAIx0z0oMwJT5AIw4rM/BTNAIwkGaYnwYiFx4uVbAxmJAZkoSJEgQHmHipiACIQdQKcMBAUjzAAQdHzExhVxlKhkmoxhWl6EjgcAMKLKEGi1Y8IjYhqZkhGCIYhOnyWoK2zUw34+ku4vAu4zEFEDkpMkQgfQBJZanISsGFI/FlAuqBhmY6FeLhpbwGnMp5QsMSlSOhC6R6TMS+T4I8sJGTEr/+rPMOapvg6HVJRwv7wvEJKTkDr2gAGUkkgwRlKgCYCNBaxEREGDgE1lrwlgrRghgyxGtDVEljQY9HFOUYWmoj4manO2lEAYDEiBvMC4AgGARmBqD8YJQJ5g/gFmSnPmfx3Lhl7A7GdcqCZHAwZiaAHGASBeFgEzA9A1XCIgDRQA9kRVZlgaZMWfpKZBeNUCgCywyYADCgINa0CAyIDIQIHKExdoSMDIQKhRGBIhgjBIZiwECAkvHqRFJIoKFjTYtsXnT3RRQUZqIwahgsGJgDbJIJzLRS/SURSZGiMl+iHAbDlqQykADiKQ8PDIFAQiFJFRjoPFIJTcvG/ymjOFmLYBgCAHILgpZswIiTpsvbCkq06SKYjIFHNkqgsFMyQntlIg8KJgSmrkq8BgZStJpgKMCqCgJecFB0fFB0Qy4i4wcEWkmow5PAuC8N+fD9yoAAAABkw5gLPMIIC7DEQATQwd8dJMLwCBTBrBmgy2DwnMLDDsTcec4I2CMt4O0ilfzROit0wp0BTMAUAIwwPcMD7A9DBMAWMwNMA3MXGw4ZZzXYOPUqox/KT3ywOcGgxoYjGwQNPC8yyUTK5kMGEEzMNDHwdMoiEwILTNSrMOisvuLF0AiAODBosWGWQgBBaUCUwAOjAxwMVj0weQjHQCMUD4yiGwc0jLYSMDkUVNxsYyA0jGOSUYjCIBDoiHgjLph0EA4EgwLAgfLVC4YMCjAxCETEwCMCAgyqEywIDCIVFQKPEcwuLzFY8MHDkzCEjAQRMChkOFRkMOmjRCYVDhh0dGERiYBEJiEBiRMMYBIcKZj4BKaGRxSECowKczFgICo/MH/+rPMZG+RgDTNORJZ/gAELqSkB7+gA6FRGGRwOGNAkEJ4xMQDCINMbB8wwMzCIXMFgkwIIDDA1JQ+Fw+Y7BRggRmDgSYxAggCgOIAiBQsXTEIVMLC4toYJAYCJZh8LGHQSgE1/+YLKJlEhGDxGHIYxMMTJAeTnvf/g0TGCSyYLCJmQKkRKBRhb+/67VzzBtT0NtZ//V+v9f/9QBGCdANZgQgCmYCUBLmASARRgRIKEYG2FKGGqhvJshoZAYdGCgGDdDY5EEGGCPANBgTIC8YBOAPGAOgEhgBQA2IgC8GAE67w5OIBZg7w3wMYGLMjQ9S4xIARFhImTAAcOZUrcGICwEEAcGgQgeYIGGCywBXRBKBxctDZvHiInRQEfelHiwWGKnR6n1UVoKhCCD7FtXgT3b8t20gDBVvJaIGrqSlYNFkHUHojE1MUhUi0rE9AcHawgusIrfAkGoQqAs7aa0l8FMA4Y0lhbPnnRkY+7qrVoO6sKgEJQQXBvSniWAKsKFSPKgKFaVgiBo3DwdJJasYZgTAkqkHGWQOpe/qcbyIM3RYGyWjvjQAAgwSQAFMBHAuDAIQFUwJwACBAB+YByCaGEoDPJq9RwsYUYDmmBQjsBhXAFyYJwBJm5mxjhsYyTGZDS4zHyEzINFU4wwAMjRDkhZexo4SvgdCEI4jdVrJBihJnLgLLBpYUWL1ABF+St5VUIsacX1MAwkUTWLInM6AQ2tM1CgTEggxx0dH/DASANHFTBEQLCoJS7iAhA9LEKgpv3E1U6FgFtgAkOCXAy5AKQBoT0ECMqfD/MbLfAQBCpLgEAtAWyW/IgmhIUSyDnUSEXM3/+rPMNRhmgSFxJx5P7yrUOSTkXr2gAWZ5Zl5xkjlyKvHh3ES2a2CAEQEQjLEYkkMW9Z0s1MMqgoqF9nmaa3Ys1MDwJeVg7SkCRiAMAQQLDs5kEmfQqAgAgqgOF9MAQA0WBOMFsF4wOgrDEiHKM9x9g4rOKTNxE9MPpTUzBQ4zHREnMJEEUBAhmC0AQYFwBhgEAIGBEBKY4MWEgcPNiyE0IYJMWmDgiEbCQUCJBQ0FLkgJCYUCBmgYQMCJVWIiIsSEgrD1NVntJBQJaZMBQaNCaLoAowjukzA46GT2WqMAFdrUdhm6GINEo7g4KwRAaXGbSWo6l1QwqHBoIBQxyYchxscad9O73zbeH02FDVFFWqbwaqurkoAFtFMGPl0XYCBQYBcQlBN4IAKRqEt7kykLV8pVQCWZcpMVGoAjFHQwYGCUvUXGSmIFqHpUo4EgcueWCi8xUq+4qXaQkUX3JjFuWQ9bXgAAAABjDFgdYwfkbpMG0ArzAqA5IwVgDmMHTAaz1HZDQ2FlFAP7+QEzD/z8k/osc4M7IUODBEgQgwGsAOMA6AkzAfgTwwRgEOMBnAFgIPTcNNNDMg+KrDhJ9O9E8yIEgClwupzBIOMaiIzIGTZxSMIrczAjTGoiNIIgySNTDQANVmAwcGQi3mHSUFgKaJL5QJTEY8MOAUy6f03RZ3mATKFySZMQxgQKGOyqDQoGR0y0+zAYeBRCM3hEy6KgAFzEw6MIlQzIcjBBqMhkcwAEjGoXElMY+GBnsdBQQGXy0ZDG5gQLmDB+Y0HhIEQEKigNgISmXQUnKTD8wASAsQjIggBwPBwKMegEdJJMCDJpGHn/+rPMEOuHgDTZNxBZ/gAGkiciBz/AAJ5jsfGWhYZBGph0WggOAEoGAR2KikygJxGEzIYbMKB8x6HhCYzDyLMXCsiG5iUlg5fmKxsYrIhjgyGVAmYUFYABwJF5EDTDwFCEEYmBZhcfgYNmFgaZ6EIWIBg0BgoXt/R855j4AjgCM4g4yCBRIFGTwcitY7/kAVBRYKpdIiSGA4wcACzbPs8cWtyBgAhgP/qeV7////+gAAIwK0D3MLsDWzC8gZMwQETgMDFBlDAFiGE+KB2oMtqRwTvna6MzyQqON4Mp+jY/SlkwZADbMDHAYTChwKwwOQB1MDCBCjAPQGs0APTRi/NpBU/elDbMrOwKAzUYTSxaGh0YfLxi06mOCca4RYWRph4NAAXGS04atLRjEvGShCYdCRiIrmNCcCxmY4QRkw2mZw2YFOZlEyGOBiZTE5js8mKioZAVolHxCSDMgVMGjwyclDKgnMNgQyQWTMh6BwrM5FMBEUxSElCxoQGDgaIS0YNIRjQdGFwMZFBBlskmVBUZkEBjAIGNAiYFJIcETCAMFhYYCAKXRhIdDxFJjgYdAwIEZhcdmFwckOYxFRhklGBQmi0YUEwgDZhQLmWRCYSBphYgjRJX0YHABjEPBcOGISaLAIygLjIYNSIBSwLmEIpGRqOA8wSITD4SAynJBaYzCRjABDoBMbjgAkcwwIjKhhEQDJhKYmDhgAsERiv8/zDJdMFjoxWBjKQ/MTCUYBYcCrPf8mMyfwFA4VOBgwumBwQkFIdP7VC8BbP9f9G+vVX0//f7agEREWQDAYgDswHgGoMAhAdjAlwYMwBgBbMBsCDDBXX/+rPMKO0PgCXZNyJZ/QAEZiTjh7+gAgpzAwQTYxgdE6MRzDNjL0jCsx4gNNMCpALTAMgBowOIA3MBZAFDAJwEMwAkAHKrZSkzJI/agxYk/1gDpAw/FhCbMCCIlYKRAaaMBjPg3UYKLFBkexcywZagOLAEECACiRMhIB4sObiQgyZMzpEB+jIBUwxl2Bh5MKi7Nh4QX/GQQiHA0K6gQGL4KZl4gUHbuBAABBI3oLFBBPpIQumkcvVdwwNWAAJMxJAITqcKyomBYaXxepFGRkpFSLBQwYOhAIMLmAJGsKZEASBC7csWciYYEMHChoCnMg4YoMguraQjzBni3aHFWdFlIhYoOFhyEKC2BznP/wqHQShwUKBy3gQMdv//xgKYoILBBYUux5ZoAjABgFEaAazAEgGEwJMC2MC5A0jBBwq4w08UFNtfGdjEMwYAw3UfZMLQAjzBSgHYwK8BaMAbAXDALwBAwBAAJBABGLACg6DHBRwwxl6wPwGSFmxSkAEyIFGsQphGGNEDBIppAkiSXEhwqFL1Ielqy2Ki5iBIYIEQUEgwUrQyFRZsGitzJTEkzPiC8yQY6GgNuo8CCB6VyCIhDocFVVWKmegu/KisAnCz1PgaHM9Y0XKGgCDDTS3BfRThI1AABiooLAIcHDkA0ma2sC1oZEvwXyTsBw8dAIOqxJtqrhhNRBGNgTHEGy4gVAJFMbSkd9mIYEdVDMxAEQgyEIqWRqQHALTYyiDLQAIEIR5GtBA4uc0VNF00KHcfSKcqAABBgUFMA+AFQKAqmAlARxgdgG4YFsCJAQYfNHAIAjC9AOYw2QRYMEkARTBcACImAFn/+rPMy6UZACHZKSB1/QAFfibjiz/AALuYBiADogAkAXGgDsyoAQDTNJDNyDwCTLIzJkwCKAQEVApUl8VnrQBolFJNYWIpyK+TUScKCg0DVKY0AjEhId9OBmJlwwAAI7FQEW0TfIBYgAiIK67WRkIlgYIqkkkzYepmbLIS5Caw6Agtmiq6trXk2FGS3LCS1LwExoFCVdIHlsFTlwFDkOY6FGgrJwAGgNmi/0NEZUsS9qDIOEsOLeoOrqQEu8qqzmKMkWWSAEFlBlFErlHlXJfoYOyudNULASQcYkOyR0FMQUCY454cMEIgQhzChS3JCBWLC5f0AAAAHwwBkBVMDYDijASgFAwD8I1MDzAFzAlAwAyaVaDMqWArDDj1FIyZUD/M24W4TCuw9EwS0AGGADoCATQQBCmB8gA5gFADoCQQYZPJlUTGUxYYGQZwYimIxURFgBEoRiNLYyIDzBwhDgqYUGgcEhEKx4SAkGjoHDjOBRaFgkLCISHhgoHCgeDDWYeAphIODomMICEwMBDEQgV2QiIwADg5CGIAOYAAQGCibgYLwSB0AJAEQACSqCygBBUNr8MLAMsgk6JA8BCkLgJAEz8Rg8OCZhILBQQAkLgkDKvMAAdnxgIHhgGLOkgEBQXRCbuYUBZCADAgFlLTIgsQYAQWCiHziA4MA4NAIEA4AGAQyrswECQQDzBwLCB0OA/ZgsDLIARGBgFXy8A6Ll8lA4TOMBhl5Q4Ml5TEoIBQes//+DgUBAALBwRA2D5ixv/8GB0QBNBKCBSDRIYPFpEFNP9KKgABMRODAQAFIwHcGhEIE8YEYCQAICsMDzAHjNMTIwz/+rPM9/EPgCUlNyK5/QAExqckqz2gAVIRKY0DYZvMRmEKTRuRTwxJgT+FgQUwBMAaMBoAQTAAQAUMAZDALwBsws4x4UyJE34Q0RY+hkhPodQuDMcMLNBAcDGAUWAh0toYYbDAoLpgCGLdGFNmLBhg8IRhQG3ExZQt0I0DSyY8YRGTH10F5RpOSBEqAYZXYUAnDEhRfIRBW/fZdw0BBAhQVQNfwBAjx8RCTBAkWDLEk6hEECwBRYeXlq4FZmRBXhdBAa5Y8dDBS7guBXo4bsl3h0CoIDA6uEjQ42gBT7YimndL1OIjKggDlwQZIgKSDVVVwuYYSIjIAHJHF01KDBAQw0gLEIavr/9jwEEA4OSgwSLYHOf/+Kg0bgKKIQaPSNjbgAAAAzEBIEAkpLgGCWBUYdgNRgfAemByHcYAoLBggCzn10M8YeCdp6uzemIyaAdME8xsmk7goBAEgHmDqA0UBWAoFQAgXGZLHJFgR6cugQiT2KDPB2dpejh9REDOjEDSwTVapEGj3DQACpQyB9hKVJWECGzZQxKZgmCTolEIAShICBCIwEDw4KRF2JmBCkSdgDkl1QgERHFVSqIBwwygMwpsMSgYCVQRchQxdZUGBwYSHMRGjhEXW8KAwwkMBVQtugDWYzehL3RmDUBRiAsEp8szbgmSjKYgA2NKwGi3DRoBohh8uHBQOUgo0VgFGkJZiQaSbqDo0EggcFCokLkgCELqkoECliwRBRoHBWhN93/8hGs0IAY4JTBQTNtz/9gY0VBQEoJoCjPAEB/f4+7j2cQKAAAAAlAAoFgODATIoMEgEIwhB7TBOChMBomI2B84zLr/+rPMtToQACU5OSMZ7QAEx6bjxz+gAIpAyV/5jBNGGOCjQ83MC9zBnB1JQKTDWA7MBMAowZQUjABA/Bow3b0wAklXGsTHYBGlKp4maFBjNS1kYCJDywoLhVKYE4YEujyt1B8SNLlBoAqohCJAxFPkAGDBC0AwKBAkkXPGjRfEMEFsAQUJjBa1BhNRS0SKFzWFpEIhCEgDA6QC2WtpCr7FhpgwAcFBIYcDKsGhoXBmRFggCISal6NwBDvwWRU1HQwkALvrVCwNsaiRMHCooHFyoEaGIQBMMhAVCiAGFAxMYe5zgcBSfLqu3PiRIGg30FhwgCJFiwJmqXqYhiAYVBLFUBKx6m3f/0/BAJQIpEiQuJX+f/g0IMmgMRcYKhwqHY5wQCAwJ4DYMDRBkzAtQNkwJYFuMESAlDAowSc0f02QMP3D8jT2DiUwv8YfNVdFRjF7xswwGcCUEYA4YDyAdGAiACwOAKE+yOWcEebQaFUhw4BwHcqM8QLlGnBr2BBcBPgQHBhgw4wLEHSMIYbw2paTGVJGOWAECYcEXEd8wKldyuQACCoQBDBEWLCR0g4sb8CYoUOg4BMaLLIBQSoGQDgcHGA8UJj5aIiDo4EgkHEQ52TJQhWiaWtUPTWGRjOy+aNANJBQaDBICJDi4YGM6DkCmL+iyouuYAomoZkIg6DAwMIKiMUPHSbHiUaRAFXJ8GGKCInB4GFAUE96CdSgxIERHi2g8AhZCWa4CmIYdLQA5UY8YhKjvf/y1AFAjI8UHvggDYJz/8oGGFTmLIjAdDsDA6QNAAAAAwIgRwwOAGNFgcwwFMEGEADwYFMC8mqTDYxghYr/+rPMAEgQACXlNx5Z/QAEsCakHz2gAGZpfo2SY7ELKGe6GbxgoQpmYGEAqrDwowBEAbMB4AAi9JmUZ4W5tKRxZwNSnuyglMYpAa0OahSmSSjThCDFGyqQbmOiBkUYcaYkSITiZpjBwJCy8CKShMRRxaQnyLDE9AN+JCwwfGB5ijAsnBhNOwwohEUYBFthoIHGB0MWkasBjANBCxNBRG1YZKkiPqdiIIAQqeINDtNFQA8CByoGAwCLMYAAgZkZdsmBiwEdD1CwBIBw8YBwdckbERFLdsAY8LMAEWhuLAx0UYUaWyBxQuOFCyGsFBgJ91D0npgwgN5DFEzCjAcMAokLDUrQUDEY4ABnXv//odww6Fwk+AAJbOY7//AI4DWYOCnTGRjH3fQABEAAAAAASRAYNwCZhGj4GE8FUYR5DZh/A+mDsO4cvf5pmWDWGVhtob/oPZt7c9mIMJGYcYMwYDyYJwEBbYwiwbTAjARLLHZJm5NiIwYwuNiCIwZEMJLlkhQeYBcUMDBiDNBQ4SIRDEy2ZgQwCCF+gUhC45YYxAwZDmHIJgmPCoaEwx/CUalWlklSTHyquEZJoLFHbUkgDTBckqkxoaFAIQGAg1BGCScHAZeh1TUL7LLGRLkhz8uyIzoQJQkAZ8ISdGFx6TwyDXQh0MANY6+oNBg42VQ4COlnS0qNLJ37SEL82S4g8EWs0svwjc0NPhQZAKBmqNAcCS8fZIhEcSMFkwUTGgxZsxIEhGqWWf/wxmIhBgCJfFwQUZTV5/+hLGS4IIAgUnqvoO/+9PeqAELDA+gBgwEoB9MAOABxABhGAwgLBgL4NIYLKN+mpLn/+rPM7xQQAyQBJxxd/QAEHSRjhb/kqSjGKKhlBjNQcCYK4CcGCUAJRgHYCQDgBQwCIABCACowBwAPTAVAjUIixiNxsxxcoBKzIkgUYVsMwASLLyLxDAIALCAKCgAKCjoNSY0cS3AQJlKg4NBqHioYYNKmMUZggdBiTFtBlQ35KGbil8jQvlK0zQx5YWYYANC11mHEgUQSjQUbBJciLrfBgMMNIPCAQJCEnko3kCpAEgCUSg61BQNtmspGPTHkmECCmYOKjxUoBEoJ1k9S3I8CCoGHEH0xA5anKTE1tv4pqKgyYoFhCaBKlZGXuSpEA0OELgLxL7LxIQhy1eY4SQGjhoQjhEeMcDAw0KlwgolQPBAoEVrtXugAj/A0zgPMcRzGHEzhjP/sjCghJE1rIgyMLGApzFTQygwdABrMDQAiQIAMAQARAIAUq4GABwVABU4UaAwBHBoDABhwAYd4wGTC4ZgCByIjIT2XYtYmYGvQ48eVLLASsAhA0VuiTpoGllwxRNAUMTeCsT7jR0HDxaHwjnDo0sAAIBs1NYgBShoBO9BCny1NpbeKTLfFtQSKI1WTJvPIup4RIhASqmPGJkPcusvkBQl6lwQwJHIWJZOAAEfgaApowtl6izBTEEBx6HJH1JAv8jqCByyC+0NCQpQEWFQYU3TJBybLlRNyBwLrFnEJxf5CaHNA45LQDEIcEi18mKGwBBxoJbQDEJ2QqWoAAEKA4MCgiFgkjGbCgZaShjhsmHg9kZWnJJg5D3Gs4SSZboC4sUsdkwPHMypyAKAAxjBMGVAsEdPwWhBSRyrjoAQSYZij78gQFK45i2dFR8zwzDL/+rPMSmsqA6FNJxxueySEWyTjAf3lYEMUDsxGSMlEoAGBaeEKJtgASIGuKYg4R0SCowjCDaAohDYxzBYElCARqMBeFniYtJLEUlalUFBGStnMYhKhOFQNPAcCBAhghqiMwIUABQafIXKDBgKMhIQjUVBIpjhF6HYj6ABuAUCErRpwQAsCWoWEYdBgSoEihIckMWK8qJiLKqjIS4hhEoDTGLAIAGPHQAbIlkXQMkYeXB5Ro1goAARs5HmlAEO5d5goKKBoAqSGFNMeaLHdZgpwAmYCMAvmA7AJZgKAByYHCBmmDHAZhh9oqabzuSaGGsgzJjw4TYYQkB7GB5AThupqFhkw1NAy0EJoCWDTxYwMeAQaYHIGbBBiiOY2dpkgoFEIIYchioioMCTknDLSAQJGUbJoMKMEUFHGmyYhQTAY4hiIlYYidBoRes3ZiwuXvNJBGtxx5BZCHrcy2IRIg8ClURCJwyAVyhA6XsLAJaAUMSVOAjUmAUyw+GAqIIhhxZ9hYu1HrELRSRzMoJgBe6DW2WUiclCj2reVTjUPKpyCMRll1xUlORfxe+CjDIBwoAPTIATpc4a1VQMdEmeAxYcOAgjIKATwwE4A6Gs8t8YZaMmhUVeSLhIeXSCoL9NBBICZcF3tVQAAgmDHDALwJYwKoBCMA8AizBDAMEwLkFOMNuHeTZ2DZ4wz4AXMbCC1TCbALkwQ4CVPfWMMiLnGeFlrjNAzAEzN5TPMgZqO8MMohFWi/ylY4ak3jREAAIQuSUL6N/UeVEKBrAgqpG8IwOAe6AESIhAEAgB50AIEiqZBghAYceRNMJhBnlA0820k8SzowIr/+rHMj19HA6OVJxhP6yrUKSTjSezhsHk7waKDgKyhrBwqWlbTgFBN9lwEFQCpHGIaFQAYcNEmWmg6hUAUiQsDkO8yhHYYCSLIDQKsIAWsmAMGaiTgFOHn2WRAlECoyAa8p0MrByAKKMdBEwmJDKi0JjlkBAyETPAYFfiMCF5rnGMUADDBIHk2EAEiCFvkzpgAsdJpS6JddGkkNL7kRTyQNNgzcploOGIkDIVQwzAUCQMFICswMQ3DDFFjMSqOw5uPUTG6HGNVk8ozWwYzFVAbMEACIwWQDzBUAOMcgLAm8qpoYHZjXmBAV9DBADEG0jqgAgiSAwAbRgUKMYpmwqYAm2dA8JMgEFoTWABZoI5YvCgM8mKQmnaCvRQoSNNMwQTkJgYEuKocqqk+gGB6gzpcQBASAELE6i5BS1l4YAUCHdcMAKgSEFDC1oCEwIrQGGF1Ihl/01yYBkcjqTASIdds5UINCFAHNKJhqUvYALGCmAy+SsoZZB9rKVYikj4IMoWsjCAm6oDcHMASBi4CevJdwVeaytIM43dQNBLxTIcE6gTYPQIKaGqqCVDh0rohDOIAAMMEIAHTAPAHwWAZDAhwCowJUAbMGUAXjDUwls2nkW2MOpBRTE1hF0wR4DqMBQAhDEoTGhzFCgEXMI0BR9Cg1QIMPGFJHSUmNHHAOjAwWmiAIHK4ALiABKXRJm4VECoARCWMJimjCIESICCAQFPkRMHDEBXNFiEkwqIKCXyNdHYpoq+hCKKu0dCU7ln4QCiXBJCD4DCRJdeoEBB6CFqpE4uGWaRpYBOIbIGEglWAE5uStqBkpEJzdxG9OQa6cEool//6s8xAkWEBIaUnGk/rC4wmJSPd7WFYfNykikPV4oQl0lvqqp9iMiBM0iFoo1ABiCVBdE5H1Cldaw78s1BSnCDgOOrcWhWCPbXuDHj5AQcGGQbOKE9VJlFy4mS6kDGLxGTsQAAoBUGJICAYKYEJgjhImAWDcYCoBRgShqGQolyfnkvhjHCHmgCbYY8AIJh0AvnBHG2HpCmgRg4sUSzOgzLIDQBQpGG4hiTxjQYJELSBwQOsBFEKF/K+FuBAAqwdMNTNmX6bdfSwwEMqsWmN6H1BghSyaK9y8ymBENVAHUTDl5b5VdbAJGbSi2R1Ak0aGvYZMFgh1jY9WUAHBwQAdfI8IG0JCgwwCtbJVmKSlThMSQSoUF/nDZQ7KuUL2lpjt4DCiISyVuLKCwy9MAoB17l+DEVQNIARLXsk+RBaEHzHzGcZMsSaAzrxJQAgo1kS+15IARlCOALalZYEKIAxUZkCQXcYwFmysUB29V0AAAGgwwgODBiCPFAljBHALMKAIwwmRWTB2ceOfjs0wNR7DTeP/M0cIcxNQJTnEwguY6SYdEZ8oaZYYkOEIREYGSR0jhg0JuwIQgLemYRgEQvYIYpbB2IQA4LbCY8wjgVTw8fQWLyKZg4S4oCDKhHQQ4YGW4QGTWfUsyl0XFLIqKv2W3HlF/S74tZZ5QU3CYGOiLoI3AygXBcepkqDqaqNSrxnKwgtGBWpJEoJRXoyc2iJQma4cM1oRIQEgYZ0OoAFQrdeEvStNpKgDLyo8E3GRoNPQxdngZgkI10uggCGrAJMohgboAHizTOElWqmO2QFt0OzUDB+gXAJVTTDhHloKSjcEnEJy//6s8zctYOBobEpGm9rC8wQJOOlv+SQwt9GN9lfogAHDygU3NIDtUxiAB2GfAUGElhIpqm4ucYU+CVmHrhvhgjQGQYBUA0A0UwmS0BOIbq5CEdgyOBjxmWCfwhxFhxJ8DgY5JNAaJVrKFWDRKMYBPYQxp1g5kIQGWR5ktIFThqItYYIAOLLdhlBVWIgS2wckrO7wCQCqwXFLNK3GMQSktKXBGhbNL9W4eDi4cuWCi76Do9cj8I10yFgFAJ1N4QCoHKmTAk5YAZKVBEw3uQQjTbOkACsCiQWNloMBQQMhQ6F0gYBEQUOVCQxQDSzAYQ6wFDL3oJEPystfCCjKiyDIEC2vMjJlQAIsODkCzjuF8VUC5wUEAsCMhCA2ojfLhO/N42FAQHAcDemA3AJZgJgFOYEgA4AEBrMDnBFDCVhPs01ApQMGiAbzDSBO0wboDDMD4AVzUljCAi5wGIiMqZIK+wQVEFAw5Y6jkGlDdLB4+m0rAM4Z6CwgZ6GBrQy8ECQ3BJAYgvSkywwImPTC9zhiJJ9E7jnkxmLUByhZJIUWYhmUDGgvAfAgaSaATE0KQdZKzFdJYaSgbMSpC4ijJNFrjHk70rFRoAjCgWCAhJ0JBprM4Z0qxI8z7RtR2dtOt/C6YKAJXZCRLGTFoAyhKBk4CejMFAIIETAgxbJMI1zCqy+SAAxBScODWdF+2CGMZ42A2mxCmIRKHw4INePMAFEBgsxtRxJuWZ2phNI5FemF0BWYAQMBgkAbGBOCOMh6GASJSYFzaxt6a8mLsLMZDanxlfgbmH2COZ4saEOZIiZUUDAJKCALslMhBwHJg2Cj0KlRK0HBv/6s8wvUqiDYU0pGk/rCsQfpSNB7WFwMGHAg4zABE8HGygqGKjBhlcAUCYIeYBYGBwiSjAWgftub5GYgFwzA5cMGRQp3evlQEHuAMAaBTJLUImWURrZIUIhoyBUzSzSGFBojA0EaRQaUX0aEBiMXLji2S0y7QiKYoGSWsUrK0iEqmKNKC6qcGl9C+Y61GEEgQmBNIcA2wvVLZnIGABRGMYywt4mUZl0wkFcSJRrwhgIBjVBUAMEM1LxmhQlkKFHBCQkHgaBDdhySi7UAigwOIfzgaCCsfcGpxUAjA2gD4wAQBLMAKAUDAAQHQwHUBbMEAAkjCEwk81kcW8MNBBBTB7BfEwTwC0MBKAdjXCRCJNUXMoDQJgVsYAqNJAEwIDR6pCugEGBS0hAGUCiTQW+GZBhCpF0MPFs0NhwessBKxEPAgZFdqwOAmiPgJ0sCBi8BoYNK26ZRdkCoU1X2ZoF40aASGSg17iGAI9JRcPMMARzHSwCTOdABpKpXNnUFDGIxqIrr1MJERE6SIpedDBGRPVNwmE8Q8gqnH0l+hGNd5OIGASaEDIZQPLuNWLzKbNDAiUf2hJAoZyRAA4iig6OMA4QNopBAOX1UBAQBNyzAUpGQtUke04lKh4VRGAFANYSGfmG4tV1AQAADAYVgCQiCAMB0DcIBnMLQF4wSAyhlec++HmjMED4Mj9MIxWgTjFgBsBABxgDAHmDCAGnyWkMAoA1b4WKhIUDQQxQYM8Aig8YRbBgUzgsIQgAEKkkAJgQyYg4IBQhUyWanacymQCFP20kLC0BAKIBQIYQqJJxaG/REIBQ4QhAuEUDUXIB0XSMRqhwv//6s8y8as0BIX0pGi/rC5RfJSOevaAAiJAhDJyoSXVAwxCIVFIggomgRGAIUCMLT0dMWAoJV4o4IXBcCTGxgAqsYEO5gsWVw1NVZkSPDWy0oMDRAlHFnI800aBhAxdIIGvGg4XwLKw6YYIrlCYKi0ZFUUYyAkh2GSSqkcUPdIeDXEkRJYQgC+wQMa2hLBgUQhQEbEQ5WgdCLWa/D8vU6z9CAAHMJmCaTA8hnww9INeMFJGXTA3gNswAoN0NGxrCTachDwzTGwMMe5BdTcJsHswpwtHMCrABjAzQQAwjYESMAqAnzChwAcwWwC4NICA0FgzXzeMus4zmTjQBeNjoAw+CDI7nOShk1jFjPoWIVSYgLJjFpGszAZfKJn4HGRREZOLxhMUGg0CaMIJoSAmWDkYqShl4SmEyeBk6ABgYQQBl9YGDw0YLEgOMZhoYmCgqZtQhiNeGNUabDMA6kTDJ3FlYY3SwwJDCBbNRFkx+yDII2MMiIzmBDJIiMensMaBjEyGDSGAQuEFUACczwSTMATFAEaPGwGAJmAaGSwcZ7CZmQuDIzMkDI1iWDE53Mhhwy4YjHJHB0bM4p0SaRlw+mKBmYMKZgosGPAuYFDY6qzEY+MPIMxkEzABhMVicOIxuQCAgNkJQMZG404LDDBLMbAcxARjARkMWBU0wKjKoJMLDAIRhgEdmxwQZYGICOpALQFRTJxDM/gwxCBs/34QQjDBjMokExGMDBRUMLgdvHy7/mJD6YMNhhMaDAcFggaEKhiED2uNBlbSeFxEBWCwYQAXszrVIycdSx6z3nWI2EVKO+aeOoPsIH2KAIwQQA1MB0AFzAP/6s8zKaukAOOk7Cjn+AAR+pSNHv6ACTAODAZQHAwNcA4MChBLDBdRE00XsYQMNpCaDCehBAwNAEaMBMAgjAUwEYwBUAMdAAADJgCgAGCgDwRDzFHDGkjMojGWUFRlMFBhEQFSaRIUKpbFgyIgjREjRkaWArnoIS4w6QgtuhhwSwjFUxVhVZlMwUvJQ6qapVAxoCo8QgBaEIhasIXABYAOkxQaLBWBF0TAA3uWs3VLYHDVFSUGIhBeYuCBQshW6KAERVMZ5MovYDk4IFpQgkWIgAEBGEKKcqUDoAAjxQIjIAQCGgcMEg6FiKBadQBOMrBQWhsBhiRxEZUPVsMGMMIKZOpuTACqIUEEiAYDIRCAoYFA4YFwSbIMBtkghrSrGkvyksMAVxqAJbO1GuwAAAYDCaAbMIMBMwAgHTAHBUMGoEAwSA/DCkQ5PfhN4xOgCjGXN9MPAO0wbATzBnADEgDDANAKl4kAoBgGqQxNQKgeSwCZB2xfgLDEiBiAFn0Lk9R0gaLIQgCCuxtyZIyiwqGSkiMdAUJCM/STCBRIYv2XCJgwEOYAD0g6WopFQQwjB4SAxogSKX+kKzN7ioKttKBH81R0qwKGhyZLDKfaxhESp2zJAxa4iDHSlNUBD6u2nKuQLkKDZqZLBKiV03d5l6KBF2C/6kB5NLglHdsu6vRRlX60CAFvxqhJKCC9SFDMQ4cilexdq1CQZcqTjVTDJBypc8BaGOMkWYaZKADkAdSzEtK9ME5287kgAAAAfmGXARpgn4boYOUBVGC3iGphDgOmYOcHnGezuppg4oxQYBVCAGQ2h0BoODEGZ1EI/mDVgY5gFwP/6s8xPeaOAIXUrHHXsgAaHLmHLP7AAEBgwQFuYD+BAGBKgAJgLIB8dMKHUpwApxhnMtrj8io7QXNuQjdzwSQDQk42I1LAWZ6vmXOoNBjEQo2chM5PAFXGaAxu7yaYYmyCQksnFsZiYeZgUmKBpokObQSmPA5uyAZUiBw+AhIw9OMoHDCgQzJCNiUjSSszcAMILzMlUDYZhQgYCJhYfMwMDYjQz4GMyGDbjUy0SMERS9wwQhVEC4GGZpCGDwcbC4twDjkz4MMKSDTiEDBppq4YEmgITHmMz85MyojOwAAk5rRuYWEmtJRE8iANMCDjTQIlPDIhE4J7DD0eXxIdM+RxxBHHoFLRkr4YkoGGCAMNQcqmCDRnyGZOvGSGJt6yCEwxIeMERQEimqhhFCkRcBqIz0pMSBN9/xJqQuM3CzDBU3gEMhZw59sd/zCE0DAJj1eYwKK9MjOl2z2O/5rmt4fnvX6q//d8/D7uWeVoyEoXLoBkuHuu7s+r8v+3/ZSowZoB7MC2AQDAmgBAwEADuMClAOjAvQc4wicT9NYLHcjEIwaYws8bVMLMAoTBeABcwC8AiEgDYwFkBBDADkQgEIYAHhshuQDsx6gLnJpUywiIyAhAIVLhAGdzRjmmkEZ6JhtGRQZUh+BGSAXIBBzWgCMQKBhZnqEIplGhkhwTDkwOFAYoIBXwDljRZKpwOCJlAAiwdS9TBaoACEgUhWCigBjEkUZnDlowBYOsDKA4GZx6pDUOEjREqhLTZCpxnjGUCXidIGKBhARU+jckDAQkZBQjXBKYEfC7K6QhNVRERNQVbMlIPBEMBNSSGjQTShaEkHRWBEP/6s8zy2HqDJJ0nFB38gAQ6JWOOvZAAkxhwkmIKAUjdABKoGqAAwuKJfGYKkCJAKUMUSPFRTrQKITWMHQjHEaQAjjeFtzdGAQAFQChzTAUBbME0CEwPAQjA+AGMIYJQweEGzqmRiMboKwxoCqjC0ATDBvTAIAYFgBTARAJZWkAhJQnmkMakYVYNQ0FMrYIjJGLShc8MIaUxtYxVYEjEYzLEJkmROAHJCxCvUjDKFQWAh4CVDK1MVmPisYcEHjhZJAOzAtYPAoHpCmSCIQ33QsT5ReDp0d0+nSLSCxBKG6DfJyB0bmIAkMljsFIgEZyIFlgqkmKk+YBIQWIwEb1MDIDawxBcBEUBAmfF/l6KZrHS5FolMlqu4gwyZ3zHHBQCaRMqQmBj4VPLso3oJwdkTXjAZQwESCqA4UaAiQRAWHKJrG7MKqlzgc2aZgO6SXS4WgriMXh9FQAATCNgWIwPUTAMIgAIjAbQxMw0AHCMHoBvDIg2B0zAoAXMfbVbDItQJ80GhizMOdEwzAxwJwwGICaMC6AVjAIAGUwRUBPMAQAFjKiLMuH8wEYDAA0MWI04cEDPhPHS8YpBZjoIE2NMtr0IDJpczmLiWYmIAUORjZCGNA2ZDDBgkgGRBOYUNphtEByJM1EwDJ8MLgIEBMNSAHmKwYYODBocZiQ8MhlMwIADOYZM5DszsXTEwYAgMMbhYyoODGRsMWBwDHYwAjzOIxCgiEhAZiFAcUjA4qMtkIgC5jIgEAOMFlQCF4ymEDAQpNHAIwEJzCIBMnAoxgEgEljDYwMChkxiADIodEYIM5CQwMHB5KF5hIvgAcmZQSKgUwEAwP/6s8wgGY6ANIk3Djn+AAZ5J2GLP7AAobIQIBgUBjcYfCxigkmDAmYZKQ4ajAI3MZAQx4YTFJBJTWX8MUg8EkEyYVTAROmDBRuMggMyMOAcMzJwBMOCg0IPgdDjIoEDgehqZWH5iYAzvf8x4KBIemDgeYaGJgANigIdmLc/waGDRAUMuBUwcJhkMEIKT6ea6f/Yl9oub/1zX+++h9H7AAAAAJTB/gJswxMKvMMIARDBPgdwwdoEKMFfAzjYW1H4yncikNxEKFzHAhx83RsjsMjGI2DBZgAwwLkBkMEwBDxCA5GA3ANBgHQFEa6tEjEA5Y0lAMvVyhrNgiwB5mnxoELjPEAGCRoU6ZPeGwlBwJMZqKkx+auomahxlqMZu/AFEMFKDXTk2MQBNoGQBsLyYfVCxUvESBjD0EBEBk5cZsGmstA12GtF5xBmHNJqwsJCQ1mmSm5lUKbgPABmM1HhG3BzUYkGkCucUAjUUYiHG3thuCGZEzAbMeYyBKNMETGUYzhZAIIabfmqnJoI6ZU3GSMAQBmCRAAYTai4ygFIS8HABYaTbxEofDSU4zA3N8fhY2NLODIyM2MpBByYWQAwcNkSjWAEzAuAraY0hGFEhsDgYwqmYghlxaYQkmqlxCEDAoYQkmNOwHATQSkxZNMJtiIEGVEzIKdW1/mXjwYEmIjwXFDTV03phM+F8v/zjy4y0eGnUkDRo0NRUAgKga9OA6MD4kWCduYRD6g4GlGVvOqqvQ+8v7HuMKqro/X+9QAAkAAAADzFqCgMJgHMxIADjClE8MVYCAwWBJzxkHKMbpIE7KXnTEdL0ONx3w1lSbysDwFAev/6s8zomhsAKJk5GNntAAQ5pSMHvZACYQIGxgDAZmCACSYCIGRk/wTLN0NNGNEUY0ToS9GENEgk0o4wRAyQtg5gAZkBCxQCPBw0tSKqAYCL5mhTBdsCuZMwIjBjAxlzoCCF2UHSFuVjQ7SLZTTp03Q4WFgYKecMGcEdFMAiThUWaAOBFIXEAwMOBkVTPijMgzSJyQMDoy7lfCwAcEAkysGXZMcTMKDRwAAsLhQVtCwUOOhDAlCLtLDA0o0HLQ5qHCjAlk5gM3AJ0OBrYMeJMCUDpZoBRQTCw8QKg5mYcUaccJXzLGQyo4QCYEBsDFGnBZ4/gYFMqBBJgzAQFFjRh3VpL3/48uAyJdAOShycMULv7/+AS5ozJkj6EAFZDgRIK//9ae+MoAIOJtMDEGswEgERGC6YC4NxhWhtGQaqYYKcDZkzDNmR0WoZI4UBh2g7GBeBoQAGgAA4wCADwABiYAwFyE0eeIqBA8iuPRFQlKwePGBQggkJauloCtVbwIoIjWRGiKWgRBdgySBIdS1N4aRFAwcAMpFVYMUckWBR/L0hzwdGIj02Ag1kAIhMQyCUJwChApAGORyUuQ7pokIKsYGUMQAv4zsVUBwLJxGOX7MWUQEtALZF60owIui8poSPPsAgHcMIRoU2NBGA+Y7DARoZJhWUSEAzoMDUwKgTcnXSQTGvAaUWKVOjWxoOZAQqY4WeEtkzEOqvFNEmk4y6QIJAL5kCyAwAUAOwN2FgWQpRxJ1praoBgevDRgfMHj0KmEy6CzGggMSMbE8bVHDHtDRM5UaMxKgBDBCAoGUBIMa0T6RvOMkvWIFSYA3ljIvMwgyxQ//6s8wRVx8DoXUjFi57JIwoJOLBz2SQsAiUuWYxifoNOChJglm40ZyJb8SZMlAxCRCkKFDAos20gFPCA0xjAl8VAAEJoBkLBijByggMUoHC1iiS5ckErJ4MMXkIGnQMk9U7gDxJZxMlcCkAQNDpWeZBgR2RFr8EBA0MMhCVphoIcY2DW19EAoMKDmTVAArjKjELIIwCAZggCCHFxUUGJltBwUt0tcDBgcVlxgpigQAEU6U2ZQaBQOBMVloICxlBhUI6BQgxoVQCx49wbzyHisY9qGOnAqQQqWMuYMJHmgSooCl2xtgtumEzAYmApgsGGBg+ZDQxhvFtnXUe8NFwmX8JIYaAJZg5ApgKMeLM1AETlREGJlyzWEWkeJAIMMMYKjr3DqxUExw27A5OYJjCY0eEQQhQIqBBjhE8WtMwlAcACQ48VLLbpPlrkrWal4R0UgGDjAsbAQJXBSCO6YZluCVocmJSD0ZQeITVVRHAF120LwsTEk0A5rJBh5gmDXQAPMlplZgqgbUwBggMRHoihZRwH2LvCAUdPMQs0dlhEwQcMZ4i+gFOb4gwgKKukZxokETIGQQQhgrcBPCghfd3QhQRPiVaCIvaQMjoDAkwAgsVHJjS1ReMocUWSfMoou0HUgktTBSRoiDRbWhCM38v7TqwNM8EEwMC1DjBgoMisswRDRjImaBMH4HIyiwozFBACMFsDcPsawjAgmC9o1IBnDbEXMcNDhGoIayoJUByZRKCnUJaFjSDBVEDplGhE9sRiKnK3TWFVApEwhi9xgDGmyIWG2NhIVDFuDFHSpL9me2Dkx0UMbY+GPlG5Q0aaRIqIwQKaf/6s8yGFEIBoUUlFg57JIx0pOKWvZAAkqgpRAUnwcBRlCjoKw5gHlzyJ4eZMssOfTuL2kwA6dQCAgiLEgkvEFzBCC4CbsQM0EoEhszqkbwUUBoAjNFtMcDMlmE20ArJkezDPLbmSIQBlsi4ZlGobDRpnAjiJgrmsQsOjymErcGnBFAFNLoCUglMQnEEI1CHPgBQeFDsRoIBFFF0R7OgIFFqGAWDgYSgGxgcALmByDGYUYj5kFiNnUilAYSYFplVA2GG8AKYIALxgjAJEwJJQAoYBACxgegGGASAelaRMGqyYppv4BcaGQjVeZakxTTFUBh46cELINJMmIcCngY2ENg4UGCgkkssNJgEFBYvKJcCQJYDIjRIIyOQiBFEGrmzInwmgXoLrgyoKNPkHOl7BGgbB62CqeMNAgcQBgEAzXQUWcAhjDiyZpGESJxDj5RkkGkwYwKVBnFgicnQBqADLcorCAyRlnISUMTCoMwA0CgCCQAIBDJGSJAi4oSWiCpKjIwqDujdBSADUmroDlLgswHDFrGtmOICUy8wVNL+FyAYoaxBgpj1YFMLKDoBwBM6XQuFkAmO5IklZt7VAADMK2AFjA0gKUwtgBcMAAA0jDJgCowOEInNEiEQjBORiUzjMvlMKTDsjJsDCgx2MIdMAsAJDAHwLUwD8AZBQGYYFIAEGAWAIxmHsaEQnUJZjcYbEwhQLN4iTNR878tMKKDO1oxgCM3VjsiAxsdBrKAE0xxtMOGTVxUyVBRBaKAg4xA0MzUCKFNlbDLAA1lgMvGRynMhQjYR81khNuNjCUgy6JMbYzYRIdTzGDsVTDk0U6OZOmVBmf/6s8xhklwANHk5Cjn9gAQ/JOLDvZAA4xhpMVVjVSQYTAEbGKHhogabKcDSAcmRGDC5iCYbLEmetp3zYYoBnTkxsisYuHmNlhniUbQmFWYMfLDRHQqhJyBEYDaGlrBnJeYG/nzm5sQ2YkVHHiRqDKJRQkKDxkOHZrYmZqlHeggMhicYNOATGGEyNvB2WDroBb5sI2YoemTDhoTyac8GDQhs44cSHiMVCwESRZk4GagjGGoJglmbOIMnlmP+LXBrqWYKlGIGIiGzD3IOc+f/TOUIEFRugsaYoggsM/IyYqk4ZRQYuWlb2NGIQ9RoRtLHwLzD2romu+hY9K0sZKZoX2LQxKjGABNMEoBMwHgMzA0BTJQCjAfB0MP8t4yDk1TF4DlMT4SYxSQSiISoeAuQSL4FgIS8BgEgDhEYEQAQA8QEOqgSqMEAqpr7AwAYK/RoCmIALXih4s0bAz/jIgADCAgqGDiholDgRQlVRLciCMMkyHlHl7OKHOqoGUatMlBLMGywDoAMyFhGThQpCsALjCZgjAEsoDAgCFJCgOCI8BAoMAQ7ghswHSJkLCwUFx2Ck4BfoEPAFo4SBwgmVcAeLIClV4dLWmeauEoTTpLwAakibBUIFURINZIYDBBQZieAytCBwODYKRWgK5xQ0QBeA5xMREEDSAMczZmnJOBihcUI7QEIJS5EVUYAJIPSQ2Er2xwPxVRBR9W+s6TL2LLEKHNjLmNoaW5hei5jb20pAAAAAAAAANW+s6TL2LLEKHNjLmNoaW5hei5jb20pAAAAAAAAANW+s6TL2LLEKHNjLmNoaW5hei5jb20pAAAAAAAAANW+s6TVvrOky9iyxChzYy5jaGluYXouY29tKSAgICAgICAM`;
+      defaultMetadata = {
+        key: "",
+        transition: "fade",
+        duration: 0.5,
+        amount: 5,
+        x: 0,
+        y: 0,
+        start: 0,
+        displayTime: 1e4,
+        audioSrc: SigmaAudioSrc,
+        title: "D\u1EF1 \u0111o\xE1n c\xF3 th\u01B0\u1EDFng",
+        loadingTitle: "S\u1EAFp di\u1EC5n ra: D\u1EF1 \u0111o\xE1n c\xF3 th\u01B0\u1EDFng",
+        hasLoading: true,
+        version: "2.0.0"
+      };
+    }
+  });
+
+  // FootballSub/FootballSub.ts
+  var metadata4;
+  var init_FootballSub = __esm({
+    "FootballSub/FootballSub.ts"() {
+      init_defaultMetadata();
+      metadata4 = {
+        ...defaultMetadata,
+        size: 80,
+        question: "Theo b\u1EA1n \u0111\u1ED9i n\xE0o s\u1EBD b\u1ECB th\u1EBB v\xE0ng trong tr\u1EADn \u0111\u1EA5u n\xE0y?",
+        answers: [
+          { id: "H\xE0 N\u1ED9i", percent: 0, count: 0 },
+          { id: "TP HCM", percent: 0, count: 0 },
+          { id: "Kh\xF4ng \u0111\u1ED9i n\xE0o", percent: 0, count: 0 }
+        ],
+        template: "FootballSub",
+        calcSameAnswer: false,
+        screenOrientation: "landscape",
+        scale: 1,
+        position: "bottom"
+      };
+    }
+  });
+
+  // FootballSub/FootballSub.svelte
+  function create_fragment14(ctx) {
+    let footballsubl;
+    let t;
+    let footballsubp;
+    let current;
+    footballsubl = new FootballSubL_default({});
+    footballsubp = new FootballSubP_default({});
+    return {
+      c() {
+        (0, import_internal14.create_component)(footballsubl.$$.fragment);
+        t = (0, import_internal14.space)();
+        (0, import_internal14.create_component)(footballsubp.$$.fragment);
+      },
+      m(target, anchor) {
+        (0, import_internal14.mount_component)(footballsubl, target, anchor);
+        (0, import_internal14.insert)(target, t, anchor);
+        (0, import_internal14.mount_component)(footballsubp, target, anchor);
+        current = true;
+      },
+      p: import_internal14.noop,
+      i(local) {
+        if (current)
+          return;
+        (0, import_internal14.transition_in)(footballsubl.$$.fragment, local);
+        (0, import_internal14.transition_in)(footballsubp.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        (0, import_internal14.transition_out)(footballsubl.$$.fragment, local);
+        (0, import_internal14.transition_out)(footballsubp.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        (0, import_internal14.destroy_component)(footballsubl, detaching);
+        if (detaching)
+          (0, import_internal14.detach)(t);
+        (0, import_internal14.destroy_component)(footballsubp, detaching);
+      }
+    };
+  }
+  function instance14($$self, $$props, $$invalidate) {
+    let { metadataConfig = metadata4 } = $$props;
+    window.SigmaInteractive.metadata.set(metadataConfig);
+    $$self.$$set = ($$props2) => {
+      if ("metadataConfig" in $$props2)
+        $$invalidate(0, metadataConfig = $$props2.metadataConfig);
+    };
+    return [metadataConfig];
+  }
+  var import_internal14, Component14, FootballSub_default;
+  var init_FootballSub2 = __esm({
+    "FootballSub/FootballSub.svelte"() {
+      import_internal14 = __require("svelte/internal");
+      init_FootballSubL();
+      init_FootballSubP();
+      init_FootballSub();
+      Component14 = class extends import_internal14.SvelteComponent {
+        constructor(options) {
+          super();
+          (0, import_internal14.init)(this, options, instance14, create_fragment14, import_internal14.safe_not_equal, { metadataConfig: 0 });
+        }
+      };
+      FootballSub_default = Component14;
+    }
+  });
+
+  // main.ts
+  var require_main = __commonJS({
+    "main.ts"(exports, module) {
+      init_FootballSub2();
+      var createApp = (options) => new FootballSub_default({
+        target: document.body,
+        ...options,
+        intro: true
+      });
+      module.exports = createApp;
+    }
+  });
+  return require_main();
+})();
+
+  </script>
+  <script>
+    window.createApp()
   </script>
 </body>
+
 </html>

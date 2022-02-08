@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 import type { BuildOptions, Loader, Message, Plugin } from "esbuild";
 import { compile, preprocess } from "svelte/compiler";
 import { typescript } from "../helpers/typescript";
+import { resolveOptions } from "./unplugin-auto-import/options";
+import { transform } from "./unplugin-auto-import/transform";
 const libModules = import.meta.globEager('/src/lib/**/*.{js,ts,svelte}', {
   assert: { type: 'raw' }
 })
@@ -70,7 +72,7 @@ function repl($modules: Module[], esbuild: EsbuildType): Plugin {
         if (mod) {
           let content = mod.contents;
           let loader: Loader =
-            stripExt(args.path) === args.path || isSvelte ? "js" : "js";
+            stripExt(args.path) === args.path || isSvelte ? "ts" : "ts";
 
           if (isSvelte) {
 
@@ -87,7 +89,52 @@ function repl($modules: Module[], esbuild: EsbuildType): Plugin {
 
             const compiled = compile(content, {});
             let { js, css } = compiled;
-            content = js.code;
+            content = js.code
+
+            const resolved = resolveOptions({
+              imports: [
+                'svelte',
+                'svelte/store',
+                'svelte/animate',
+                'svelte/easing',
+                'svelte/motion',
+                'svelte/transition',
+                {
+                    'index': [
+                        'progress',
+                        'globalDisabled',
+                        'removeBoundingRects',
+                        'updateBoundingRects',
+                        'metadata',
+                        'store',
+                        'state',
+                        'screenOrientation',
+                        'selectStore',
+                        'focusSection',
+                        'focusable',
+                        'boundingRect',
+                        'ABSOLUTE_POSITIONS',
+                        'notifications',
+                        'timeoutOverlay',
+                        'globalState',
+                        'workerTimers',
+                        'interactiveOverlay',
+                        'playerRect',
+                        'SpatialNavigation',
+                        'assignConfig',
+                        'answerState',
+                        'lastFocusedKey',
+                        'startTyping'
+                    ],
+                }
+              ],
+            })
+
+
+            const res = await transform(content, args.path, resolved)
+            if (res) {
+              content = res.code;
+            }
           }
 
           return { contents: content, loader };
@@ -140,7 +187,7 @@ export const useEsbuildStore = defineStore("useEsbuild", () => {
         entryPoints,
         bundle: true,
         format: "iife",
-        minify: true,
+        minify: false,
         globalName: "createApp",
         write: false,
       };
